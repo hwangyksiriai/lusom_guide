@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lusom — 인플루언서 가이드라인</title>
+
+  <!-- Open Graph (카카오톡/인스타그램/SNS 공유 미리보기) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lusom-guide.vercel.app/">
+  <meta property="og:title" content="루솜 인플루언서 가이드라인">
+  <meta property="og:description" content="루솜 × Creator Campaign — 제작 가이드, 해시태그, 정산 안내">
+  <meta property="og:image" content="https://lusom-guide.vercel.app/image/banner.png">
+  <meta property="og:image:secure_url" content="https://lusom-guide.vercel.app/image/banner.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="724">
+  <meta property="og:image:height" content="496">
+  <meta name="description" content="루솜 × Creator Campaign — 제작 가이드, 해시태그, 정산 안내">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- Twitter Card (옵션) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="루솜 인플루언서 가이드라인">
+  <meta name="twitter:description" content="루솜 × Creator Campaign — 제작 가이드, 해시태그, 정산 안내">
+  <meta name="twitter:image" content="https://lusom-guide.vercel.app/image/banner.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #C08868;
+      --green-light: #D4A080;
+      --green-pale: #E8C4A8;
+      --cream: #FDF9F6;
+      --warm-white: #F8F2EC;
+      --text-dark: #2A1A12;
+      --text-mid: #6B4838;
+      --text-light: #A07868;
+      --border: #EDD8C8;
+      --tag-bg: #F5EAE0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BANNER */
+    .banner-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .banner-wrap img {
+      width: 100%;
+      display: block;
+    }
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      font-weight: 300;
+      color: #2A1A12;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #2A1A12;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      color: #2A1A12;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 480px) {
+      .header-title { font-size: 18px; }
+    }
+
+    /* SECTION */
+    .section {
+      padding: 48px 28px;
+      border-bottom: 1px solid var(--border);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .section:last-child { border-bottom: none; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--green);
+    }
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    /* ABOUT */
+    .about-lead {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.8;
+    }
+    .brand-img-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+    .brand-img-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .about-grid { display: grid; gap: 12px; }
+    .about-item {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .about-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .about-item-desc {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .brand-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: var(--green);
+      color: white;
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 20px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .brand-link-btn:active { opacity: 0.75; }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--green);
+      color: white;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .info-box-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--green-pale);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      margin-bottom: 10px;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-key {
+      min-width: 70px;
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .info-val { color: white; font-weight: 500; line-height: 1.6; }
+    .info-val strong { color: #F5DCCC; }
+
+    /* PRODUCT */
+    .product-box {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .product-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+    .product-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 11px 16px;
+      background: var(--tag-bg);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 20px;
+      text-decoration: none;
+      align-self: flex-start;
+      border: 1px solid var(--border);
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* MUST / RECOMMEND */
+    .must-list { display: grid; gap: 10px; margin-bottom: 24px; }
+    .must-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .must-icon { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+    .must-item strong { color: var(--text-dark); }
+
+    .key-msg-box {
+      background: var(--green);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .key-msg-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--green-pale);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .key-msg-item {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .key-msg-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .key-msg-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--green-pale);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .key-msg-text {
+      font-size: 13px;
+      color: white;
+      line-height: 1.7;
+    }
+    .key-msg-text strong { color: #F5DCCC; }
+
+    .rec-list {
+      background: #F8EEE6;
+      border: 1px solid #E4C8B4;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .rec-title { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 12px; }
+    .rec-item { font-size: 12.5px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid #E4C8B4; line-height: 1.6; }
+    .rec-item:last-child { border-bottom: none; }
+
+    /* HASHTAG */
+    .hashtag-section { margin-top: 20px; }
+    .hashtag-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hashtag-label .required { background: var(--green); color: white; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+    .hashtag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .hashtag {
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hashtag:active { opacity: 0.6; }
+    .hashtag.req { background: var(--green); color: white; }
+    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.5); }
+
+    /* COLLAB */
+    .collab-box {
+      background: var(--green);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .collab-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--green-pale);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .collab-account {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .collab-account:last-child { border-bottom: none; }
+    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-pale); flex-shrink: 0; }
+    .collab-handle {
+      font-size: 13.5px;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.4); }
+    .collab-note { margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.45); }
+
+    /* WARNING */
+    .warning-box {
+      background: #FFFBF0;
+      border: 1px solid #F0D080;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 12.5px;
+      color: #7A5A00;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+    .warning-box strong { color: #5A3D00; }
+
+    /* REFERENCE */
+    .ref-box {
+      display: grid;
+      gap: 10px;
+    }
+    .ref-note { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+    .ref-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      transition: background 0.15s;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .ref-link:active { background: var(--tag-bg); }
+    .ref-link-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .ref-link-arrow {
+      font-size: 13px;
+      color: var(--green-light);
+    }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+    /* COPY TOAST */
+    .copy-toast {
+      position: fixed;
+      bottom: max(32px, env(safe-area-inset-bottom, 32px));
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(42, 26, 18, 0.9);
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--green);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 36px 32px;
+      padding-bottom: max(36px, env(safe-area-inset-bottom, 36px));
+      font-size: 11.5px;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+    .footer strong { color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 480px) {
+      .section { padding: 36px 20px; }
+      .section-title { font-size: 18px; }
+      .section-label { font-size: 9.5px; }
+      .about-lead { font-size: 13px; }
+      .info-box { padding: 20px; }
+      .info-row { font-size: 13px; }
+      .info-key { min-width: 62px; font-size: 11px; }
+      .product-name { font-size: 14px; }
+      .key-msg-box { padding: 18px 20px; }
+      .key-msg-text { font-size: 12.5px; }
+      .must-item { font-size: 12.5px; padding: 12px 14px; }
+      .hashtag { font-size: 12px; padding: 10px 12px; }
+      .collab-handle { font-size: 13px; }
+      .ref-link-label { font-size: 13px; }
+      .footer { padding: 28px 20px; font-size: 11px; }
+    }
+
+    @media (max-width: 360px) {
+      .section { padding: 28px 14px; }
+      .section-title { font-size: 17px; }
+      .hashtag { font-size: 11.5px; padding: 9px 10px; }
+      .about-item { padding: 14px 16px; }
+      .info-box { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="banner-wrap">
+  <img src="image/배너1-1.png" alt="Lusom 배너">
+  <div class="banner-overlay">
+    <div class="header-eyebrow">Influencer Guideline</div>
+    <div class="header-title">루솜 가이드라인</div>
+    <div class="header-sub">Lusom × Creator Campaign</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="section-label">About Brand</div>
+  <div class="section-title">루솜에 대하여</div>
+  <p class="about-lead">
+    LUSOM은 'Let's Love Nature'라는 슬로건을 바탕으로, 피부와 환경 모두를 고려한 비건 클린뷰티 브랜드입니다. 자연 친화적이고 윤리적인 성분 사용을 핵심 가치로 두고 있으며, 지속 가능한 뷰티를 지향하는 브랜드 철학을 가지고 있습니다. 특히 재활용 가능한 친환경 패키지와 탄소 배출을 줄이기 위한 생산 방식을 추구하며, 단순한 화장품을 넘어 건강한 라이프스타일과 환경 보호 메시지를 함께 전달하고 있습니다.
+  </p>
+  <div class="brand-img-wrap">
+    <img src="image/배너2.PNG" alt="Lusom 브랜드">
+  </div>
+  <div class="about-grid">
+    <div class="about-item">
+      <div class="about-item-title">비건 클린뷰티 브랜드</div>
+      <div class="about-item-desc">루솜은 셀바이오휴먼텍의 기술력을 바탕으로 탄생한 브랜드</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-title">'SEMI GEL' 패드</div>
+      <div class="about-item-desc">피부 밀착력과 수분 유지력이 뛰어난 특허 소재 'SEMI GEL'을 활용한 패드 제품으로 차별화</div>
+    </div>
+    <div class="about-item">
+      <div class="about-item-title">친환경 소재 개발</div>
+      <div class="about-item-desc">친환경 소재 개발과 감각적인 브랜드 무드를 통해 건강한 라이프스타일과 환경 보호 메시지를 함께 전달</div>
+    </div>
+  </div>
+  <a href="https://lusom.kr/index.html" target="_blank" class="brand-link-btn">브랜드 바로가기 →</a>
+</div>
+
+<!-- 캠페인 개요 -->
+<div class="section">
+  <div class="section-label">Campaign Info</div>
+  <div class="section-title">캠페인 개요</div>
+  <div class="info-box">
+    <div class="info-box-title">Schedule & Details</div>
+    <div class="info-row">
+      <div class="info-key">업로드</div>
+      <div class="info-val"><span style="font-size:11px;color:rgba(255,255,255,0.5)">⚠️ 일정 미준수 시 고료 지급 불가</span></div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">형식</div>
+      <div class="info-val">릴스 (Reels)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">공동작업자</div>
+      <div class="info-val">필수</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">2차 활용</div>
+      <div class="info-val">동의</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">업로드 유지</div>
+      <div class="info-val">3개월</div>
+    </div>
+  </div>
+
+  <!-- 제공 제품 -->
+  <div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:10px;letter-spacing:0.05em;">제공 제품</div>
+  <div class="product-box">
+    <div class="product-name">루솜 발효미 에센스 글로우 토너 패드</div>
+    <a href="https://lusom.kr/product/detail.html?product_no=34&cate_no=54&display_group=1" target="_blank" class="product-link-btn">제품 상세 보기 →</a>
+  </div>
+</div>
+
+<!-- 제작 가이드 -->
+<div class="section">
+  <div class="section-label">Content Guide</div>
+  <div class="section-title">제작 가이드</div>
+
+  <div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:12px;">✔ 영상 및 캡션 필수 포함</div>
+
+  <div class="must-list">
+    <div class="must-item">
+      <div class="must-icon">🎬</div>
+      <div>
+        <strong>[영상]</strong>
+        <ul style="margin-top:8px;padding-left:18px;display:flex;flex-direction:column;gap:6px;">
+          <li>사용 전후 광채 변화 중심의 B&A (가능하다면 화잘먹 효과까지 연결) <strong style="color:var(--green)">(필수)</strong></li>
+          <li>에센스 양과 패드 밀착력 강조 (‘찹쌀떡 패드’처럼 제형과 사용감을 직관적으로 표현) <strong style="color:var(--text-light)">(선택)</strong></li>
+          <li>팩토·닦토가 모두 가능한 멀티유즈 등 <strong style="color:var(--text-light)">(선택)</strong></li>
+          <li>제품 패키지와 패드 내용물이 자연스럽게 보이도록 깔끔한 배경에서 고화질로 촬영해주세요.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="must-item">
+      <div class="must-icon">✍️</div>
+      <div><strong>[캡션]</strong> 찹쌀떡패드의 촉촉한 에센스, 쫀득한 밀착력, 팩토 활용, 화잘먹/수분광채 등 사용감 위주로 자유롭게 소구해 주세요.</div>
+    </div>
+    <div class="must-item">
+      <div class="must-icon">🔗</div>
+      <div><strong>[공동작업자]</strong> @lusom_official 설정 필수</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="rec-list">
+    <div class="rec-title">추천 사항</div>
+    <div class="rec-item">제품 특징과 실제 사용 후 느낌을 바탕으로 자유롭게 표현해주세요.</div>
+    <div class="rec-item">BGM은 저작권 이슈가 없는 음원을 사용해주세요.</div>
+    <div class="rec-item">과한 보정·상세페이지 캡처·편집 프로그램 워터마크 노출은 지양해주세요.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 해시태그 -->
+  <div class="hashtag-section">
+    <div class="hashtag-label">해시태그 <span class="required">필수</span></div>
+    <div class="hashtag-wrap">
+      <div class="hashtag req">#루솜</div>
+      <div class="hashtag req">#LUSOM</div>
+      <div class="hashtag req">#발효미토너패드</div>
+      <div class="hashtag req">#찹쌀떡패드</div>
+      <div class="hashtag req">#화잘먹찹쌀떡패드</div>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    ⚠️ <strong>업로드 기한을 반드시 준수해주세요.</strong><br>
+    기간 내 업로드가 이루어지지 않을 경우 고료 지급이 불가합니다.<br><br>
+    공동작업자 설정 및 콘텐츠 2차 활용에 동의하는 것으로 간주됩니다.
+  </div>
+</div>
+
+<!-- 레퍼런스 -->
+<div class="section">
+  <div class="section-label">Reference</div>
+  <div class="section-title">레퍼런스 콘텐츠</div>
+  <div class="ref-note">콘텐츠 제작 참고용 — 탭하여 확인</div>
+  <div class="ref-box">
+    <a href="https://www.instagram.com/reels/DQBvapOE5Ur/" target="_blank" class="ref-link">
+      <span class="ref-link-label">레퍼런스 1</span>
+      <span class="ref-link-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/reels/DUsaQJbD1cB/" target="_blank" class="ref-link">
+      <span class="ref-link-label">레퍼런스 2</span>
+      <span class="ref-link-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/p/DYQ_47EyZwu/" target="_blank" class="ref-link">
+      <span class="ref-link-label">레퍼런스 3</span>
+      <span class="ref-link-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/p/DXO2EL8E2Sq/" target="_blank" class="ref-link">
+      <span class="ref-link-label">레퍼런스 4</span>
+      <span class="ref-link-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Lusom (루솜)</strong><br>
+  본 가이드라인은 선별된 크리에이터에게만 제공되는 자료입니다.<br>
+  문의사항이 있으시면 담당자에게 연락해 주세요.
+</div>
+
+<div class="copy-toast" id="copyToast"></div>
+
+<script>
+  function showToast(text) {
+    const toast = document.getElementById('copyToast');
+    toast.textContent = '"' + text + '" 복사됨';
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('show'), 1500);
+  }
+
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => showToast(text));
+  }
+
+  document.querySelectorAll('.hashtag').forEach(el => {
+    el.addEventListener('click', () => {
+      const tag = el.textContent.replace('⎘', '').trim();
+      copyText(tag);
+    });
+  });
+
+  document.querySelectorAll('.collab-handle').forEach(el => {
+    el.addEventListener('click', () => {
+      const handle = el.textContent.replace('⎘', '').trim();
+      copyText(handle);
+    });
+  });
+</script>
+</body>
+</html>
