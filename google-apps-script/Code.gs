@@ -18,15 +18,17 @@
  *    이 부분의 'YOUR_WEB_APP_URL_HERE'를 방금 복사한 URL로 교체
  *
  * [동작 방식]
- * - 각 페이지(Type A~F)는 신청 시 자신의 타입(tier)·고료(price)를 함께 전송합니다.
- * - 이 스크립트는 타입별로 별도의 시트 탭(예: "A_5만원", "B_10만원" ...)을 자동 생성하고
- *   그 탭에만 데이터를 쌓아, 고료별로 신청 내역이 구분되어 들어옵니다.
+ * - 모든 신청은 탭을 나누지 않고 하나의 시트("신청내역")에 쌓입니다.
+ * - 각 페이지(Type A~F)가 보낸 타입(tier)·고료(price)가 행마다 컬럼으로 기록되어,
+ *   같은 탭 안에서 고료별로 필터링/정렬만 하면 구분해서 볼 수 있습니다.
  * - 우편번호·휴대폰 컬럼은 항상 텍스트 서식으로 저장되어 앞자리 0이 보존됩니다.
  *
  * [코드를 수정할 때 다시 배포하는 법]
  * "배포 > 배포 관리" → 연필 아이콘 → 버전 "새 버전" 선택 → 배포
  * (URL은 그대로 유지되므로 사이트 쪽 코드는 다시 바꿀 필요 없음)
  */
+
+var SHEET_NAME = '신청내역';
 
 function doPost(e) {
   try {
@@ -35,13 +37,13 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var tier = (data.tier || '기타').toString();
     var price = (data.price || '미지정').toString();
-    var sheetName = tier + '_' + price;
 
-    var sheet = ss.getSheetByName(sheetName);
+    var sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) {
-      sheet = ss.insertSheet(sheetName);
+      sheet = ss.insertSheet(SHEET_NAME);
       sheet.appendRow(['제출일시', '타입', '고료', '이름', '인스타그램', '휴대폰', '이메일', '우편번호', '주소', '요청사항']);
       sheet.getRange('A1:J1').setFontWeight('bold');
+      sheet.setFrozenRows(1);
       // 휴대폰(F열)·우편번호(H열)은 항상 텍스트로 저장 (앞자리 0 보존)
       sheet.getRange('F2:F').setNumberFormat('@');
       sheet.getRange('H2:H').setNumberFormat('@');
