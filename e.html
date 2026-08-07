@@ -1002,8 +1002,14 @@
     });
   }
 
+  // 구글시트 연동 설정
+  // google-apps-script/Code.gs를 스프레드시트에 배포한 뒤 발급되는 웹 앱 URL을 아래에 붙여넣어 주세요.
+  // 타입(A~F)·고료는 이 페이지 고유값이며, 구글시트에서 고료별 탭으로 자동 분리되어 저장됩니다.
+  const GAS_WEB_APP_URL = 'YOUR_WEB_APP_URL_HERE';
+  const APP_TIER = 'E';
+  const APP_PRICE = '30만원';
+
   // 신청 폼 제출
-  // TODO: 구글시트 연동 예정 — 연동 전까지는 데이터 구성만 확인
   // 우편번호(zipcode)·휴대폰(phone)은 앞자리 0 보존을 위해 항상 문자열로 취급할 것
   function submitApplication(e) {
     e.preventDefault();
@@ -1011,6 +1017,8 @@
 
     const form = document.getElementById('applicationForm');
     const data = {
+      tier: APP_TIER,
+      price: APP_PRICE,
       name: form.name.value.trim(),
       instagram: normalizeInstagramLink(form.instagram.value),
       phone: String(form.phone.value.trim()),
@@ -1020,8 +1028,30 @@
       note: form.note.value.trim()
     };
 
-    console.log('캠페인 신청 데이터', data);
-    showToast('제출 기능은 준비 중입니다 (구글시트 연동 예정)');
+    if (!GAS_WEB_APP_URL || GAS_WEB_APP_URL.indexOf('YOUR_WEB_APP_URL') !== -1) {
+      console.log('캠페인 신청 데이터', data);
+      showToast('구글시트 연동 URL이 설정되지 않았습니다');
+      return false;
+    }
+
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '제출 중...'; }
+
+    fetch(GAS_WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data)
+    }).then(() => {
+      showToast('제출이 완료되었습니다');
+      form.reset();
+      document.getElementById('appFullAddress').value = '';
+    }).catch(() => {
+      showToast('제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    }).finally(() => {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '루솜 캠페인 지원서 제출하기'; }
+    });
+
     return false;
   }
 </script>
