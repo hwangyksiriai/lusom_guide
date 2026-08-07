@@ -40,15 +40,17 @@ function doPost(e) {
     var sheet = ss.getSheetByName(sheetName);
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
-      sheet.appendRow(['제출일시', '이름', '인스타그램', '휴대폰', '이메일', '우편번호', '주소', '요청사항']);
-      sheet.getRange('A1:H1').setFontWeight('bold');
-      // 휴대폰(D열)·우편번호(F열)은 항상 텍스트로 저장 (앞자리 0 보존)
-      sheet.getRange('D2:D').setNumberFormat('@');
+      sheet.appendRow(['제출일시', '타입', '고료', '이름', '인스타그램', '휴대폰', '이메일', '우편번호', '주소', '요청사항']);
+      sheet.getRange('A1:J1').setFontWeight('bold');
+      // 휴대폰(F열)·우편번호(H열)은 항상 텍스트로 저장 (앞자리 0 보존)
       sheet.getRange('F2:F').setNumberFormat('@');
+      sheet.getRange('H2:H').setNumberFormat('@');
     }
 
     var row = [
       new Date(),
+      tier,
+      price,
       data.name || '',
       data.instagram || '',
       "'" + (data.phone || '').toString(),
