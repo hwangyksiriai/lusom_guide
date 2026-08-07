@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>루솜 에셋 허브</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #C08868;
+      --green-light: #D4A080;
+      --green-pale: #E8C4A8;
+      --cream: #FDF9F6;
+      --warm-white: #F8F2EC;
+      --text-dark: #2A1A12;
+      --text-mid: #6B4838;
+      --text-light: #A07868;
+      --border: #EDD8C8;
+      --tag-bg: #F5EAE0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* GATE */
+    .gate {
+      width: 100%;
+      max-width: 360px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .gate-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .gate-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      text-align: center;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .gate-input:focus { outline: none; border-color: var(--green-light); }
+    .gate-btn {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gate-btn:active { opacity: 0.85; }
+    .gate-error {
+      font-size: 12px;
+      color: #C0504D;
+      margin-top: 10px;
+      min-height: 16px;
+    }
+
+    /* HUB */
+    .hub { display: none; width: 100%; max-width: 480px; }
+    .hub.show { display: block; }
+    .hub-header { margin-bottom: 24px; text-align: center; }
+    .hub-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hub-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 21px;
+      font-weight: 700;
+    }
+    .asset-list { display: flex; flex-direction: column; gap: 10px; }
+    .asset-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .asset-link:hover, .asset-link:active {
+      border-color: var(--green-light);
+      background: var(--warm-white);
+    }
+    .asset-left { display: flex; align-items: center; gap: 12px; }
+    .asset-type {
+      font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green);
+      width: 30px;
+      flex-shrink: 0;
+    }
+    .asset-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .asset-arrow { font-size: 14px; color: var(--green-light); flex-shrink: 0; }
+
+    .hub-footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gate" id="gate">
+    <div class="gate-eyebrow">Lusom Internal</div>
+    <div class="gate-title">에셋 허브</div>
+    <input type="password" id="pwInput" class="gate-input" placeholder="비밀번호" inputmode="numeric" maxlength="20">
+    <button type="button" class="gate-btn" onclick="checkPassword()">입장</button>
+    <div class="gate-error" id="pwError"></div>
+  </div>
+
+  <div class="hub" id="hub">
+    <div class="hub-header">
+      <div class="hub-eyebrow">Lusom Internal</div>
+      <div class="hub-title">캠페인 에셋 허브</div>
+    </div>
+    <div class="asset-list">
+      <a href="/" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">A</div>
+          <div class="asset-price">5만원</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/b" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">B</div>
+          <div class="asset-price">10만원</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/c" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">C</div>
+          <div class="asset-price">15만원</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/d" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">D</div>
+          <div class="asset-price">20만원</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/e" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">E</div>
+          <div class="asset-price">30만원</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/f" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-type">F</div>
+          <div class="asset-price">고료조정</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+    </div>
+    <div class="hub-footer">내부 관리용 페이지입니다 — 외부에 공유하지 마세요.</div>
+  </div>
+
+  <script>
+    var HUB_PASSWORD = '0907';
+
+    function checkPassword() {
+      var input = document.getElementById('pwInput');
+      if (input.value === HUB_PASSWORD) {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('hub').classList.add('show');
+        try { sessionStorage.setItem('lusomHubAuth', '1'); } catch (e) {}
+      } else {
+        document.getElementById('pwError').textContent = '비밀번호가 올바르지 않습니다.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    document.getElementById('pwInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    try {
+      if (sessionStorage.getItem('lusomHubAuth') === '1') {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('hub').classList.add('show');
+      }
+    } catch (e) {}
+  </script>
+</body>
+</html>
