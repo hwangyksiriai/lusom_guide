@@ -434,6 +434,135 @@
       color: var(--green-light);
     }
 
+    /* APPLICATION FORM */
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-label .req { color: #C0504D; margin-left: 2px; }
+    .form-label .opt { font-size: 11px; color: var(--text-light); font-weight: 500; margin-left: 4px; }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-dark);
+      background: white;
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--green-light);
+    }
+    .form-input[readonly] { background: var(--warm-white); }
+    .form-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+    .form-row-zip { display: flex; gap: 8px; }
+    .form-row-zip .form-input { flex: 1; min-width: 0; }
+    .zip-search-btn {
+      padding: 0 18px;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .zip-search-btn:active { opacity: 0.8; }
+
+    .note-box {
+      border: 1px dashed var(--green-light);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      background: var(--cream);
+    }
+    .note-box-title { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .note-box ul { padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.8; }
+
+    .agree-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 20px 0;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      cursor: pointer;
+    }
+    .agree-row input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--green);
+    }
+    .agree-row strong { color: var(--green); font-weight: 700; }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .submit-btn:active { opacity: 0.85; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* SETTLEMENT (v2) */
+    .settlement-lead { font-size: 13px; color: var(--text-mid); margin-bottom: 20px; line-height: 1.7; }
+    .settle-tag-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      background: var(--tag-bg);
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .settle-doc-text { font-size: 13px; color: var(--text-mid); margin: 0 0 20px; }
+    .settle-copy-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      color: var(--text-dark);
+    }
+    .settle-copy-box span { word-break: break-all; }
+    .settle-copy-btn {
+      flex-shrink: 0;
+      background: var(--text-dark);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .settle-copy-btn:active { opacity: 0.8; }
+
     /* DIVIDER */
     .divider { height: 1px; background: var(--border); margin: 24px 0; }
 
@@ -681,34 +810,112 @@
   </div>
 </div>
 
+<!-- 캠페인 신청 -->
+<div class="section">
+  <div class="section-label">Application</div>
+  <div class="section-title">캠페인 신청</div>
+
+  <form id="applicationForm" onsubmit="return submitApplication(event)">
+    <div class="form-group">
+      <label class="form-label" for="appName">이름<span class="req">*</span></label>
+      <input type="text" id="appName" name="name" class="form-input" placeholder="홍길동" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appInstagram">인스타그램 링크<span class="req">*</span></label>
+      <input type="text" id="appInstagram" name="instagram" class="form-input" placeholder="@username 또는 instagram.com/username" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appPhone">휴대폰<span class="req">*</span></label>
+      <input type="tel" id="appPhone" name="phone" class="form-input" placeholder="010-0000-0000" inputmode="numeric" pattern="[0-9\-]*" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appEmail">이메일<span class="opt">(선택)</span></label>
+      <input type="email" id="appEmail" name="email" class="form-input" placeholder="name@email.com">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appZip">우편번호<span class="req">*</span></label>
+      <div class="form-row-zip">
+        <input type="text" id="appZip" name="zipcode" class="form-input" placeholder="00000" inputmode="numeric" pattern="[0-9]*" maxlength="5" readonly required>
+        <button type="button" class="zip-search-btn" onclick="searchAddress()">주소 검색</button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appRoadAddress">배송지 주소<span class="req">*</span></label>
+      <input type="text" id="appRoadAddress" name="roadAddress" class="form-input" placeholder="도로명 주소" readonly required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appDetailAddress">상세 주소<span class="req">*</span></label>
+      <input type="text" id="appDetailAddress" name="detailAddress" class="form-input" placeholder="동·호수 등" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="appNote">요청사항<span class="opt">(선택)</span></label>
+      <textarea id="appNote" name="note" class="form-textarea" placeholder="배송 관련 요청사항을 적어주세요"></textarea>
+    </div>
+
+    <input type="hidden" id="appFullAddress" name="fullAddress">
+
+    <div class="warning-box">
+      ⚠️ <strong>배송지는 매 캠페인마다 새로 확인합니다.</strong><br>
+      오배송 방지를 위해 입력값을 다시 한번 체크해 주세요.
+    </div>
+
+    <div class="note-box" style="margin-top:16px;">
+      <div class="note-box-title">📌 업로드·정산 안내</div>
+      <ul>
+        <li>안내된 업로드 마감일까지 업로드 시 정산이 진행됩니다.</li>
+        <li>정산은 매월 5일 일괄 지급됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="note-box">
+      <div class="note-box-title">📌 콘텐츠 활용 안내</div>
+      <ul>
+        <li>콘텐츠는 브랜드 계정 내 스토리, 피드에 활용될 수 있습니다.</li>
+        <li>2차 활용에 동의해 주신 분들의 콘텐츠는 루솜 공식 홈페이지, SNS, 플랫폼 등에 활용될 수 있는 점 참고 부탁드립니다.</li>
+      </ul>
+    </div>
+
+    <label class="agree-row">
+      <input type="checkbox" id="appAgree" name="agree" required>
+      <span>안내된 캠페인별 가이드라인 및 고료 조건을 확인했으며 이에 동의합니다. 제작된 콘텐츠는 브랜드 및 SIRIAI의 2차 활용에 동의합니다. <strong>(필수)</strong> 진행 제품은 브랜드 프로모션 상황에 따라 일부 변경될 수 있습니다.</span>
+    </label>
+
+    <button type="submit" class="submit-btn">루솜 캠페인 지원서 제출하기</button>
+  </form>
+</div>
+
 <!-- 정산 -->
 <div class="section">
   <div class="section-label">Settlement</div>
   <div class="section-title">정산</div>
-  <div class="info-box">
-    <div class="info-box-title">정산 안내</div>
-    <div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:16px;">
-      캠페인 선정 완료 후 정산을 위한 서류 및 연락처를 누락 없이 제출해 주세요.<br>
-      확인 후 <strong style="color:#F5DCCC;">1~2주 이내</strong>에 처리가 완료됩니다.
-    </div>
-    <div class="info-row">
-      <div class="info-key">제출 서류</div>
-      <div class="info-val">성함, 연락처, 신분증 사본 (뒷자리 포함), 통장 사본</div>
-    </div>
-    <div class="info-row">
-      <div class="info-key">수신 이메일</div>
-      <div class="info-val" id="settlementEmail" style="cursor:pointer;display:inline-flex;align-items:center;gap:5px;" onclick="copyText('hwangyksiriai@gmail.com')">hwangyksiriai@gmail.com <span style="font-size:11px;color:rgba(255,255,255,0.4);">⎘</span></div>
-    </div>
-    <div class="info-row">
-      <div class="info-key">메일 제목</div>
-      <div class="info-val">루솜 _이름_@인스타핸들</div>
-    </div>
-  </div>
-</div>
+  <div class="settlement-lead">캠페인 선정 완료 후 정산을 위한 서류 및 연락처를 누락 없이 제출해 주세요.</div>
 
-<!-- 신청서 -->
-<div class="section">
-  <a href="https://forms.gle/xw3eA6BtWGuGGHBr5" target="_blank" class="brand-link-btn" style="width:100%;justify-content:center;font-size:14px;padding:16px 20px;border-radius:14px;">신청서 작성하기 →</a>
+  <div class="settle-tag-label">제출 서류</div>
+  <div class="settle-doc-text">— 성함, 연락처, 신분증 사본 (뒷자리 포함), 통장 사본</div>
+
+  <div class="settle-tag-label">수신 이메일</div>
+  <div class="settle-copy-box">
+    <span>hwangyksiriai@gmail.com</span>
+    <button type="button" class="settle-copy-btn" onclick="copyText('hwangyksiriai@gmail.com')">복사</button>
+  </div>
+
+  <div class="settle-tag-label">메일 제목</div>
+  <div class="settle-copy-box">
+    <span>루솜 _이름_@인스타핸들</span>
+    <button type="button" class="settle-copy-btn" onclick="copyText('루솜 _이름_@인스타핸들')">복사</button>
+  </div>
+
+  <div class="warning-box">
+    ! 정산 자료는 브랜드로부터 확인 안내를 받은 인플루언서에 한해서 제출해 주세요.<br>
+    ! 확정 안내를 받지 못한 경우 서류를 제출하지 마세요.
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -720,6 +927,7 @@
 
 <div class="copy-toast" id="copyToast"></div>
 
+<script src="//ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script>
   function showToast(text) {
     const toast = document.getElementById('copyToast');
@@ -746,6 +954,51 @@
       copyText(handle);
     });
   });
+
+  // 신청 폼: 주소 검색 (다음 우편번호 서비스)
+  function searchAddress() {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        document.getElementById('appZip').value = data.zonecode;
+        document.getElementById('appRoadAddress').value = data.roadAddress;
+        updateFullAddress();
+        document.getElementById('appDetailAddress').focus();
+      }
+    }).open();
+  }
+
+  // 배송지 주소 + 상세 주소를 하나의 값으로 합쳐서 hidden 필드에 저장
+  // (구글시트 연동 시 주소는 이 필드 하나로, 우편번호는 zipcode 필드로 별도 전달)
+  function updateFullAddress() {
+    const road = document.getElementById('appRoadAddress').value.trim();
+    const detail = document.getElementById('appDetailAddress').value.trim();
+    document.getElementById('appFullAddress').value = [road, detail].filter(Boolean).join(' ');
+  }
+  const appDetailAddressEl = document.getElementById('appDetailAddress');
+  if (appDetailAddressEl) appDetailAddressEl.addEventListener('input', updateFullAddress);
+
+  // 신청 폼 제출
+  // TODO: 구글시트 연동 예정 — 연동 전까지는 데이터 구성만 확인
+  // 우편번호(zipcode)·휴대폰(phone)은 앞자리 0 보존을 위해 항상 문자열로 취급할 것
+  function submitApplication(e) {
+    e.preventDefault();
+    updateFullAddress();
+
+    const form = document.getElementById('applicationForm');
+    const data = {
+      name: form.name.value.trim(),
+      instagram: form.instagram.value.trim(),
+      phone: String(form.phone.value.trim()),
+      email: form.email.value.trim(),
+      zipcode: String(form.zipcode.value.trim()),
+      address: form.fullAddress.value,
+      note: form.note.value.trim()
+    };
+
+    console.log('캠페인 신청 데이터', data);
+    showToast('제출 기능은 준비 중입니다 (구글시트 연동 예정)');
+    return false;
+  }
 </script>
 </body>
 </html>
