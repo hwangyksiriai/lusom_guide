@@ -401,12 +401,28 @@
     }
     .quote-chip:last-child { margin-bottom: 0; }
     .concept-ref-link {
-      display: block;
-      font-size: 11.5px;
-      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
       text-decoration: none;
-      padding: 5px 0;
-      word-break: break-all;
+      padding: 9px 12px;
+      margin-bottom: 6px;
+      min-height: 38px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-ref-link:last-child { margin-bottom: 0; }
+    .concept-ref-link:active { background: var(--tag-bg); }
+    .concept-ref-link::after {
+      content: '→';
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--green-light);
     }
 
     .key-msg-box {
@@ -784,9 +800,9 @@
               </div>
               <div class="concept-refs">
                 <div class="concept-quotes-label">▼ Ref.</div>
-                <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">instagram.com/reels/DLuaWmvpRmg</a>
-                <a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank" class="concept-ref-link">instagram.com/p/Dat9St3A6Fy</a>
-                <a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank" class="concept-ref-link">instagram.com/reels/DaubcC2PnZR</a>
+                <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">레퍼런스 1</a>
+                <a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank" class="concept-ref-link">레퍼런스 2</a>
+                <a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank" class="concept-ref-link">레퍼런스 3</a>
               </div>
             </div>
           </details>
