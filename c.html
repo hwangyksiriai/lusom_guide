@@ -23,19 +23,20 @@
   <meta name="twitter:title" content="루솜 인플루언서 가이드라인">
   <meta name="twitter:description" content="루솜 × Creator Campaign — 제작 가이드, 해시태그, 정산 안내">
   <meta name="twitter:image" content="https://lusom-guide.vercel.app/image/banner.png">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green: #C08868;
-      --green-light: #D4A080;
-      --green-pale: #E8C4A8;
-      --cream: #FDF9F6;
-      --warm-white: #F8F2EC;
-      --text-dark: #2A1A12;
-      --text-mid: #6B4838;
-      --text-light: #A07868;
-      --border: #EDD8C8;
-      --tag-bg: #F5EAE0;
+      --green: #D2B48C;
+      --green-light: #E3CBA5;
+      --green-pale: #F1E4CC;
+      --green-text: #8F6B3E;
+      --cream: #FBF7F0;
+      --warm-white: #F5EDE0;
+      --text-dark: #3A2F22;
+      --text-mid: #7C6A52;
+      --text-light: #B09A7C;
+      --border: #E8DCC6;
+      --tag-bg: #F2E8D8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -73,28 +74,28 @@
       text-align: center;
     }
     .header-eyebrow {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 10px;
       letter-spacing: 0.35em;
       font-weight: 300;
-      color: #2A1A12;
+      color: #3A2F22;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
     .header-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 26px;
       font-weight: 700;
-      color: #2A1A12;
+      color: #3A2F22;
       line-height: 1.3;
       letter-spacing: -0.01em;
       margin-bottom: 8px;
     }
     .header-sub {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 10px;
       font-weight: 300;
-      color: #2A1A12;
+      color: #3A2F22;
       letter-spacing: 0.3em;
       text-transform: uppercase;
     }
@@ -118,7 +119,7 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       font-weight: 700;
-      color: var(--green);
+      color: var(--green-text);
       text-transform: uppercase;
       margin-bottom: 20px;
     }
@@ -127,10 +128,10 @@
       display: inline-block;
       width: 20px;
       height: 1px;
-      background: var(--green);
+      background: var(--green-text);
     }
     .section-title {
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 20px;
       font-weight: 700;
       color: var(--text-dark);
@@ -170,7 +171,7 @@
     .about-item-title {
       font-size: 13px;
       font-weight: 700;
-      color: var(--green);
+      color: var(--green-text);
       margin-bottom: 6px;
     }
     .about-item-desc {
@@ -185,10 +186,11 @@
       margin-top: 20px;
       padding: 12px 20px;
       background: var(--green);
-      color: white;
+      color: var(--text-dark);
       font-size: 12.5px;
       font-weight: 600;
       border-radius: 20px;
+      border: 1px solid var(--green-light);
       text-decoration: none;
       letter-spacing: 0.03em;
       min-height: 44px;
@@ -199,7 +201,8 @@
     /* INFO BOX */
     .info-box {
       background: var(--green);
-      color: white;
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 24px;
       margin-bottom: 20px;
@@ -207,7 +210,7 @@
     .info-box-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(58,47,34,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -222,12 +225,12 @@
     .info-row:last-child { margin-bottom: 0; }
     .info-key {
       min-width: 70px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(58,47,34,0.5);
       font-size: 12px;
       flex-shrink: 0;
     }
-    .info-val { color: white; font-weight: 500; line-height: 1.6; }
-    .info-val strong { color: #F5DCCC; }
+    .info-val { color: var(--text-dark); font-weight: 500; line-height: 1.6; }
+    .info-val strong { color: var(--green-text); }
 
     /* PRODUCT */
     .product-box {
@@ -256,7 +259,7 @@
       gap: 5px;
       padding: 11px 16px;
       background: var(--tag-bg);
-      color: var(--green);
+      color: var(--green-text);
       font-size: 12px;
       font-weight: 700;
       border-radius: 20px;
@@ -284,8 +287,151 @@
     .must-icon { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
     .must-item strong { color: var(--text-dark); }
 
+    /* CONCEPT ACCORDION */
+    .concept-intro {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .concept-pick {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      margin: 0 2px;
+    }
+    .concept-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .concept {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .concept[open] { border-color: var(--green-light); }
+    .concept-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-summary::-webkit-details-marker { display: none; }
+    .concept-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      color: var(--green-text);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept[open] .concept-num { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .concept-name { flex: 1; font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+    .concept-chevron { font-size: 11px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
+    .concept[open] .concept-chevron { transform: rotate(180deg); color: var(--green-text); }
+    .concept-body { padding: 2px 16px 18px; border-top: 1px solid var(--border); }
+    .concept-steps {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      counter-reset: step;
+    }
+    .concept-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .concept-steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      color: var(--green-text);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept-quotes, .concept-refs {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+    .concept-quotes-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--green-text);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .quote-chip {
+      background: var(--tag-bg);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .quote-chip:last-child { margin-bottom: 0; }
+    .concept-ref-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      padding: 9px 12px;
+      margin-bottom: 6px;
+      min-height: 38px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-ref-link:last-child { margin-bottom: 0; }
+    .concept-ref-link:active { background: var(--tag-bg); }
+    .concept-ref-link::after {
+      content: '→';
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--green-text);
+    }
+
     .key-msg-box {
       background: var(--green);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 22px 24px;
       margin-bottom: 20px;
@@ -293,39 +439,39 @@
     .key-msg-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(58,47,34,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
     .key-msg-item {
       padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(58,47,34,0.12);
     }
     .key-msg-item:last-child { border-bottom: none; padding-bottom: 0; }
     .key-msg-badge {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
-      color: var(--green-pale);
+      color: rgba(58,47,34,0.55);
       margin-bottom: 6px;
       text-transform: uppercase;
     }
     .key-msg-text {
       font-size: 13px;
-      color: white;
+      color: var(--text-dark);
       line-height: 1.7;
     }
-    .key-msg-text strong { color: #F5DCCC; }
+    .key-msg-text strong { color: var(--green-text); }
 
     .rec-list {
-      background: #F8EEE6;
-      border: 1px solid #E4C8B4;
+      background: #F4EADC;
+      border: 1px solid #E8DCC6;
       border-radius: 12px;
       padding: 18px 20px;
     }
-    .rec-title { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 12px; }
-    .rec-item { font-size: 12.5px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid #E4C8B4; line-height: 1.6; }
+    .rec-title { font-size: 12px; font-weight: 700; color: var(--green-text); margin-bottom: 12px; }
+    .rec-item { font-size: 12.5px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid #E8DCC6; line-height: 1.6; }
     .rec-item:last-child { border-bottom: none; }
 
     /* HASHTAG */
@@ -339,7 +485,7 @@
       align-items: center;
       gap: 6px;
     }
-    .hashtag-label .required { background: var(--green); color: white; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+    .hashtag-label .required { background: var(--green); color: var(--text-dark); font-size: 10px; padding: 2px 7px; border-radius: 10px; border: 1px solid var(--green-light); }
     .hashtag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
     .hashtag {
       font-size: 13px;
@@ -356,12 +502,13 @@
       -webkit-tap-highlight-color: transparent;
     }
     .hashtag:active { opacity: 0.6; }
-    .hashtag.req { background: var(--green); color: white; }
-    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.5); }
+    .hashtag.req { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(58,47,34,0.45); }
 
     /* COLLAB */
     .collab-box {
       background: var(--green);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 22px;
       margin-bottom: 20px;
@@ -369,7 +516,7 @@
     .collab-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(58,47,34,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 16px;
@@ -379,21 +526,21 @@
       align-items: center;
       gap: 10px;
       padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(58,47,34,0.12);
     }
     .collab-account:last-child { border-bottom: none; }
-    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-pale); flex-shrink: 0; }
+    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-text); flex-shrink: 0; }
     .collab-handle {
       font-size: 13.5px;
-      color: white;
+      color: var(--text-dark);
       font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
-    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.4); }
-    .collab-note { margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.45); }
+    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(58,47,34,0.4); }
+    .collab-note { margin-left: auto; font-size: 10px; color: rgba(58,47,34,0.45); }
 
     /* WARNING */
     .warning-box {
@@ -435,7 +582,7 @@
     }
     .ref-link-arrow {
       font-size: 13px;
-      color: var(--green-light);
+      color: var(--green-text);
     }
 
     /* APPLICATION FORM */
@@ -595,7 +742,8 @@
     /* FOOTER */
     .footer {
       background: var(--green);
-      color: rgba(255,255,255,0.5);
+      border-top: 1px solid var(--green-light);
+      color: rgba(58,47,34,0.55);
       text-align: center;
       padding: 36px 32px;
       padding-bottom: max(36px, env(safe-area-inset-bottom, 36px));
@@ -603,7 +751,7 @@
       letter-spacing: 0.05em;
       line-height: 1.8;
     }
-    .footer strong { color: rgba(255,255,255,0.85); }
+    .footer strong { color: var(--text-dark); }
 
     @media (max-width: 480px) {
       .section { padding: 36px 20px; }
@@ -648,8 +796,8 @@
 <div class="section">
   <div class="section-label">About Brand</div>
   <p class="about-lead">
-    <strong style="display:block;font-family:'Noto Serif KR',serif;font-size:16px;color:var(--text-dark);line-height:1.5;margin-bottom:4px;">피부의 힘을 되찾는 회복 여정, 루솜</strong>
-    <span style="display:block;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--green);margin-bottom:18px;">THE BEAUTY OF CYCLE, LUSOM</span>
+    <strong style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:16px;color:var(--text-dark);line-height:1.5;margin-bottom:4px;">피부의 힘을 되찾는 회복 여정, 루솜</strong>
+    <span style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--green-text);margin-bottom:18px;">THE BEAUTY OF CYCLE, LUSOM</span>
     루솜은 비움-채움-회복의 선순환을 통해 피부 본연의 힘을 되찾는 회복 여정을 연구합니다.<br><br>
     불필요한 것은 덜어내고 꼭 필요한 성분은 편안하게 채워,<br>피부가 본연의 맑고 빛나는 상태를 오래도록 지속할 수 있도록 돕습니다.<br><br>
     비움-채움-회복은 한 번에 끝나는 과정이 아닌 지속적인 순환입니다.<br>자연이 반복되는 순환 속에서 회복하듯,<br>루솜은 피부의 건강한 선순환을 존중하며 지속 가능한 아름다움을 약속합니다.
@@ -682,7 +830,7 @@
     <div class="info-box-title">Schedule & Details</div>
     <div class="info-row">
       <div class="info-key">업로드</div>
-      <div class="info-val"><span style="font-size:11px;color:rgba(255,255,255,0.5)">⚠️ 일정 미준수 시 고료 지급 불가</span></div>
+      <div class="info-val"><span style="font-size:11px;color:rgba(58,47,34,0.5)">⚠️ 일정 미준수 시 고료 지급 불가</span></div>
     </div>
     <div class="info-row">
       <div class="info-key">형식</div>
@@ -723,25 +871,97 @@
       <div class="must-icon">🎬</div>
       <div>
         <strong>[영상]</strong>
-        <div style="margin-top:10px;display:flex;flex-direction:column;gap:16px;">
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 1</div>
-            <div style="margin-bottom:4px;"><strong>▸메인 컨셉</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>제품력 강조 (에센스 양 혹은 밀착력)</li>
-              <li>팩토/닦토</li>
-            </ul>
-            <div>→ 찹쌀떡팩의 촉촉한 에센스, 쫀득한 밀착력,<br>팩토 활용, 화잘먹/수분광채 등 사용감 위주로 자유롭게 소구해 주세요.</div>
-          </div>
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 2</div>
-            <div style="margin-bottom:4px;"><strong>▸메인 컨셉</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>GRWM</li>
-              <li>데일리 루틴</li>
-            </ul>
-            <div>→ 자연스럽게 '찐템'처럼 느껴지도록 제작해주세요<br>→ GRWM 혹은 데일리 루틴에 토너팩을 자연스럽게 넣어주세요!</div>
-          </div>
+        <div class="concept-intro">마스크팩의 <strong>제품력</strong>을 강조해주세요.<br>아래 컨셉 중 <span class="concept-pick">택1</span>하여 진행해주세요.</div>
+
+        <div class="concept-list">
+          <details class="concept" open>
+            <summary class="concept-summary">
+              <span class="concept-num">1</span>
+              <span class="concept-name">2026년 버전 쌀뜨물 스킨케어</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>영상 초반, 쌀뜨물로 세안하는 듯한 장면 또는 쌀뜨물 속에서 제품을 꺼내는 연출로 후킹</li>
+                <li>마스크 부착 장면으로 전환 / 쌀뜨물을 그대로 굳힌 듯한 도톰한 38g 겔 강조</li>
+                <li>팩이 투명해질 때까지 부착하며, 마치 쌀뜨물이 피부에 흡수되는 듯한 느낌 표현</li>
+                <li>팩 제거 후, 쌀뜨물 세안한 듯 뽀얗고 촉촉한 피부 광채 강조</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"쌀 씻다가 피부관리까지 해버림"</div>
+                <div class="quote-chip">"엄마한테 등짝 안 맞고 쌀뜨물 세안하는 법"</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">2</span>
+              <span class="concept-name">반쪽 얼굴 광채 테스트</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>팩을 반으로 잘라 얼굴 한쪽에만 부착한 뒤, 동일한 조명과 구도에서 맨얼굴과 비교</li>
+                <li>팩이 투명해질 때까지 기다린 후 제거</li>
+                <li>양쪽 얼굴을 클로즈업하여 피부 광채와 컨디션 차이 강조</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"광채팩, 진짜 효과 있는지 반쪽 얼굴로 테스트해봄"</div>
+                <div class="quote-chip">"어느 쪽이 팩을 사용한 피부일까요?"</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">3</span>
+              <span class="concept-name">7일 사용 후기</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>7일 동안 동일한 구도에서 촬영한 1·3·5·7일 차 피부 컨디션과 사용 장면을 빠른 템포로 연결</li>
+                <li>피부결과 광채가 일차별로 달라지는 모습을 클로즈업으로 자연스럽게 표현 & 사용감 설명</li>
+                <li>7일 차에는 촉촉하고 매끈한 유리알 광채 피부를 강조하고, 사용 전과의 B&A 비교로 마무리</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"쌀뜨물광채팩 몰랐을 때 / 알았을 때"</div>
+                <div class="quote-chip">"7일만에 피부과 안 가고 이게 되네"</div>
+                <div class="quote-chip">"자기전 '이거' 하나만 하세요"</div>
+                <div class="quote-chip">"일주일만에 물광 피부 만들어준 '인생템'"</div>
+              </div>
+              <div class="concept-refs">
+                <div class="concept-quotes-label">▼ Ref.</div>
+                <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">레퍼런스 1</a>
+                <a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank" class="concept-ref-link">레퍼런스 2</a>
+                <a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank" class="concept-ref-link">레퍼런스 3</a>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">4</span>
+              <span class="concept-name">팩 붙이고 댄스 챌린지</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>영상 초반, 팩을 부착한 상태로 등장해 시선 집중</li>
+                <li>춤이나 챌린지를 진행하며 격한 움직임에도 팩이 밀착된 모습 재미있게 표현 / 동작 중 얼굴 클로즈업으로 겔의 밀착력 강조</li>
+                <li>챌린지 후 팩 제거 및 촉촉한 피부 광채까지 연결</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"팩 떨어지면 영상 종료"</div>
+                <div class="quote-chip">"광채 충전하면서 챌린지 찍기"</div>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </div>
