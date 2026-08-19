@@ -26,9 +26,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green: #C9A876;
-      --green-light: #DDC49A;
-      --green-pale: #F0E4C8;
+      --green: #FFFFE0;
+      --green-light: #E3D479;
+      --green-pale: #FBF7D0;
+      --green-text: #A68900;
       --cream: #FFFDF7;
       --warm-white: #FBF7EC;
       --text-dark: #38321F;
@@ -118,7 +119,7 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       font-weight: 700;
-      color: var(--green);
+      color: var(--green-text);
       text-transform: uppercase;
       margin-bottom: 20px;
     }
@@ -127,7 +128,7 @@
       display: inline-block;
       width: 20px;
       height: 1px;
-      background: var(--green);
+      background: var(--green-text);
     }
     .section-title {
       font-family: 'Noto Sans KR', sans-serif;
@@ -170,7 +171,7 @@
     .about-item-title {
       font-size: 13px;
       font-weight: 700;
-      color: var(--green);
+      color: var(--green-text);
       margin-bottom: 6px;
     }
     .about-item-desc {
@@ -185,10 +186,11 @@
       margin-top: 20px;
       padding: 12px 20px;
       background: var(--green);
-      color: white;
+      color: var(--text-dark);
       font-size: 12.5px;
       font-weight: 600;
       border-radius: 20px;
+      border: 1px solid var(--green-light);
       text-decoration: none;
       letter-spacing: 0.03em;
       min-height: 44px;
@@ -199,7 +201,8 @@
     /* INFO BOX */
     .info-box {
       background: var(--green);
-      color: white;
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 24px;
       margin-bottom: 20px;
@@ -207,7 +210,7 @@
     .info-box-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(56,50,31,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -222,12 +225,12 @@
     .info-row:last-child { margin-bottom: 0; }
     .info-key {
       min-width: 70px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(56,50,31,0.5);
       font-size: 12px;
       flex-shrink: 0;
     }
-    .info-val { color: white; font-weight: 500; line-height: 1.6; }
-    .info-val strong { color: #F8F2DC; }
+    .info-val { color: var(--text-dark); font-weight: 500; line-height: 1.6; }
+    .info-val strong { color: var(--green-text); }
 
     /* PRODUCT */
     .product-box {
@@ -256,7 +259,7 @@
       gap: 5px;
       padding: 11px 16px;
       background: var(--tag-bg);
-      color: var(--green);
+      color: var(--green-text);
       font-size: 12px;
       font-weight: 700;
       border-radius: 20px;
@@ -295,7 +298,8 @@
       display: inline-flex;
       align-items: center;
       background: var(--green);
-      color: white;
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
       font-size: 11px;
       font-weight: 700;
       padding: 2px 9px;
@@ -332,17 +336,17 @@
       height: 22px;
       border-radius: 50%;
       background: var(--tag-bg);
-      color: var(--green);
+      color: var(--green-text);
       font-size: 12px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .concept[open] .concept-num { background: var(--green); color: white; }
+    .concept[open] .concept-num { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
     .concept-name { flex: 1; font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
     .concept-chevron { font-size: 11px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
-    .concept[open] .concept-chevron { transform: rotate(180deg); color: var(--green); }
+    .concept[open] .concept-chevron { transform: rotate(180deg); color: var(--green-text); }
     .concept-body { padding: 2px 16px 18px; border-top: 1px solid var(--border); }
     .concept-steps {
       margin: 14px 0 0;
@@ -370,7 +374,7 @@
       border-radius: 50%;
       background: var(--warm-white);
       border: 1px solid var(--border);
-      color: var(--green);
+      color: var(--green-text);
       font-size: 10px;
       font-weight: 700;
       display: flex;
@@ -386,7 +390,7 @@
       font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 0.05em;
-      color: var(--green);
+      color: var(--green-text);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -422,11 +426,12 @@
       content: '→';
       font-size: 12px;
       font-weight: 400;
-      color: var(--green-light);
+      color: var(--green-text);
     }
 
     .key-msg-box {
       background: var(--green);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 22px 24px;
       margin-bottom: 20px;
@@ -434,30 +439,30 @@
     .key-msg-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(56,50,31,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
     .key-msg-item {
       padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(56,50,31,0.12);
     }
     .key-msg-item:last-child { border-bottom: none; padding-bottom: 0; }
     .key-msg-badge {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
-      color: var(--green-pale);
+      color: rgba(56,50,31,0.55);
       margin-bottom: 6px;
       text-transform: uppercase;
     }
     .key-msg-text {
       font-size: 13px;
-      color: white;
+      color: var(--text-dark);
       line-height: 1.7;
     }
-    .key-msg-text strong { color: #F8F2DC; }
+    .key-msg-text strong { color: var(--green-text); }
 
     .rec-list {
       background: #F8F3E4;
@@ -465,7 +470,7 @@
       border-radius: 12px;
       padding: 18px 20px;
     }
-    .rec-title { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 12px; }
+    .rec-title { font-size: 12px; font-weight: 700; color: var(--green-text); margin-bottom: 12px; }
     .rec-item { font-size: 12.5px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid #E6DAB5; line-height: 1.6; }
     .rec-item:last-child { border-bottom: none; }
 
@@ -480,7 +485,7 @@
       align-items: center;
       gap: 6px;
     }
-    .hashtag-label .required { background: var(--green); color: white; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+    .hashtag-label .required { background: var(--green); color: var(--text-dark); font-size: 10px; padding: 2px 7px; border-radius: 10px; border: 1px solid var(--green-light); }
     .hashtag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
     .hashtag {
       font-size: 13px;
@@ -497,12 +502,13 @@
       -webkit-tap-highlight-color: transparent;
     }
     .hashtag:active { opacity: 0.6; }
-    .hashtag.req { background: var(--green); color: white; }
-    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.5); }
+    .hashtag.req { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(56,50,31,0.45); }
 
     /* COLLAB */
     .collab-box {
       background: var(--green);
+      border: 1px solid var(--green-light);
       border-radius: 14px;
       padding: 22px;
       margin-bottom: 20px;
@@ -510,7 +516,7 @@
     .collab-title {
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--green-pale);
+      color: rgba(56,50,31,0.55);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 16px;
@@ -520,21 +526,21 @@
       align-items: center;
       gap: 10px;
       padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(56,50,31,0.12);
     }
     .collab-account:last-child { border-bottom: none; }
-    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-pale); flex-shrink: 0; }
+    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-text); flex-shrink: 0; }
     .collab-handle {
       font-size: 13.5px;
-      color: white;
+      color: var(--text-dark);
       font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
     }
-    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(255,255,255,0.4); }
-    .collab-note { margin-left: auto; font-size: 10px; color: rgba(255,255,255,0.45); }
+    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(56,50,31,0.4); }
+    .collab-note { margin-left: auto; font-size: 10px; color: rgba(56,50,31,0.45); }
 
     /* WARNING */
     .warning-box {
@@ -576,7 +582,7 @@
     }
     .ref-link-arrow {
       font-size: 13px;
-      color: var(--green-light);
+      color: var(--green-text);
     }
 
     /* DIVIDER */
@@ -607,7 +613,8 @@
     /* FOOTER */
     .footer {
       background: var(--green);
-      color: rgba(255,255,255,0.5);
+      border-top: 1px solid var(--green-light);
+      color: rgba(56,50,31,0.55);
       text-align: center;
       padding: 36px 32px;
       padding-bottom: max(36px, env(safe-area-inset-bottom, 36px));
@@ -615,7 +622,7 @@
       letter-spacing: 0.05em;
       line-height: 1.8;
     }
-    .footer strong { color: rgba(255,255,255,0.85); }
+    .footer strong { color: var(--text-dark); }
 
     @media (max-width: 480px) {
       .section { padding: 36px 20px; }
@@ -661,7 +668,7 @@
   <div class="section-label">About Brand</div>
   <p class="about-lead">
     <strong style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:16px;color:var(--text-dark);line-height:1.5;margin-bottom:4px;">피부의 힘을 되찾는 회복 여정, 루솜</strong>
-    <span style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--green);margin-bottom:18px;">THE BEAUTY OF CYCLE, LUSOM</span>
+    <span style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--green-text);margin-bottom:18px;">THE BEAUTY OF CYCLE, LUSOM</span>
     루솜은 비움-채움-회복의 선순환을 통해 피부 본연의 힘을 되찾는 회복 여정을 연구합니다.<br><br>
     불필요한 것은 덜어내고 꼭 필요한 성분은 편안하게 채워,<br>피부가 본연의 맑고 빛나는 상태를 오래도록 지속할 수 있도록 돕습니다.<br><br>
     비움-채움-회복은 한 번에 끝나는 과정이 아닌 지속적인 순환입니다.<br>자연이 반복되는 순환 속에서 회복하듯,<br>루솜은 피부의 건강한 선순환을 존중하며 지속 가능한 아름다움을 약속합니다.
@@ -694,7 +701,7 @@
     <div class="info-box-title">Schedule & Details</div>
     <div class="info-row">
       <div class="info-key">업로드</div>
-      <div class="info-val"><span style="font-size:11px;color:rgba(255,255,255,0.5)">⚠️ 일정 미준수 시 고료 지급 불가</span></div>
+      <div class="info-val"><span style="font-size:11px;color:rgba(56,50,31,0.5)">⚠️ 일정 미준수 시 고료 지급 불가</span></div>
     </div>
     <div class="info-row">
       <div class="info-key">형식</div>
