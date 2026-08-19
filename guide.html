@@ -284,6 +284,131 @@
     .must-icon { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
     .must-item strong { color: var(--text-dark); }
 
+    /* CONCEPT ACCORDION */
+    .concept-intro {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .concept-pick {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      margin: 0 2px;
+    }
+    .concept-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .concept {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .concept[open] { border-color: var(--green-light); }
+    .concept-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-summary::-webkit-details-marker { display: none; }
+    .concept-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept[open] .concept-num { background: var(--green); color: white; }
+    .concept-name { flex: 1; font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+    .concept-chevron { font-size: 11px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
+    .concept[open] .concept-chevron { transform: rotate(180deg); color: var(--green); }
+    .concept-body { padding: 2px 16px 18px; border-top: 1px solid var(--border); }
+    .concept-steps {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      counter-reset: step;
+    }
+    .concept-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .concept-steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept-quotes, .concept-refs {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+    .concept-quotes-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .quote-chip {
+      background: var(--tag-bg);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .quote-chip:last-child { margin-bottom: 0; }
+    .concept-ref-link {
+      display: block;
+      font-size: 11.5px;
+      color: var(--green);
+      text-decoration: none;
+      padding: 5px 0;
+      word-break: break-all;
+    }
+
     .key-msg-box {
       background: var(--green);
       border-radius: 14px;
@@ -594,69 +719,97 @@
       <div class="must-icon">🎬</div>
       <div>
         <strong>[영상]</strong>
-        <div style="margin-top:10px;">이번 캠페인은 마스크팩의 제품력을 강조해주세요.<br>아래 콘텐츠 제작 컨셉 중 <strong>택1</strong>하여 진행해주세요.</div>
-        <div style="margin-top:10px;display:flex;flex-direction:column;gap:16px;">
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 1. 2026년 버전 쌀뜨물 스킨케어</div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>영상 초반, 쌀뜨물로 세안하는 듯한 장면 또는 쌀뜨물 속에서 제품을 꺼내는 연출로 후킹</li>
-              <li>마스크 부착 장면으로 전환 / 쌀뜨물을 그대로 굳힌 듯한 도톰한 38g 겔 강조</li>
-              <li>팩이 투명해질 때까지 부착하며, 마치 쌀뜨물이 피부에 흡수되는 듯한 느낌 표현</li>
-              <li>팩 제거 후, 쌀뜨물 세안한 듯 뽀얗고 촉촉한 피부 광채 강조</li>
-            </ul>
-            <div style="margin-top:6px;"><strong>예시 문구</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>쌀 씻다가 피부관리까지 해버림</li>
-              <li>엄마한테 등짝 안 맞고 쌀뜨물 세안하는 법</li>
-            </ul>
-          </div>
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 2. 반쪽 얼굴 광채 테스트</div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>팩을 반으로 잘라 얼굴 한쪽에만 부착한 뒤, 동일한 조명과 구도에서 맨얼굴과 비교</li>
-              <li>팩이 투명해질 때까지 기다린 후 제거</li>
-              <li>양쪽 얼굴을 클로즈업하여 피부 광채와 컨디션 차이 강조</li>
-            </ul>
-            <div style="margin-top:6px;"><strong>예시 문구</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>광채팩, 진짜 효과 있는지 반쪽 얼굴로 테스트해봄</li>
-              <li>어느 쪽이 팩을 사용한 피부일까요?</li>
-            </ul>
-          </div>
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 3. 7일 사용 후기</div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>7일 동안 동일한 구도에서 촬영한 1·3·5·7일 차 피부 컨디션과 사용 장면을 빠른 템포로 연결</li>
-              <li>피부결과 광채가 일차별로 달라지는 모습을 클로즈업으로 자연스럽게 표현 & 사용감 설명</li>
-              <li>7일 차에는 촉촉하고 매끈한 유리알 광채 피부를 강조하고, 사용 전과의 B&A 비교로 마무리</li>
-            </ul>
-            <div style="margin-top:6px;"><strong>예시 문구</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>쌀뜨물광채팩 몰랐을 때 / 알았을 때</li>
-              <li>7일만에 피부과 안 가고 이게 되네</li>
-              <li>자기전 '이거' 하나만 하세요</li>
-              <li>일주일만에 물광 피부 만들어준 '인생템'</li>
-            </ul>
-            <div style="margin-top:6px;"><strong>▼ Ref.</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li><a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank">https://www.instagram.com/reels/DLuaWmvpRmg/</a></li>
-              <li><a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank">https://www.instagram.com/p/Dat9St3A6Fy/</a></li>
-              <li><a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank">https://www.instagram.com/reels/DaubcC2PnZR/</a></li>
-            </ul>
-          </div>
-          <div>
-            <div style="font-weight:700;color:var(--text-dark);margin-bottom:6px;">컨셉 4. 팩 붙이고 댄스 챌린지</div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>영상 초반, 팩을 부착한 상태로 등장해 시선 집중</li>
-              <li>춤이나 챌린지를 진행하며 격한 움직임에도 팩이 밀착된 모습 재미있게 표현 / 동작 중 얼굴 클로즈업으로 겔의 밀착력 강조</li>
-              <li>챌린지 후 팩 제거 및 촉촉한 피부 광채까지 연결</li>
-            </ul>
-            <div style="margin-top:6px;"><strong>예시 문구</strong></div>
-            <ul style="margin:6px 0;padding-left:18px;display:flex;flex-direction:column;gap:4px;">
-              <li>팩 떨어지면 영상 종료</li>
-              <li>광채 충전하면서 챌린지 찍기</li>
-            </ul>
-          </div>
+        <div class="concept-intro">마스크팩의 <strong>제품력</strong>을 강조해주세요.<br>아래 컨셉 중 <span class="concept-pick">택1</span>하여 진행해주세요.</div>
+
+        <div class="concept-list">
+          <details class="concept" open>
+            <summary class="concept-summary">
+              <span class="concept-num">1</span>
+              <span class="concept-name">2026년 버전 쌀뜨물 스킨케어</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>영상 초반, 쌀뜨물로 세안하는 듯한 장면 또는 쌀뜨물 속에서 제품을 꺼내는 연출로 후킹</li>
+                <li>마스크 부착 장면으로 전환 / 쌀뜨물을 그대로 굳힌 듯한 도톰한 38g 겔 강조</li>
+                <li>팩이 투명해질 때까지 부착하며, 마치 쌀뜨물이 피부에 흡수되는 듯한 느낌 표현</li>
+                <li>팩 제거 후, 쌀뜨물 세안한 듯 뽀얗고 촉촉한 피부 광채 강조</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"쌀 씻다가 피부관리까지 해버림"</div>
+                <div class="quote-chip">"엄마한테 등짝 안 맞고 쌀뜨물 세안하는 법"</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">2</span>
+              <span class="concept-name">반쪽 얼굴 광채 테스트</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>팩을 반으로 잘라 얼굴 한쪽에만 부착한 뒤, 동일한 조명과 구도에서 맨얼굴과 비교</li>
+                <li>팩이 투명해질 때까지 기다린 후 제거</li>
+                <li>양쪽 얼굴을 클로즈업하여 피부 광채와 컨디션 차이 강조</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"광채팩, 진짜 효과 있는지 반쪽 얼굴로 테스트해봄"</div>
+                <div class="quote-chip">"어느 쪽이 팩을 사용한 피부일까요?"</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">3</span>
+              <span class="concept-name">7일 사용 후기</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>7일 동안 동일한 구도에서 촬영한 1·3·5·7일 차 피부 컨디션과 사용 장면을 빠른 템포로 연결</li>
+                <li>피부결과 광채가 일차별로 달라지는 모습을 클로즈업으로 자연스럽게 표현 & 사용감 설명</li>
+                <li>7일 차에는 촉촉하고 매끈한 유리알 광채 피부를 강조하고, 사용 전과의 B&A 비교로 마무리</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"쌀뜨물광채팩 몰랐을 때 / 알았을 때"</div>
+                <div class="quote-chip">"7일만에 피부과 안 가고 이게 되네"</div>
+                <div class="quote-chip">"자기전 '이거' 하나만 하세요"</div>
+                <div class="quote-chip">"일주일만에 물광 피부 만들어준 '인생템'"</div>
+              </div>
+              <div class="concept-refs">
+                <div class="concept-quotes-label">▼ Ref.</div>
+                <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">instagram.com/reels/DLuaWmvpRmg</a>
+                <a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank" class="concept-ref-link">instagram.com/p/Dat9St3A6Fy</a>
+                <a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank" class="concept-ref-link">instagram.com/reels/DaubcC2PnZR</a>
+              </div>
+            </div>
+          </details>
+
+          <details class="concept">
+            <summary class="concept-summary">
+              <span class="concept-num">4</span>
+              <span class="concept-name">팩 붙이고 댄스 챌린지</span>
+              <span class="concept-chevron">⌄</span>
+            </summary>
+            <div class="concept-body">
+              <ol class="concept-steps">
+                <li>영상 초반, 팩을 부착한 상태로 등장해 시선 집중</li>
+                <li>춤이나 챌린지를 진행하며 격한 움직임에도 팩이 밀착된 모습 재미있게 표현 / 동작 중 얼굴 클로즈업으로 겔의 밀착력 강조</li>
+                <li>챌린지 후 팩 제거 및 촉촉한 피부 광채까지 연결</li>
+              </ol>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">예시 문구</div>
+                <div class="quote-chip">"팩 떨어지면 영상 종료"</div>
+                <div class="quote-chip">"광채 충전하면서 챌린지 찍기"</div>
+              </div>
+            </div>
+          </details>
         </div>
       </div>
     </div>
