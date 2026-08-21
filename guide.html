@@ -357,7 +357,7 @@
       gap: 10px;
       counter-reset: step;
     }
-    .concept-steps li {
+    .concept-steps > li {
       counter-increment: step;
       display: flex;
       gap: 10px;
@@ -365,7 +365,7 @@
       color: var(--text-mid);
       line-height: 1.6;
     }
-    .concept-steps li::before {
+    .concept-steps > li::before {
       content: counter(step);
       flex-shrink: 0;
       margin-top: 1px;
@@ -428,6 +428,10 @@
       font-weight: 400;
       color: var(--green-text);
     }
+
+    .sub-list { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+    .sub-list li { margin-bottom: 4px; }
+    .sub-list li:last-child { margin-bottom: 0; }
 
     .key-msg-box {
       background: var(--green);
@@ -744,46 +748,49 @@
       <div class="must-icon">🎬</div>
       <div>
         <strong>[영상]</strong>
-        <div class="concept-intro">마스크팩의 <strong>제품력</strong>을 강조해주세요.<br>아래 컨셉 중 <span class="concept-pick">택1</span>하여 진행해주세요.</div>
+        <div class="concept-intro">마스크팩의 <strong>제품력</strong>을 강조해주세요.</div>
 
         <div class="concept-list">
           <details class="concept" open>
             <summary class="concept-summary">
-              <span class="concept-num">1</span>
-              <span class="concept-name">2026년 버전 쌀뜨물 스킨케어</span>
-              <span class="concept-chevron">⌄</span>
-            </summary>
-            <div class="concept-body">
-              <ol class="concept-steps">
-                <li>영상 초반, 쌀뜨물로 세안하는 듯한 장면 또는 쌀뜨물 속에서 제품을 꺼내는 연출로 후킹</li>
-                <li>마스크 부착 장면으로 전환 / 쌀뜨물을 그대로 굳힌 듯한 도톰한 38g 겔 강조</li>
-                <li>팩이 투명해질 때까지 부착하며, 마치 쌀뜨물이 피부에 흡수되는 듯한 느낌 표현</li>
-                <li>팩 제거 후, 쌀뜨물 세안한 듯 뽀얗고 촉촉한 피부 광채 강조</li>
-              </ol>
-              <div class="concept-quotes">
-                <div class="concept-quotes-label">예시 문구</div>
-                <div class="quote-chip">"쌀 씻다가 피부관리까지 해버림"</div>
-                <div class="quote-chip">"엄마한테 등짝 안 맞고 쌀뜨물 세안하는 법"</div>
-              </div>
-            </div>
-          </details>
-
-          <details class="concept">
-            <summary class="concept-summary">
               <span class="concept-num">2</span>
-              <span class="concept-name">반쪽 얼굴 광채 테스트</span>
+              <span class="concept-name">핵심 소구점</span>
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <ol class="concept-steps">
-                <li>팩을 반으로 잘라 얼굴 한쪽에만 부착한 뒤, 동일한 조명과 구도에서 맨얼굴과 비교</li>
-                <li>팩이 투명해질 때까지 기다린 후 제거</li>
-                <li>양쪽 얼굴을 클로즈업하여 피부 광채와 컨디션 차이 강조</li>
+              <div class="concept-intro" style="margin-top:14px;">제품의 임상데이터 및 특징은 상세페이지를 꼭 한 번 읽어봐 주시고, 아래 POINT 3가지 위주로 소구해 주세요.</div>
+              <a href="https://lusom.kr/product/detail.html?product_no=42&cate_no=45&display_group=1" target="_blank" class="concept-ref-link" style="margin-top:10px;">상세페이지 바로가기 ↗</a>
+              <ol class="concept-steps" style="margin-top:16px;">
+                <li>
+                  <div>
+                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">Point 1. 쌀뜨물 광채팩</strong>
+                    <ul class="sub-list">
+                      <li>쌀뜨물 에센스를 그대로 굳힌 '쌀뜨물 광채팩' → 24시간 맑고 환한 광채 연출</li>
+                      <li>38g 에센스 한 통 그대로 흡수</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">Point 2. 흘러내림 없는 밀착력</strong>
+                    <ul class="sub-list">
+                      <li>움직여도 밀착력이 유지된다는 점을 강조해 주세요.</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">Point 3. 속부터 차오르는 24시간 광채</strong>
+                    <ul class="sub-list">
+                      <li>피부 속부터 차오르는 광채 표현</li>
+                      <li>다음 날 화장이 잘 먹는 피부 완성</li>
+                    </ul>
+                  </div>
+                </li>
               </ol>
               <div class="concept-quotes">
-                <div class="concept-quotes-label">예시 문구</div>
-                <div class="quote-chip">"광채팩, 진짜 효과 있는지 반쪽 얼굴로 테스트해봄"</div>
-                <div class="quote-chip">"어느 쪽이 팩을 사용한 피부일까요?"</div>
+                <div class="concept-quotes-label">TIP</div>
+                <div class="quote-chip">여름에는 냉장고에 넣어 사용하면 쿨링감과 진정 효과까지 UP!</div>
               </div>
             </div>
           </details>
@@ -791,27 +798,27 @@
           <details class="concept">
             <summary class="concept-summary">
               <span class="concept-num">3</span>
-              <span class="concept-name">7일 사용 후기</span>
+              <span class="concept-name">공통 제작 가이드</span>
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <ol class="concept-steps">
-                <li>7일 동안 동일한 구도에서 촬영한 1·3·5·7일 차 피부 컨디션과 사용 장면을 빠른 템포로 연결</li>
-                <li>피부결과 광채가 일차별로 달라지는 모습을 클로즈업으로 자연스럽게 표현 & 사용감 설명</li>
-                <li>7일 차에는 촉촉하고 매끈한 유리알 광채 피부를 강조하고, 사용 전과의 B&A 비교로 마무리</li>
-              </ol>
+              <div class="concept-quotes-label" style="margin-top:14px;">영상에 꼭 넣어주세요</div>
+              <ul class="sub-list">
+                <li>제품명 '루솜 발효미 에센스 글로우 하이드로겔' 또는 애칭 '쌀뜨물광채팩'을 자막이나 음성으로 한 번 이상 노출해 주세요.</li>
+                <li>팩을 붙이는 장면은 화장기 없는 자연스러운 얼굴로 촬영해 주세요.</li>
+                <li>부착 직후 불투명한 팩과 시간이 지나 투명해진 팩의 변화를 보여주세요. 반반 화면이나 타임랩스로 비교해도 좋습니다.</li>
+                <li>완전히 투명해진 팩을 떼어낸 뒤 촉촉하게 차오른 피부 광채를 보여주세요. 가능하면 사용 전후(B&A)도 함께 담아주세요.</li>
+                <li>'쌀뜨물 에센스를 그대로 굳힌 팩', '38g 에센스 한 통 그대로 흡수', '24시간 맑고 환한 광채' 등 핵심 소구 중 2가지 이상을 자막 또는 음성으로 자연스럽게 넣어주세요.</li>
+              </ul>
               <div class="concept-quotes">
-                <div class="concept-quotes-label">예시 문구</div>
-                <div class="quote-chip">"쌀뜨물광채팩 몰랐을 때 / 알았을 때"</div>
-                <div class="quote-chip">"7일만에 피부과 안 가고 이게 되네"</div>
-                <div class="quote-chip">"자기전 '이거' 하나만 하세요"</div>
-                <div class="quote-chip">"일주일만에 물광 피부 만들어준 '인생템'"</div>
-              </div>
-              <div class="concept-refs">
-                <div class="concept-quotes-label">▼ Ref.</div>
-                <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">레퍼런스 1</a>
-                <a href="https://www.instagram.com/p/Dat9St3A6Fy/" target="_blank" class="concept-ref-link">레퍼런스 2</a>
-                <a href="https://www.instagram.com/reels/DaubcC2PnZR/" target="_blank" class="concept-ref-link">레퍼런스 3</a>
+                <div class="concept-quotes-label">소구점 표현 예시</div>
+                <div class="quote-chip"><strong>질감·향·소리</strong> — 순두부처럼 부드럽고 탱글한 겔 질감, 팩을 붙이거나 떼어낼 때의 ASMR, 실제로 느낀 은은하고 고소한 쌀향</div>
+                <div class="quote-chip"><strong>밀착력</strong> — 격하게 머리 흔들기, 춤추기, 달리기, 청소, 운전, 3시간 영화 관람, 비행기 등 움직임이 있거나 오랜 시간 붙이는 상황에서도 흘러내리지 않는 모습</div>
+                <div class="quote-chip"><strong>투명 변화</strong> — 부착 직후 불투명한 팩과 에센스가 흡수된 후 완전히 투명해진 팩을 반반 화면이나 타임랩스로 비교</div>
+                <div class="quote-chip"><strong>수분광채·24시간 광채</strong> — 번들거리는 유분광이 아니라 속부터 차오르는 듯한 수분광, 가볍게 문질러도 쉽게 사라지지 않는 촉촉한 광채, 사용 전후 유리알처럼 반짝이는 피부</div>
+                <div class="quote-chip"><strong>화잘먹</strong> — 중요한 일정 전날 사용한 뒤 다음 날 달라진 피부 컨디션과 메이크업 상태</div>
+                <div class="quote-chip"><strong>수부지·속건조·쿨링</strong> — 여름철 겉은 번들거리지만 속은 당기는 수부지 피부에 냉장 보관한 팩을 사용해 시원한 쿨링감과 속부터 차오르는 수분감을 함께 표현</div>
+                <div class="quote-chip"><strong>기존 겔팩의 불편함</strong> — 흘러내리거나 떼어낸 뒤 건조했던 경험이 있다면 타사 제품명·로고 노출 없이 짧게 언급한 후 루솜 팩의 밀착력과 사용감으로 연결</div>
               </div>
             </div>
           </details>
@@ -819,38 +826,170 @@
           <details class="concept">
             <summary class="concept-summary">
               <span class="concept-num">4</span>
-              <span class="concept-name">팩 붙이고 댄스 챌린지</span>
+              <span class="concept-name">촬영 컨셉</span>
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <ol class="concept-steps">
-                <li>영상 초반, 팩을 부착한 상태로 등장해 시선 집중</li>
-                <li>춤이나 챌린지를 진행하며 격한 움직임에도 팩이 밀착된 모습 재미있게 표현 / 동작 중 얼굴 클로즈업으로 겔의 밀착력 강조</li>
-                <li>챌린지 후 팩 제거 및 촉촉한 피부 광채까지 연결</li>
-              </ol>
-              <div class="concept-quotes">
-                <div class="concept-quotes-label">예시 문구</div>
-                <div class="quote-chip">"팩 떨어지면 영상 종료"</div>
-                <div class="quote-chip">"광채 충전하면서 챌린지 찍기"</div>
-              </div>
-            </div>
-          </details>
+              <div class="concept-intro" style="margin-top:14px;">아래 컨셉 중 본인 콘텐츠와 잘 맞는 방향 <span class="concept-pick">택1</span>하여 진행해 주세요. 캡션은 선택한 컨셉과 영상에 사용한 핵심 소구점을 중심으로 자연스럽게 작성해 주세요.</div>
 
-          <details class="concept">
-            <summary class="concept-summary">
-              <span class="concept-num">5</span>
-              <span class="concept-name">데일리루틴형</span>
-              <span class="concept-chevron">⌄</span>
-            </summary>
-            <div class="concept-body">
-              <ol class="concept-steps">
-                <li>GRWM</li>
-                <li>데일리 루틴</li>
-              </ol>
-              <div class="concept-quotes">
-                <div class="concept-quotes-label">가이드</div>
-                <div class="quote-chip">자연스럽게 '찐템'처럼 느껴지도록 제작해주세요</div>
-                <div class="quote-chip">GRWM 혹은 데일리 루틴에 토너팩을 자연스럽게 넣어주세요!</div>
+              <div class="concept-list" style="margin-top:14px;">
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">1</span>
+                    <span class="concept-name">반반 광채 비교</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">얼굴 한쪽에만 팩을 붙이고, 붙이지 않은 쪽과 광채 차이를 같은 화면에서 비교해 주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">사용 전 얼굴 → 한쪽에만 팩 부착 → 불투명/투명 변화 → 같은 조명·각도에서 좌우 광채 비교</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">"광채 하이드로겔팩 진짜 좋을까? 직접 반반 실험해봄"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/reels/DYWmScjpvjo/" target="_blank" class="concept-ref-link">레퍼런스 1 · 썸네일 참고</a>
+                      <a href="https://www.instagram.com/p/DEyZSo9SM2c/" target="_blank" class="concept-ref-link">레퍼런스 2 · 반반 광채 비교 참고</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">2</span>
+                    <span class="concept-name">라이스페이퍼팩 먹방·ASMR</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">라이스페이퍼 먹방처럼 보이는 첫 장면으로 시선을 끈 뒤, 쌀뜨물을 굳힌 하이드로겔팩이라는 반전으로 이어가 주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">라이스페이퍼 같은 비주얼로 후킹 → 탱글한 질감·ASMR → 화장기 없는 얼굴에 부착 → 투명해진 팩 제거 → 광채 클로즈업</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">"쌀뜨물 겔마스크팩 먹방"</div>
+                      <div class="quote-chip">"번거로운 라이스페이퍼팩 대신 '이거' 하세요"</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">자막 예시</div>
+                      <div class="quote-chip">"38g 에센스 한 통을 그대로 굳힌 팩"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/juuuuey/reel/DZpVwWqJj2P/" target="_blank" class="concept-ref-link">레퍼런스 1 · 라이스페이퍼팩 먹방 후킹 참고</a>
+                      <a href="https://www.instagram.com/p/Db7YAieSxvH/" target="_blank" class="concept-ref-link">레퍼런스 2 · 쌀뜨물팩 컨셉 참고</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">3</span>
+                    <span class="concept-name">쿨링·질감·광채</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">여름 시즌에는 냉장 보관 후 사용해 시원하게 열감 진정, 연두부처럼 부드럽고 탱글한 하이드로겔의 질감과 향도 함께 보여주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">냉장고에서 팩 꺼내기 → 연두부 같은 질감·향 표현 → 화장기 없는 얼굴에 부착 → 완전히 투명해진 모습 → 제거 후 광채 B&A</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">"여름에도 광 포기 못하는 사람?"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/mangnnang___/reel/DcDHR8aSlBo/" target="_blank" class="concept-ref-link">레퍼런스 1 · 쿨링·질감·향, 쌀뜨물팩 소구, B&A 참고</a>
+                      <a href="https://www.instagram.com/reels/DPlp1u_k0Qc/" target="_blank" class="concept-ref-link">레퍼런스 2 · 겔 질감과 ASMR 표현 참고</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">4</span>
+                    <span class="concept-name">밀착력 후킹</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">팩을 붙인 채 격하게 움직이거나 오랜 시간 일상을 보내며 흘러내리지 않는 밀착력을 직접 보여주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">팩을 붙인 상태로 헤드뱅잉·춤·런닝·영화시청·장거리 운전 등으로 밀착력 후킹 → 에센스 한통이 흡수되어 투명해진 팩 → 팩 제거 후 광채 B&A 마무리</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">흘러내리듯 부착한 하이드로겔 썸네일, "요즘 핫한 겔마스크 나만 흘러내려요?"</div>
+                      <div class="quote-chip">또는 팩이 밀착력있게 붙어있고 러닝·장거리 운전 등 장면이 잘 보이는 썸네일, "팩 붙이고 00까지 해봄"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/p/DI3RUxipKjG/" target="_blank" class="concept-ref-link">레퍼런스 1 · 러닝 중 밀착력 표현 참고</a>
+                      <a href="https://www.instagram.com/p/Dbrz9lTTX80/" target="_blank" class="concept-ref-link">레퍼런스 2 · 장거리 운전 상황의 밀착력 표현 참고</a>
+                      <a href="https://www.instagram.com/reels/DRwTmaokgWT/" target="_blank" class="concept-ref-link">레퍼런스 3 · 타 겔마스크팩 흘러내림·건조함 공감 참고</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">5</span>
+                    <span class="concept-name">n일 사용 광채 B&A</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">1·3·5·7일 또는 1~4일차 사용 장면을 같은 구도로 기록하고, 마지막에 사용 전후 피부 광채를 비교해 주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">0일차 피부 촬영 → 날짜별로 투명해진 팩을 떼는 장면을 빠르게 편집 → 마지막 날 0일차/사용 후 B&A 반반 비교</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">"7일만에 속광 피부된 찐 후기/루틴 소개"</div>
+                      <div class="quote-chip">"추구미 청순인 사람 1일 1팩 해봄"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">레퍼런스 1 · 1·3·5·7일 사용 B&A 비교 참고</a>
+                      <a href="https://www.instagram.com/p/DZq48_sjKVM/" target="_blank" class="concept-ref-link">레퍼런스 2 · 1~4일차 팩 제거 & B&A 편집 참고</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">6</span>
+                    <span class="concept-name">뷰티 찐템 소개</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">평소 잘 쓰는 뷰티 제품들과 함께 자연스럽게 찐템으로 소개하되, 루솜 쌀뜨물광채팩을 조금 더 비중 있게 설명해주세요.</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">영상 흐름</div>
+                      <div class="quote-chip">요즘 잘 쓰는 뷰티 제품 소개 → 루솜 쌀뜨물광채팩 사용 이유 → 실제 부착·사용 장면 → 투명 변화와 제거 후 광채</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">후킹·썸네일</div>
+                      <div class="quote-chip">"피부과에 n만원 태운 관리 진심녀가 정착한 홈케어"</div>
+                      <div class="quote-chip">"유행템 다 써본 관미새의 살아남은 찐템.zip"</div>
+                      <div class="quote-chip">"POV. 수부지가 홈케어를 포기하면 안 되는 이유"</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">자막 예시</div>
+                      <div class="quote-chip">제품 특징을 줄줄이 나열하기보다 실제로 손이 가는 이유와 사용 후 느낌 위주로 자연스럽게 넣어주세요.</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/reels/DYtWqw6S0mr/" target="_blank" class="concept-ref-link">레퍼런스 1 · 다른 뷰티 제품과 자연스럽게 소개하는 구성 참고</a>
+                      <a href="https://www.instagram.com/p/DbxRip-xhHo/" target="_blank" class="concept-ref-link">레퍼런스 2 · 관리에 진심인 캐릭터와 강한 썸네일 문구 참고</a>
+                    </div>
+                  </div>
+                </details>
               </div>
             </div>
           </details>
@@ -878,17 +1017,26 @@
 
   <div class="divider"></div>
 
+  <div class="rec-list">
+    <div class="rec-title">권장사항</div>
+    <div class="rec-item">썸네일 이미지와 문구, 첫 장면은 결과·차이·궁금증이 바로 보이도록 후킹하게 잡아주세요.</div>
+    <div class="rec-item">기존 콘텐츠 중 조회수가 잘 나왔던 후킹 문구나 장면, 본인만의 캐릭터가 있다면 이번 영상에도 자연스럽게 활용해 주세요.</div>
+    <div class="rec-item">레퍼런스는 방향 참고용입니다. 그대로 따라 하기보다 평소 말투와 편집 스타일에 맞게 바꿔주세요.</div>
+    <div class="rec-item">상세페이지 캡처 위주 편집은 지양해 주세요.</div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- 해시태그 -->
   <div class="hashtag-section">
     <div class="hashtag-label">해시태그 <span class="required">필수</span></div>
     <div class="hashtag-wrap">
       <div class="hashtag req">#루솜</div>
       <div class="hashtag req">#LUSOM</div>
-      <div class="hashtag req">#발효미마스크팩</div>
-      <div class="hashtag req">#찹쌀떡팩</div>
-      <div class="hashtag req">#화잘먹팩</div>
-      <div class="hashtag req">#쌀뜨물팩</div>
+      <div class="hashtag req">#발효미하이드로겔</div>
+      <div class="hashtag req">#쌀뜨물광채팩</div>
     </div>
+    <div class="ref-note">• 그 외 해시태그는 선택한 영상 컨셉에 맞게 적절히 추가해 주세요.</div>
   </div>
 
   <div class="warning-box">
