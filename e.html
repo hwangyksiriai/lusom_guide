@@ -467,6 +467,8 @@
       line-height: 1.7;
     }
     .key-msg-text strong { color: var(--green-text); }
+    .key-msg-item .sub-list { color: var(--text-dark); font-size: 12.5px; margin-top: 6px; padding-left: 16px; }
+    .key-msg-item .sub-list li { margin-bottom: 5px; }
 
     .rec-list {
       background: #F4EADC;
@@ -757,6 +759,17 @@
     }
     .footer strong { color: var(--text-dark); }
 
+    /* KOREAN LINE-BREAKING — 마지막 줄에 단어 하나만 남는 것 방지 */
+    .about-lead, .about-item-desc, .concept-intro, .key-msg-text, .quote-chip,
+    .sub-list li, .rec-item, .must-item > div, .info-row, .ref-note,
+    .warning-box, .collab-note {
+      text-wrap: pretty;
+    }
+    .section-title, .header-title, .concept-name, .key-msg-badge,
+    .concept-quotes-label, .rec-title, .about-item-title, .concept-ref-link {
+      text-wrap: balance;
+    }
+
     @media (max-width: 480px) {
       .section { padding: 36px 20px; }
       .section-title { font-size: 18px; }
@@ -772,11 +785,34 @@
       .hashtag { font-size: 12px; padding: 10px 12px; }
       .collab-handle { font-size: 13px; }
       .ref-link-label { font-size: 13px; }
-      .footer { padding: 28px 20px; font-size: 11px; }
+      .footer { padding: 28px 20px; font-size: 11px; padding-bottom: max(28px, env(safe-area-inset-bottom, 28px)); }
+
+      /* 자간 — 좁은 화면에서 한 줄에 더 담기도록 미세 조정 */
+      body { letter-spacing: -0.01em; }
+      .key-msg-badge { font-size: 10.5px; letter-spacing: 0.04em; }
+      .concept-quotes-label { letter-spacing: 0.03em; }
+      .section-label { letter-spacing: 0.18em; }
+      .header-eyebrow { letter-spacing: 0.24em; }
+
+      /* 정렬 — 들여쓰기·여백 축소 */
+      .sub-list { padding-left: 16px; }
+      .quote-chip { font-size: 12px; padding: 9px 11px; }
+      .concept-body { padding: 2px 14px 16px; }
+
+      /* 데스크톱용 수동 줄바꿈 해제 */
+      .pc-br { display: none; }
+
+      /* 터치 영역 44px 확보 */
+      .concept-ref-link { min-height: 44px; }
     }
 
     @media (max-width: 360px) {
       .section { padding: 28px 14px; }
+      .key-msg-box { padding: 16px 16px; }
+      .key-msg-text { font-size: 12px; }
+      .quote-chip { font-size: 11.5px; padding: 8px 10px; }
+      .sub-list { padding-left: 15px; font-size: 12px; }
+      .concept-summary { padding-left: 12px; padding-right: 12px; }
       .section-title { font-size: 17px; }
       .hashtag { font-size: 11.5px; padding: 9px 10px; }
       .about-item { padding: 14px 16px; }
@@ -812,15 +848,15 @@
   <div class="about-grid">
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">UNYIELDING</span> <span style="color:var(--text-mid);font-weight:500;">| 끊임없는 연구</span></div>
-      <div class="about-item-desc">자체 연구소를 기반으로 불필요한 성분은 덜어내고,<br>피부가 가장 편안하게 받아들일 수 있는 성분과 조합을 끊임없이 연구합니다.</div>
+      <div class="about-item-desc">자체 연구소를 기반으로 불필요한 성분은 덜어내고, <br class="pc-br">피부가 가장 편안하게 받아들일 수 있는 성분과 조합을 끊임없이 연구합니다.</div>
     </div>
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">ATTENTIVE</span> <span style="color:var(--text-mid);font-weight:500;">| 일상에 대한 주목</span></div>
-      <div class="about-item-desc">단번의 변화보다 매일의 작은 걸음이 건강한 피부의 바탕이 된다는 믿음으로,<br>피부 본연의 힘을 천천히 키워갈 수 있도록 돕습니다.</div>
+      <div class="about-item-desc">단번의 변화보다 매일의 작은 걸음이 건강한 피부의 바탕이 된다는 믿음으로, <br class="pc-br">피부 본연의 힘을 천천히 키워갈 수 있도록 돕습니다.</div>
     </div>
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">ALONGSIDE</span> <span style="color:var(--text-mid);font-weight:500;">| 지속 가능한 여정</span></div>
-      <div class="about-item-desc">피부와 자연의 회복을 같은 마음으로 바라봅니다.<br>함께할 때 더 멀리 나아갈 수 있다는 믿음으로,<br>자연을 생각하는 아름다움을 이어갑니다.</div>
+      <div class="about-item-desc">피부와 자연의 회복을 같은 마음으로 바라봅니다. <br class="pc-br">함께할 때 더 멀리 나아갈 수 있다는 믿음으로, <br class="pc-br">자연을 생각하는 아름다움을 이어갑니다.</div>
     </div>
   </div>
   <a href="https://lusom.kr/shopinfo/company.html" target="_blank" class="brand-link-btn">브랜드 바로가기 →</a>
@@ -879,6 +915,36 @@
         <strong>[영상]</strong>
         <div class="concept-intro">마스크팩의 <strong>제품력</strong>을 강조해주세요.</div>
 
+        <div class="key-msg-box" style="margin-top:14px;">
+          <div class="key-msg-title">필수 촬영 컷 · 4</div>
+          <div class="key-msg-text" style="margin-top:-8px;margin-bottom:4px;">선택한 촬영 컨셉과 관계없이 아래 4가지 장면은 <strong>반드시</strong> 영상에 포함해 주세요.</div>
+          <div class="key-msg-item">
+            <div class="key-msg-badge">CUT 1 · 밀착 부착 (클로즈업)</div>
+            <div class="key-msg-text">눈가, 콧대, 턱선 등 얼굴 굴곡에 들뜨거나 접히지 않도록 <strong>빈틈없이 밀착</strong>해 붙이는 과정을 밀착 클로즈업으로 연출해 주세요.</div>
+          </div>
+          <div class="key-msg-item">
+            <div class="key-msg-badge">CUT 2 · 투명해진 팩 (비교 연출)</div>
+            <ul class="sub-list">
+              <li><strong>38g 에센스 한 통</strong>이 피부에 완벽히 흡수되어 투명해진 상태를 연출해 주세요.</li>
+              <li>부착 직후(불투명)와 흡수 후(투명)의 상태 변화가 확실히 대비되어야 합니다.</li>
+            </ul>
+          </div>
+          <div class="key-msg-item">
+            <div class="key-msg-badge">CUT 3 · 제거 직후 광채 (클로즈업 &amp; 필수)</div>
+            <ul class="sub-list">
+              <li><strong>주의</strong> — 팩이 하얗게 불투명한 상태에서 떼어내지 마시고, <strong>충분히 투명해진 뒤</strong> 떼어내야 합니다.</li>
+              <li>팩을 떼어낸 직후 피부 위에 차오른 수분 광채를 클로즈업으로 담아주세요.</li>
+            </ul>
+          </div>
+          <div class="key-msg-item">
+            <div class="key-msg-badge">CUT 4 · 사용 전후 B&A (동일 조건)</div>
+            <ul class="sub-list">
+              <li>팩 사용 전과 후의 피부 상태 변화를 비교해 주세요.</li>
+              <li>피부 차이가 왜곡 없이 보이도록 <strong>반드시 동일한 조명, 각도, 구도</strong>에서 촬영해 주세요.</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="concept-list">
           <details class="concept" open>
             <summary class="concept-summary">
@@ -901,9 +967,10 @@
                 </li>
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">Point 2. 흘러내림 없는 밀착력</strong>
+                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">Point 2. 빈틈없는 밀착력</strong>
                     <ul class="sub-list">
-                      <li>움직여도 밀착력이 유지된다는 점을 강조해 주세요.</li>
+                      <li><strong>얼굴 굴곡에 맞춰 빈틈없이 밀착</strong>되는 부착력 (들뜸·접힘 없이)</li>
+                      <li>움직여도 흘러내리지 않고 유지되는 밀착력</li>
                     </ul>
                   </div>
                 </li>
@@ -931,23 +998,28 @@
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <div class="concept-quotes-label" style="margin-top:14px;">영상에 꼭 넣어주세요</div>
+              <div class="concept-quotes-label" style="margin-top:14px;">필수 포함 · 4</div>
               <ul class="sub-list">
-                <li>제품명 '루솜 발효미 에센스 글로우 하이드로겔' 또는 애칭 '쌀뜨물광채팩'을 자막이나 음성으로 한 번 이상 노출해 주세요.</li>
-                <li>팩을 붙이는 장면은 화장기 없는 자연스러운 얼굴로 촬영해 주세요.</li>
-                <li>부착 직후 불투명한 팩과 시간이 지나 투명해진 팩의 변화를 보여주세요. 반반 화면이나 타임랩스로 비교해도 좋습니다.</li>
-                <li>완전히 투명해진 팩을 떼어낸 뒤 촉촉하게 차오른 피부 광채를 보여주세요. 가능하면 사용 전후(B&A)도 함께 담아주세요.</li>
-                <li>'쌀뜨물 에센스를 그대로 굳힌 팩', '38g 에센스 한 통 그대로 흡수', '24시간 맑고 환한 광채' 등 핵심 소구 중 2가지 이상을 자막 또는 음성으로 자연스럽게 넣어주세요.</li>
+                <li><strong>필수 촬영 컷 4가지</strong> — 밀착 부착 → 투명해진 팩 → 제거 후 광채 → B&A · 상단 [필수 촬영 컷] 참고</li>
+                <li>제품명 '루솜 발효미 에센스 글로우 하이드로겔' 또는 애칭 '쌀뜨물광채팩'을 자막·음성으로 1회 이상</li>
+                <li>부착 장면은 화장기 없는 얼굴로</li>
+                <li>핵심 소구 <strong>2가지 이상</strong>을 자막·음성으로 — '쌀뜨물 에센스를 그대로 굳힌 팩' / '38g 에센스 한 통 그대로 흡수' / '24시간 맑고 환한 광채'</li>
               </ul>
               <div class="concept-quotes">
-                <div class="concept-quotes-label">소구점 표현 예시</div>
-                <div class="quote-chip"><strong>질감·향·소리</strong> — 순두부처럼 부드럽고 탱글한 겔 질감, 팩을 붙이거나 떼어낼 때의 ASMR, 실제로 느낀 은은하고 고소한 쌀향</div>
-                <div class="quote-chip"><strong>밀착력</strong> — 격하게 머리 흔들기, 춤추기, 달리기, 청소, 운전, 3시간 영화 관람, 비행기 등 움직임이 있거나 오랜 시간 붙이는 상황에서도 흘러내리지 않는 모습</div>
-                <div class="quote-chip"><strong>투명 변화</strong> — 부착 직후 불투명한 팩과 에센스가 흡수된 후 완전히 투명해진 팩을 반반 화면이나 타임랩스로 비교</div>
-                <div class="quote-chip"><strong>수분광채·24시간 광채</strong> — 번들거리는 유분광이 아니라 속부터 차오르는 듯한 수분광, 가볍게 문질러도 쉽게 사라지지 않는 촉촉한 광채, 사용 전후 유리알처럼 반짝이는 피부</div>
-                <div class="quote-chip"><strong>화잘먹</strong> — 중요한 일정 전날 사용한 뒤 다음 날 달라진 피부 컨디션과 메이크업 상태</div>
-                <div class="quote-chip"><strong>수부지·속건조·쿨링</strong> — 여름철 겉은 번들거리지만 속은 당기는 수부지 피부에 냉장 보관한 팩을 사용해 시원한 쿨링감과 속부터 차오르는 수분감을 함께 표현</div>
-                <div class="quote-chip"><strong>기존 겔팩의 불편함</strong> — 흘러내리거나 떼어낸 뒤 건조했던 경험이 있다면 타사 제품명·로고 노출 없이 짧게 언급한 후 루솜 팩의 밀착력과 사용감으로 연결</div>
+                <div class="concept-quotes-label">소구점 예시 · 제품 특징</div>
+                <div class="quote-chip"><strong>질감·향·소리</strong> — 순두부처럼 탱글한 겔 질감, 붙이고 떼는 ASMR, 은은하고 고소한 쌀향</div>
+                <div class="quote-chip"><strong>밀착력</strong> — 헤드뱅잉·춤·달리기·청소·운전·장시간 영화·비행기에도 흘러내리지 않는 모습</div>
+                <div class="quote-chip"><strong>투명 변화</strong> — 불투명한 팩 → 완전히 투명해진 팩을 반반 화면·타임랩스로 비교</div>
+              </div>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">소구점 예시 · 사용 효과</div>
+                <div class="quote-chip"><strong>수분광채·24시간 광채</strong> — 번들거리는 유분광이 아닌 속부터 차오르는 수분광, 문질러도 사라지지 않는 유리알 피부</div>
+                <div class="quote-chip"><strong>화잘먹</strong> — 중요한 일정 전날 사용 후 다음 날 달라진 피부 컨디션과 메이크업</div>
+                <div class="quote-chip"><strong>수부지·속건조·쿨링</strong> — 겉은 번들, 속은 당기는 수부지 피부에 냉장 보관 팩으로 쿨링감과 속수분 동시 표현</div>
+              </div>
+              <div class="concept-quotes">
+                <div class="concept-quotes-label">소구점 예시 · 공감 포인트</div>
+                <div class="quote-chip"><strong>기존 겔팩의 불편함</strong> — 흘러내림·건조함 경험을 타사 제품명·로고 노출 없이 짧게 언급 후 루솜 팩으로 연결</div>
               </div>
             </div>
           </details>
@@ -959,7 +1031,7 @@
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <div class="concept-intro" style="margin-top:14px;">아래 컨셉 중 본인 콘텐츠와 잘 맞는 방향 <span class="concept-pick">택1</span>하여 진행해 주세요. 캡션은 선택한 컨셉과 영상에 사용한 핵심 소구점을 중심으로 자연스럽게 작성해 주세요.</div>
+              <div class="concept-intro" style="margin-top:14px;">아래 컨셉 중 본인 콘텐츠와 잘 맞는 방향 <span class="concept-pick">택1</span>하여 진행해 주세요. 어떤 컨셉을 선택하더라도 위 <strong>필수 촬영 컷 4가지</strong>는 모두 포함되어야 합니다. 캡션은 선택한 컨셉과 영상에 사용한 핵심 소구점을 중심으로 자연스럽게 작성해 주세요.</div>
 
               <div class="concept-list" style="margin-top:14px;">
                 <details class="concept">
@@ -972,7 +1044,7 @@
                     <div class="concept-intro" style="margin-top:14px;">얼굴 한쪽에만 팩을 붙이고, 붙이지 않은 쪽과 광채 차이를 같은 화면에서 비교해 주세요.</div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">영상 흐름</div>
-                      <div class="quote-chip">사용 전 얼굴 → 한쪽에만 팩 부착 → 불투명/투명 변화 → 같은 조명·각도에서 좌우 광채 비교</div>
+                      <div class="quote-chip">사용 전 얼굴 → 한쪽에만 빈틈없이 밀착 부착 → 불투명/투명 변화 → 충분히 투명해진 팩 제거 → 같은 조명·각도에서 좌우 광채 비교(B&A)</div>
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">후킹·썸네일</div>
@@ -996,7 +1068,7 @@
                     <div class="concept-intro" style="margin-top:14px;">라이스페이퍼 먹방처럼 보이는 첫 장면으로 시선을 끈 뒤, 쌀뜨물을 굳힌 하이드로겔팩이라는 반전으로 이어가 주세요.</div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">영상 흐름</div>
-                      <div class="quote-chip">라이스페이퍼 같은 비주얼로 후킹 → 탱글한 질감·ASMR → 화장기 없는 얼굴에 부착 → 투명해진 팩 제거 → 광채 클로즈업</div>
+                      <div class="quote-chip">라이스페이퍼 같은 비주얼로 후킹 → 탱글한 질감·ASMR → 화장기 없는 얼굴에 빈틈없이 밀착 부착 → 완전히 투명해진 팩 제거 → 광채 클로즈업 → 사용 전후 B&A</div>
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">후킹·썸네일</div>
@@ -1100,7 +1172,7 @@
                     <div class="concept-intro" style="margin-top:14px;">평소 잘 쓰는 뷰티 제품들과 함께 자연스럽게 찐템으로 소개하되, 루솜 쌀뜨물광채팩을 조금 더 비중 있게 설명해주세요.</div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">영상 흐름</div>
-                      <div class="quote-chip">요즘 잘 쓰는 뷰티 제품 소개 → 루솜 쌀뜨물광채팩 사용 이유 → 실제 부착·사용 장면 → 투명 변화와 제거 후 광채</div>
+                      <div class="quote-chip">요즘 잘 쓰는 뷰티 제품 소개 → 루솜 쌀뜨물광채팩 사용 이유 → 빈틈없이 밀착 부착하는 장면 → 투명 변화 → 제거 후 광채 B&A</div>
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">후킹·썸네일</div>
@@ -1127,7 +1199,7 @@
     </div>
     <div class="must-item">
       <div class="must-icon">✍️</div>
-      <div><strong>[캡션]</strong> 찹쌀떡팩의 촉촉한 에센스, 쫀득한 밀착력, 팩토 활용, 화잘먹/수분광채 등 사용감 위주로 자유롭게 소구해 주세요.</div>
+      <div><strong>[캡션]</strong> 38g 에센스가 그대로 흡수되는 쌀뜨물광채팩의 촉촉함, 굴곡에 빈틈없이 밀착되는 착용감, 떼어낸 뒤 광채·화잘먹 등 실제 사용감 위주로 자유롭게 작성해 주세요.</div>
     </div>
     <div class="must-item">
       <div class="must-icon">🔗</div>
@@ -1152,6 +1224,7 @@
     <div class="rec-item">기존 콘텐츠 중 조회수가 잘 나왔던 후킹 문구나 장면, 본인만의 캐릭터가 있다면 이번 영상에도 자연스럽게 활용해 주세요.</div>
     <div class="rec-item">레퍼런스는 방향 참고용입니다. 그대로 따라 하기보다 평소 말투와 편집 스타일에 맞게 바꿔주세요.</div>
     <div class="rec-item">상세페이지 캡처 위주 편집은 지양해 주세요.</div>
+    <div class="rec-item">부착·투명 변화·제거 후 광채 컷은 밝고 균일한 조명에서 초점을 맞춰 촬영해 주세요. 어둡거나 흔들린 화면에서는 제품 특징이 드러나지 않습니다.</div>
   </div>
 
   <div class="divider"></div>

@@ -467,6 +467,8 @@
       line-height: 1.7;
     }
     .key-msg-text strong { color: var(--green-text); }
+    .key-msg-item .sub-list { color: var(--text-dark); font-size: 12.5px; margin-top: 6px; padding-left: 16px; }
+    .key-msg-item .sub-list li { margin-bottom: 5px; }
 
     .rec-list {
       background: #F4EADC;
@@ -628,6 +630,17 @@
     }
     .footer strong { color: var(--text-dark); }
 
+    /* KOREAN LINE-BREAKING — 마지막 줄에 단어 하나만 남는 것 방지 */
+    .about-lead, .about-item-desc, .concept-intro, .key-msg-text, .quote-chip,
+    .sub-list li, .rec-item, .must-item > div, .info-row, .ref-note,
+    .warning-box, .collab-note {
+      text-wrap: pretty;
+    }
+    .section-title, .header-title, .concept-name, .key-msg-badge,
+    .concept-quotes-label, .rec-title, .about-item-title, .concept-ref-link {
+      text-wrap: balance;
+    }
+
     @media (max-width: 480px) {
       .section { padding: 36px 20px; }
       .section-title { font-size: 18px; }
@@ -643,11 +656,34 @@
       .hashtag { font-size: 12px; padding: 10px 12px; }
       .collab-handle { font-size: 13px; }
       .ref-link-label { font-size: 13px; }
-      .footer { padding: 28px 20px; font-size: 11px; }
+      .footer { padding: 28px 20px; font-size: 11px; padding-bottom: max(28px, env(safe-area-inset-bottom, 28px)); }
+
+      /* 자간 — 좁은 화면에서 한 줄에 더 담기도록 미세 조정 */
+      body { letter-spacing: -0.01em; }
+      .key-msg-badge { font-size: 10.5px; letter-spacing: 0.04em; }
+      .concept-quotes-label { letter-spacing: 0.03em; }
+      .section-label { letter-spacing: 0.18em; }
+      .header-eyebrow { letter-spacing: 0.24em; }
+
+      /* 정렬 — 들여쓰기·여백 축소 */
+      .sub-list { padding-left: 16px; }
+      .quote-chip { font-size: 12px; padding: 9px 11px; }
+      .concept-body { padding: 2px 14px 16px; }
+
+      /* 데스크톱용 수동 줄바꿈 해제 */
+      .pc-br { display: none; }
+
+      /* 터치 영역 44px 확보 */
+      .concept-ref-link { min-height: 44px; }
     }
 
     @media (max-width: 360px) {
       .section { padding: 28px 14px; }
+      .key-msg-box { padding: 16px 16px; }
+      .key-msg-text { font-size: 12px; }
+      .quote-chip { font-size: 11.5px; padding: 8px 10px; }
+      .sub-list { padding-left: 15px; font-size: 12px; }
+      .concept-summary { padding-left: 12px; padding-right: 12px; }
       .section-title { font-size: 17px; }
       .hashtag { font-size: 11.5px; padding: 9px 10px; }
       .about-item { padding: 14px 16px; }
@@ -683,15 +719,15 @@
   <div class="about-grid">
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">UNYIELDING</span> <span style="color:var(--text-mid);font-weight:500;">| 끊임없는 연구</span></div>
-      <div class="about-item-desc">자체 연구소를 기반으로 불필요한 성분은 덜어내고,<br>피부가 가장 편안하게 받아들일 수 있는 성분과 조합을 끊임없이 연구합니다.</div>
+      <div class="about-item-desc">자체 연구소를 기반으로 불필요한 성분은 덜어내고, <br class="pc-br">피부가 가장 편안하게 받아들일 수 있는 성분과 조합을 끊임없이 연구합니다.</div>
     </div>
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">ATTENTIVE</span> <span style="color:var(--text-mid);font-weight:500;">| 일상에 대한 주목</span></div>
-      <div class="about-item-desc">단번의 변화보다 매일의 작은 걸음이 건강한 피부의 바탕이 된다는 믿음으로,<br>피부 본연의 힘을 천천히 키워갈 수 있도록 돕습니다.</div>
+      <div class="about-item-desc">단번의 변화보다 매일의 작은 걸음이 건강한 피부의 바탕이 된다는 믿음으로, <br class="pc-br">피부 본연의 힘을 천천히 키워갈 수 있도록 돕습니다.</div>
     </div>
     <div class="about-item">
       <div class="about-item-title"><span style="letter-spacing:0.06em;">ALONGSIDE</span> <span style="color:var(--text-mid);font-weight:500;">| 지속 가능한 여정</span></div>
-      <div class="about-item-desc">피부와 자연의 회복을 같은 마음으로 바라봅니다.<br>함께할 때 더 멀리 나아갈 수 있다는 믿음으로,<br>자연을 생각하는 아름다움을 이어갑니다.</div>
+      <div class="about-item-desc">피부와 자연의 회복을 같은 마음으로 바라봅니다. <br class="pc-br">함께할 때 더 멀리 나아갈 수 있다는 믿음으로, <br class="pc-br">자연을 생각하는 아름다움을 이어갑니다.</div>
     </div>
   </div>
   <a href="https://lusom.kr/shopinfo/company.html" target="_blank" class="brand-link-btn">브랜드 바로가기 →</a>
@@ -752,22 +788,31 @@
 
         <div class="key-msg-box" style="margin-top:14px;">
           <div class="key-msg-title">필수 촬영 컷 · 4</div>
-          <div class="key-msg-text" style="margin-top:-8px;margin-bottom:4px;">선택한 촬영 컨셉과 관계없이 아래 4가지 장면은 <strong>반드시</strong> 영상에 포함해 주세요. 누락 시 재촬영을 요청드릴 수 있습니다.</div>
+          <div class="key-msg-text" style="margin-top:-8px;margin-bottom:4px;">선택한 촬영 컨셉과 관계없이 아래 4가지 장면은 <strong>반드시</strong> 영상에 포함해 주세요.</div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 1 · 밀착 부착</div>
-            <div class="key-msg-text">팩을 <strong>얼굴 굴곡에 맞춰 빈틈없이 밀착</strong>하여 부착한 모습. 눈가·콧대·턱선까지 들뜨거나 접힌 곳 없이 꼼꼼히 펴 붙이는 과정을 클로즈업으로 담아주세요.</div>
+            <div class="key-msg-badge">CUT 1 · 밀착 부착 (클로즈업)</div>
+            <div class="key-msg-text">눈가, 콧대, 턱선 등 얼굴 굴곡에 들뜨거나 접히지 않도록 <strong>빈틈없이 밀착</strong>해 붙이는 과정을 밀착 클로즈업으로 연출해 주세요.</div>
           </div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 2 · 투명해진 팩</div>
-            <div class="key-msg-text">에센스가 피부에 흡수되어 <strong>투명해진 팩</strong>. <strong>38g 에센스 한 통</strong>이 그대로 흡수된다는 제품 특징이 보이도록, 부착 직후 불투명한 상태와 비교해 주세요.</div>
+            <div class="key-msg-badge">CUT 2 · 투명해진 팩 (비교 연출)</div>
+            <ul class="sub-list">
+              <li><strong>38g 에센스 한 통</strong>이 피부에 완벽히 흡수되어 투명해진 상태를 연출해 주세요.</li>
+              <li>부착 직후(불투명)와 흡수 후(투명)의 상태 변화가 확실히 대비되어야 합니다.</li>
+            </ul>
           </div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 3 · 제거 직후 광채</div>
-            <div class="key-msg-text">팩이 <strong>충분히 투명해진 뒤 떼어내는 장면은 필수</strong>입니다. 떼어낸 직후의 피부 광채를 클로즈업으로 담아주세요. 아직 불투명할 때 떼어내는 장면은 제품 특징이 전달되지 않습니다.</div>
+            <div class="key-msg-badge">CUT 3 · 제거 직후 광채 (클로즈업 &amp; 필수)</div>
+            <ul class="sub-list">
+              <li><strong>주의</strong> — 팩이 하얗게 불투명한 상태에서 떼어내지 마시고, <strong>충분히 투명해진 뒤</strong> 떼어내야 합니다.</li>
+              <li>팩을 떼어낸 직후 피부 위에 차오른 수분 광채를 클로즈업으로 담아주세요.</li>
+            </ul>
           </div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 4 · 사용 전후 B&A</div>
-            <div class="key-msg-text">팩 사용 전후 피부 상태를 비교하는 <strong>B&A</strong>. 같은 조명·각도·구도로 촬영해야 차이가 제대로 보입니다.</div>
+            <div class="key-msg-badge">CUT 4 · 사용 전후 B&A (동일 조건)</div>
+            <ul class="sub-list">
+              <li>팩 사용 전과 후의 피부 상태 변화를 비교해 주세요.</li>
+              <li>피부 차이가 왜곡 없이 보이도록 <strong>반드시 동일한 조명, 각도, 구도</strong>에서 촬영해 주세요.</li>
+            </ul>
           </div>
         </div>
 
