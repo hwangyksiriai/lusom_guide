@@ -67,7 +67,7 @@ for element in soup.select(".section *"):
 
 assert index >= 40, f"Too few review targets: {index}"
 assert soup.select_one('.section-label:-soup-contains("Settlement")') is None
-script = soup.new_tag("script", defer="", src="/review-widget.js?v=4")
+script = soup.new_tag("script", defer="", src="/review-widget.js?v=5")
 script["data-siriai-api"] = "https://siriai-workflow-plan.hwangyksiriai.chatgpt.site/api/external-reviews"
 soup.body.append(script)
 html = str(soup)
