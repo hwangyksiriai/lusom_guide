@@ -11,7 +11,7 @@
   let ready=false,selecting=false,selected=null,submitting=false;
   const host=document.createElement('div');host.id='siriai-review-widget';
   document.body.append(host);
-  const shadow=host.attachShadow({mode:'closed'});
+  const shadow=host.attachShadow({mode:'open'});
   shadow.innerHTML=`<style>
     :host{all:initial;font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;color:#26334a}
     *,*:before,*:after{box-sizing:border-box}
