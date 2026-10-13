@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>루솜 브랜드 검토용 가이드</title>
+<!-- Open Graph (카카오톡/인스타그램/SNS 공유 미리보기) -->
+<meta content="website" property="og:type"/>
+<meta content="https://lusom-guide.vercel.app/guide-10" property="og:url"/>
+<meta content="루솜 인플루언서 가이드라인 — 빨간불팩" property="og:title"/>
+<meta content="루솜 레드 PDRN 플럼핑 하이드로겔 마스크 — 브랜드 검토용 가이드 초안" property="og:description"/>
+<meta content="https://lusom-guide.vercel.app/image/banner-pdrn.webp" property="og:image"/>
+<meta content="https://lusom-guide.vercel.app/image/banner-pdrn.webp" property="og:image:secure_url"/>
+<meta content="image/webp" property="og:image:type"/>
+<meta content="1456" property="og:image:width"/>
+<meta content="1000" property="og:image:height"/>
+<meta content="루솜 레드 PDRN 플럼핑 하이드로겔 마스크 — 브랜드 검토용 가이드 초안" name="description"/>
+<meta content="ko_KR" property="og:locale"/>
+<!-- Twitter Card (옵션) -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="루솜 인플루언서 가이드라인 — 빨간불팩" name="twitter:title"/>
+<meta content="루솜 레드 PDRN 플럼핑 하이드로겔 마스크 — 브랜드 검토용 가이드 초안" name="twitter:description"/>
+<meta content="https://lusom-guide.vercel.app/image/banner-pdrn.webp" name="twitter:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      /* RED PDRN 연분홍 팔레트 (변수명은 기존 구조 유지) */
+      --green: #F7C9D5;
+      --green-light: #F2AEC1;
+      --green-pale: #FCE4EB;
+      --green-text: #B03A5A;
+      --cream: #FFF7FA;
+      --warm-white: #FDEEF3;
+      --text-dark: #3A2630;
+      --text-mid: #7D5A67;
+      --text-light: #BC95A3;
+      --border: #F3DCE4;
+      --tag-bg: #FCE8EF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* BANNER */
+    .banner-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .banner-wrap img {
+      width: 100%;
+      display: block;
+    }
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 4.5%;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      font-weight: 300;
+      color: #3A2630;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #3A2630;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 10px;
+      font-weight: 300;
+      color: #3A2630;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 480px) {
+      .header-title { font-size: 18px; }
+    }
+
+    /* SECTION */
+    .section {
+      padding: 48px 28px;
+      border-bottom: 1px solid var(--border);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .section:last-child { border-bottom: none; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      color: var(--green-text);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--green-text);
+    }
+    .section-title {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    /* ABOUT */
+    .about-lead {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.8;
+    }
+    .brand-img-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+    .brand-img-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .about-grid { display: grid; gap: 12px; }
+    .about-item {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .about-item-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green-text);
+      margin-bottom: 6px;
+    }
+    .about-item-desc {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .brand-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: var(--green);
+      color: var(--text-dark);
+      font-size: 12.5px;
+      font-weight: 600;
+      border-radius: 20px;
+      border: 1px solid var(--green-light);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .brand-link-btn:active { opacity: 0.75; }
+
+    /* INFO BOX */
+    .info-box {
+      background: var(--green);
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .info-box-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(58,38,48,0.55);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      margin-bottom: 10px;
+    }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-key {
+      min-width: 70px;
+      color: rgba(58,38,48,0.5);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .info-val { color: var(--text-dark); font-weight: 500; line-height: 1.6; }
+    .info-val strong { color: var(--green-text); }
+
+    /* PRODUCT */
+    .product-box {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .product-photo {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+    .product-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+    .product-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 11px 16px;
+      background: var(--tag-bg);
+      color: var(--green-text);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 20px;
+      text-decoration: none;
+      align-self: flex-start;
+      border: 1px solid var(--border);
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* MUST / RECOMMEND */
+    .must-list { display: grid; gap: 10px; margin-bottom: 24px; }
+    .must-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .must-icon { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+    .must-item strong { color: var(--text-dark); }
+
+    /* CONCEPT ACCORDION */
+    .concept-intro {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .concept-pick {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: var(--text-dark);
+      border: 1px solid var(--green-light);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 10px;
+      margin: 0 2px;
+    }
+    .concept-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .concept {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .concept[open] { border-color: var(--green-light); }
+    .concept-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-summary::-webkit-details-marker { display: none; }
+    .concept-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--tag-bg);
+      color: var(--green-text);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept[open] .concept-num { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .concept-name { flex: 1; font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
+    .concept-chevron { font-size: 11px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
+    .concept[open] > .concept-summary .concept-chevron { transform: rotate(180deg); color: var(--green-text); }
+    .concept-body { padding: 2px 16px 18px; border-top: 1px solid var(--border); }
+    .concept-steps {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      counter-reset: step;
+    }
+    .concept-steps > li {
+      counter-increment: step;
+      display: flex;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .concept-steps > li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      color: var(--green-text);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concept-quotes, .concept-refs {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+    }
+    .concept-quotes-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--green-text);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .quote-chip {
+      background: var(--tag-bg);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .quote-chip:last-child { margin-bottom: 0; }
+    .concept-ref-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      padding: 9px 12px;
+      margin-bottom: 6px;
+      min-height: 38px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .concept-ref-link:last-child { margin-bottom: 0; }
+    .concept-ref-link:active { background: var(--tag-bg); }
+    .concept-ref-link::after {
+      content: '→';
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--green-text);
+    }
+
+    .sub-list { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
+    .sub-list li { margin-bottom: 4px; }
+    .sub-list li:last-child { margin-bottom: 0; }
+
+    .key-msg-box {
+      background: var(--green);
+      border: 1px solid var(--green-light);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .key-msg-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(58,38,48,0.55);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .key-msg-item {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(58,38,48,0.12);
+    }
+    .key-msg-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .key-msg-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: rgba(58,38,48,0.55);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .key-msg-text {
+      font-size: 13px;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+    .key-msg-text strong { color: var(--green-text); }
+    .key-msg-item .sub-list { color: var(--text-dark); font-size: 12.5px; margin-top: 6px; padding-left: 16px; }
+    .key-msg-item .sub-list li { margin-bottom: 5px; }
+    .nb { white-space: nowrap; }
+    /* 깊게 중첩된 링크 라벨에서는 묶음을 풀어 가로 넘침 방지 */
+    .concept-ref-link .nb, .concept-name .nb { white-space: normal; }
+
+    .rec-list {
+      background: #FDEBF1;
+      border: 1px solid #F3DCE4;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .rec-title { font-size: 12px; font-weight: 700; color: var(--green-text); margin-bottom: 12px; }
+    .rec-item { font-size: 12.5px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid #F3DCE4; line-height: 1.6; }
+    .rec-item:last-child { border-bottom: none; }
+
+    /* HASHTAG */
+    .hashtag-section { margin-top: 20px; }
+    .hashtag-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hashtag-label .required { background: var(--green); color: var(--text-dark); font-size: 10px; padding: 2px 7px; border-radius: 10px; border: 1px solid var(--green-light); }
+    .hashtag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .hashtag {
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hashtag:active { opacity: 0.6; }
+    .hashtag.req { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(58,38,48,0.45); }
+
+    /* COLLAB */
+    .collab-box {
+      background: var(--green);
+      border: 1px solid var(--green-light);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .collab-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(58,38,48,0.55);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .collab-account {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(58,38,48,0.12);
+    }
+    .collab-account:last-child { border-bottom: none; }
+    .collab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-text); flex-shrink: 0; }
+    .collab-handle {
+      font-size: 13.5px;
+      color: var(--text-dark);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .collab-handle::after { content: '⎘'; font-size: 11px; color: rgba(58,38,48,0.4); }
+    .collab-note { margin-left: auto; font-size: 10px; color: rgba(58,38,48,0.45); }
+
+    /* WARNING */
+    .warning-box {
+      background: #FFF3F6;
+      border: 1px solid #F0A6B8;
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 12.5px;
+      color: #A32A48;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+    .warning-box strong { color: #7E1A33; }
+
+    /* REFERENCE */
+    .ref-box {
+      display: grid;
+      gap: 10px;
+    }
+    .ref-note { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+    .ref-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      transition: background 0.15s;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .ref-link:active { background: var(--tag-bg); }
+    .ref-link-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .ref-link-arrow {
+      font-size: 13px;
+      color: var(--green-text);
+    }
+
+    /* APPLICATION FORM */
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-label .req { color: #C03A5A; margin-left: 2px; }
+    .form-label .opt { font-size: 11px; color: var(--text-light); font-weight: 500; margin-left: 4px; }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-dark);
+      background: white;
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--green-light);
+    }
+    .form-input[readonly] { background: var(--warm-white); }
+    .form-textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+    .form-row-zip { display: flex; gap: 8px; }
+    .form-row-zip .form-input { flex: 1; min-width: 0; }
+    .zip-search-btn {
+      padding: 0 18px;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .zip-search-btn:active { opacity: 0.8; }
+
+    .note-box {
+      border: 1px dashed var(--green-light);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      background: var(--cream);
+    }
+    .note-box-title { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .note-box ul { padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.8; }
+
+    .agree-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 20px 0;
+      font-size: 12.5px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      cursor: pointer;
+    }
+    .agree-row input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--green);
+    }
+    .agree-row strong { color: var(--green); font-weight: 700; }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .submit-btn:active { opacity: 0.85; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* SETTLEMENT (v2) */
+    .settlement-lead { font-size: 13px; color: var(--text-mid); margin-bottom: 20px; line-height: 1.7; }
+    .settle-tag-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      background: var(--tag-bg);
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .settle-doc-text { font-size: 13px; color: var(--text-mid); margin: 0 0 20px; }
+    .settle-copy-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      color: var(--text-dark);
+    }
+    .settle-copy-box span { word-break: break-all; }
+    .settle-copy-btn {
+      flex-shrink: 0;
+      background: var(--text-dark);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .settle-copy-btn:active { opacity: 0.8; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+    /* COPY TOAST */
+    .copy-toast {
+      position: fixed;
+      bottom: max(32px, env(safe-area-inset-bottom, 32px));
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(58, 38, 48, 0.92);
+      color: white;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--green);
+      border-top: 1px solid var(--green-light);
+      color: rgba(58,38,48,0.55);
+      text-align: center;
+      padding: 36px 32px;
+      padding-bottom: max(36px, env(safe-area-inset-bottom, 36px));
+      font-size: 11.5px;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+    }
+    .footer strong { color: var(--text-dark); }
+
+    /* KOREAN LINE-BREAKING — 마지막 줄에 단어 하나만 남는 것 방지 */
+    .about-lead, .about-item-desc, .concept-intro, .key-msg-text, .quote-chip,
+    .sub-list li, .rec-item, .must-item > div, .info-row, .ref-note,
+    .warning-box, .collab-note {
+      text-wrap: pretty;
+    }
+    .section-title, .header-title, .concept-name, .key-msg-badge,
+    .concept-quotes-label, .rec-title, .about-item-title, .concept-ref-link {
+      text-wrap: balance;
+    }
+
+    @media (max-width: 480px) {
+      .section { padding: 36px 20px; }
+      .section-title { font-size: 18px; }
+      .section-label { font-size: 9.5px; }
+      .about-lead { font-size: 13px; }
+      .info-box { padding: 20px; }
+      .info-row { font-size: 13px; }
+      .info-key { min-width: 62px; font-size: 11px; }
+      .product-name { font-size: 14px; }
+      .key-msg-box { padding: 18px 20px; }
+      .key-msg-text { font-size: 12.5px; }
+      .must-item { font-size: 12.5px; padding: 12px 14px; }
+      .hashtag { font-size: 12px; padding: 10px 12px; }
+      .collab-handle { font-size: 13px; }
+      .ref-link-label { font-size: 13px; }
+      .footer { padding: 28px 20px; font-size: 11px; padding-bottom: max(28px, env(safe-area-inset-bottom, 28px)); }
+
+      /* 자간 — 좁은 화면에서 한 줄에 더 담기도록 미세 조정 */
+      body { letter-spacing: -0.01em; }
+      .key-msg-badge { font-size: 10.5px; letter-spacing: 0.04em; }
+      .concept-quotes-label { letter-spacing: 0.03em; }
+      .section-label { letter-spacing: 0.18em; }
+      .header-eyebrow { letter-spacing: 0.24em; }
+
+      /* 정렬 — 들여쓰기·여백 축소 */
+      .sub-list { padding-left: 16px; }
+      .quote-chip { font-size: 12px; padding: 9px 11px; }
+      .concept-body { padding: 2px 14px 16px; }
+
+      /* 데스크톱용 수동 줄바꿈 해제 */
+      .pc-br { display: none; }
+
+      /* 터치 영역 44px 확보 */
+      .concept-ref-link { min-height: 44px; }
+    }
+
+    @media (max-width: 360px) {
+      .section { padding: 28px 14px; }
+      .key-msg-box { padding: 16px 16px; }
+      .key-msg-text { font-size: 12px; }
+      .quote-chip { font-size: 11.5px; padding: 8px 10px; }
+      .sub-list { padding-left: 15px; font-size: 12px; }
+      .concept-summary { padding-left: 12px; padding-right: 12px; }
+      .section-title { font-size: 17px; }
+      .hashtag { font-size: 11.5px; padding: 9px 10px; }
+      .about-item { padding: 14px 16px; }
+      .info-box { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+<!-- BANNER -->
+<div class="banner-wrap">
+<img alt="루솜 레드 PDRN 플럼핑 하이드로겔 마스크 배너" src="image/banner-pdrn.webp"/>
+<div class="banner-overlay">
+<div class="header-eyebrow">Brand Review Draft</div>
+<div class="header-title">루솜 가이드라인</div>
+<div class="header-sub">Lusom × SIRIAI · 브랜드 검토용</div>
+</div>
+</div>
+<!-- ABOUT -->
+<div class="section">
+<div class="section-label">About Brand</div>
+<p class="about-lead" data-siriai-review-id="lusom-10-001">
+<strong style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:16px;color:var(--text-dark);line-height:1.5;margin-bottom:4px;">수많은 K-뷰티 마스크팩을 만들어온 회사가 직접 만든, 팩에 진심인 브랜드 루솜</strong>
+<span style="display:block;font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--green-text);margin-bottom:18px;">THE BEAUTY OF CYCLE, LUSOM</span>
+    루솜(LUSOM)은 코스닥 상장 K-뷰티 시트 제조사 셀바이오휴먼텍이 만든 스킨케어 브랜드입니다. 셀바이오휴먼텍은 국내외 대형 브랜드에 시트 소재를 공급해온 소재 전문 기업으로, 24건의 특허 기술과 자체 특허 원단을 보유하고 있습니다.<br/><br/>
+    오랜 기간 마스크팩 소재와 피부 밀착 기술을 연구해온 노하우를 바탕으로 소재부터 제형, 밀착감까지 '팩을 잘 아는 회사'만의 기술력을 루솜 제품에 담아내고 있습니다.<br/><br/>
+<span style="font-size:11px;color:var(--text-light);">※ 상기 내용은 브랜드 이해를 위한 참고 정보입니다. 실제 게시물에는 제조사명(셀바이오휴먼텍)을 직접 노출하지 말아주세요.</span>
+</p>
+<div class="brand-img-wrap">
+<img alt="Lusom 브랜드" data-siriai-review-id="lusom-10-002" src="image/brand-model.webp"/>
+</div>
+<div class="about-grid">
+<div class="about-item">
+<div class="about-item-title" data-siriai-review-id="lusom-10-003"><span style="letter-spacing:0.06em;">UNYIELDING</span> <span style="color:var(--text-mid);font-weight:500;">| 끊임없는 연구</span></div>
+<div class="about-item-desc" data-siriai-review-id="lusom-10-004">자체 연구소를 기반으로 불필요한 성분은 덜어내고, <br class="pc-br"/>피부가 가장 편안하게 받아들일 수 있는 성분과 조합을 끊임없이 연구합니다.</div>
+</div>
+<div class="about-item">
+<div class="about-item-title" data-siriai-review-id="lusom-10-005"><span style="letter-spacing:0.06em;">ATTENTIVE</span> <span style="color:var(--text-mid);font-weight:500;">| 일상에 대한 주목</span></div>
+<div class="about-item-desc" data-siriai-review-id="lusom-10-006">단번의 변화보다 매일의 작은 걸음이 건강한 피부의 바탕이 된다는 믿음으로, <br class="pc-br"/>피부 본연의 힘을 천천히 키워갈 수 있도록 돕습니다.</div>
+</div>
+<div class="about-item">
+<div class="about-item-title" data-siriai-review-id="lusom-10-007"><span style="letter-spacing:0.06em;">ALONGSIDE</span> <span style="color:var(--text-mid);font-weight:500;">| 지속 가능한 여정</span></div>
+<div class="about-item-desc" data-siriai-review-id="lusom-10-008">피부와 자연의 회복을 같은 마음으로 바라봅니다. <br class="pc-br"/>함께할 때 더 멀리 나아갈 수 있다는 믿음으로, <br class="pc-br"/>자연을 생각하는 아름다움을 이어갑니다.</div>
+</div>
+</div>
+<a class="brand-link-btn" href="https://lusom.kr/shopinfo/company.html" target="_blank">브랜드 바로가기 →</a>
+</div>
+<!-- 캠페인 개요 -->
+<div class="section">
+<div class="section-label">Campaign Info</div>
+<div class="section-title">캠페인 개요</div>
+<div class="info-box">
+<div class="info-box-title">Schedule &amp; Details</div>
+
+<div class="info-row">
+<div class="info-key">형식</div>
+<div class="info-val" data-siriai-review-id="lusom-10-009">릴스 (Reels) · <span class="nb">30초 이상</span></div>
+</div>
+<div class="info-row">
+<div class="info-key">공동작업자</div>
+<div class="info-val" data-siriai-review-id="lusom-10-010">필수</div>
+</div>
+<div class="info-row">
+<div class="info-key">2차 활용</div>
+<div class="info-val" data-siriai-review-id="lusom-10-011">동의</div>
+</div>
+
+</div>
+<!-- 제공 제품 -->
+<div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:10px;letter-spacing:0.05em;">제공 제품</div>
+<div class="product-box">
+<img alt="루솜 레드 PDRN 플럼핑 하이드로겔 마스크" class="product-photo" data-siriai-review-id="lusom-10-012" src="image/product-pack.webp"/>
+<div class="product-name" data-siriai-review-id="lusom-10-013">루솜 레드 PDRN 플럼핑 하이드로겔 마스크</div>
+<div class="info-row"><div class="info-key">애칭</div><div class="info-val" data-siriai-review-id="lusom-10-014"><span class="nb">#빨간불팩</span></div></div>
+<div class="info-row"><div class="info-key">용량</div><div class="info-val" data-siriai-review-id="lusom-10-015"><span class="nb">34g x 4매</span></div></div>
+<a class="product-link-btn" href="https://lusom.kr/product/detail.html?product_no=61" target="_blank">제품 상세 보기 →</a>
+<div class="key-msg-box" style="margin-top:16px;">
+<div class="key-msg-title" data-siriai-review-id="lusom-10-016"><span class="nb">#빨간불팩</span>이란?</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-017" style="margin-top:-8px;">피부가 <strong>'방전'</strong>돼 <strong>빨간불</strong>이 켜진 순간, <strong>레드 PDRN</strong>으로 촉촉한 수분을 <strong>'충전'</strong>해 탱글한 물광 피부로 가꿔주는 <strong><span class="nb">수분플럼핑 겔마스크팩</span></strong></div>
+</div>
+<div class="warning-box" data-siriai-review-id="lusom-10-018" style="margin-top:14px;">
+      ! <strong>신제품인 관계로 상세페이지는 아직 준비 중입니다.</strong><br/>
+      아래 <strong>제품 특장점</strong>을 반영해서 소구해 주세요.
+    </div>
+</div>
+</div>
+<!-- 제작 가이드 -->
+<div class="section">
+<div class="section-label">Content Guide</div>
+<div class="section-title">제작 가이드</div>
+<div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:12px;">✔ 영상 및 캡션 필수 포함</div>
+<div class="must-list">
+<div class="must-item" data-siriai-review-id="lusom-10-019">
+<div class="must-icon">🎬</div>
+<div>
+<strong>[영상]</strong>
+<div class="concept-intro" data-siriai-review-id="lusom-10-020">빨간불팩의 <strong>수분 플럼핑 제품력</strong>을 강조해주세요.</div>
+<div class="concept-list">
+<details class="concept" open="">
+<summary class="concept-summary">
+<span class="concept-num">1</span>
+<span class="concept-name">제품 특장점</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-021">
+<div class="concept-list" style="margin-top:14px;">
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">1</span>
+<span class="concept-name">❤️ RED 플럼핑 케어</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-022">
+<ol class="concept-steps" style="margin-top:14px;">
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">RED PDRN COMPLEX</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-023">
+<li><strong>4가지 붉은 식물</strong>에서 유래한 <span class="nb">저분자·고순도</span> 식물성 PDRN</li>
+<li>푸석하고 생기 잃은 피부에 <strong>탱글한 볼륨감</strong>을 더하는 RED 플럼핑 케어</li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">히비스커스 콜라겐</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-024">
+<li><span class="nb">300Da</span> 초저분자 <strong>비건 콜라겐</strong>으로 플럼핑 시너지 케어</li>
+</ul>
+</div>
+</li>
+</ol>
+<div class="warning-box" data-siriai-review-id="lusom-10-025" style="margin-top:12px;">
+                      ! 영상에서는 <strong>'탄력'이 아닌 <span class="nb">'수분으로 차오르는 탱글 볼륨'</span></strong>으로 표현해 주세요.
+                    </div>
+</div>
+</details>
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">2</span>
+<span class="concept-name">💧 <span class="nb">3 STEP</span> 수분플럼핑</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-026">
+<ol class="concept-steps" style="margin-top:14px;">
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 1. 플럼핑</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-027">
+<li><span class="nb">RED PDRN COMPLEX</span> X <span class="nb">300Da 비건 콜라겐</span>으로 방전된 피부에 <strong>탱글 UP! 생기 UP!</strong></li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 2. 수분 레이어링</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-028">
+<li><span class="nb">저~고분자 10중</span> 히알루론산이 수분을 <strong>겹겹이 충전</strong></li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 3. 보습 잠금</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-029">
+<li><span class="nb">5중 세라마이드</span> + 콜레스테롤 + <span class="nb">피토스핑고신(세콜지)</span> 조합으로 보습장벽을 탄탄하게</li>
+<li>채운 수분이 빠져나가지 않게 <strong>잠금</strong></li>
+</ul>
+</div>
+</li>
+</ol>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-030">
+<div class="quote-chip">→ 야근, 밤샘 등으로 오후만 되면 푸석하고 방전되는 피부. <strong>하루 종일 촉촉하고 탱글하게!</strong> 수분으로 차오르는 물광 피부 완성!</div>
+</div>
+</div>
+</details>
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">3</span>
+<span class="concept-name">✨ 저자극 착붙레드겔</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-031">
+<ol class="concept-steps" style="margin-top:14px;">
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">38g 에센스</span>를 그대로 굳힌 착붙 레드겔</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-032">
+<li>피부에 올리면 <strong>연한 레드빛 → 투명</strong>으로 변하며, 피부 속 <span class="nb">20중</span> 겹겹이 채우는 수분 레이어링 효과</li>
+<li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 피부 20중 보습 개선 인체적용시험 완료</span></li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">3시간 이상 집중 케어부터 오버나잇 케어까지</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-033">
+<li>오래 붙여도 편안한 <strong>저자극 포뮬러</strong></li>
+<li><span style="font-size:11px;color:var(--text-light);">피부 저자극 테스트 완료 / <span class="nb">무향료·무색소</span> / 화해 20가지 주의성분 및 알레르기 유발성분 배제</span></li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">수분으로 차오르는 탱글 볼륨</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-034">
+<li>푸석하게 방전된 피부를 <strong>수분으로 탱글하게 재충전</strong></li>
+<li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 수분 볼륨(플럼핑) 개선 인체적용시험 완료</span></li>
+</ul>
+</div>
+</li>
+<li>
+<div>
+<strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">24시간</span> 촉촉한 물광 피부</strong>
+<ul class="sub-list" data-siriai-review-id="lusom-10-035">
+<li>1회 사용으로 <strong>다음 날까지 촉촉한 물광(수분광) 피부</strong></li>
+<li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 24시간 광채(수분광) 지속 인체적용시험 완료</span></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</details>
+</div>
+<div class="warning-box" data-siriai-review-id="lusom-10-036" style="margin-top:14px;">
+                ! 소개 문구를 그대로 사용하기보다 <strong>솔직한 후기와 피부 전후 변화</strong>(탱글한 물광 피부 등)를 본인만의 톤앤매너로 진정성 있게 담아주세요.
+              </div>
+</div>
+</details>
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">2</span>
+<span class="concept-name">연출 예시</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-037">
+<div class="concept-intro" data-siriai-review-id="lusom-10-038" style="margin-top:14px;">아래 컨셉 중 본인 스타일에 맞는 방향을 선택해 콘텐츠를 제작해 주세요. <span class="concept-pick">여러 컨셉 조합 OK</span> 평소 반응이 좋았던 후킹이나 본인만의 캐릭터가 있다면 활용하셔도 좋습니다.</div>
+<div class="concept-list" style="margin-top:14px;">
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">1</span>
+<span class="concept-name">루틴형 — 오늘의 RED</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-039">
+<div class="concept-intro" data-siriai-review-id="lusom-10-040" style="margin-top:14px;"><span class="nb">'야근/밤샘 RED'</span>, <span class="nb">'소개팅/중요한날/시험 D-1 RED'</span>, <span class="nb">'술병 RED'</span> 등 피부에 <strong>빨간불이 켜진 상황</strong>에서 팩을 붙이고 방전된 피부 컨디션을 회복하는 루틴을 보여주는 콘텐츠</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-041">
+<div class="concept-quotes-label">필수 촬영 요소</div>
+<ul class="sub-list" data-siriai-review-id="lusom-10-042">
+<li>첫 컷 자막으로 <strong>오늘의 RED 상황</strong> 제시 (예: <span class="nb">"야근 RED"</span>, <span class="nb">"시험 D-1 RED"</span>)</li>
+<li><span class="nb">야근·밤샘</span> 등으로 방전된 피부 컨디션 컷 (<span class="nb">푸석함, 들뜬 화장</span> 등)</li>
+<li><strong>레드빛 팩 부착</strong></li>
+<li>팩을 붙이고 피부 집중 케어</li>
+<li>시간 지난 후, <strong>투명해진 팩 제거</strong> → 수분으로 탱글하게 차오른 물광 클로즈업</li>
+</ul>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-043">
+<div class="concept-quotes-label">후킹·썸네일 문구 예시</div>
+<div class="quote-chip">"<span class="nb">24시간 밤샘야근</span> 후 나이트 루틴"</div>
+</div>
+<div class="concept-refs">
+<div class="concept-quotes-label">▼ Ref.</div>
+<a class="concept-ref-link" href="https://www.instagram.com/reels/DVGkMmAk7Xj/" target="_blank">레퍼런스 1 · 팩 투명 변화 / 물광 B&amp;A</a>
+<a class="concept-ref-link" href="https://www.instagram.com/reels/Dcn5I6vzBz2/" target="_blank">레퍼런스 2 · 나이트 루틴</a>
+</div>
+</div>
+</details>
+<details class="concept">
+<summary class="concept-summary">
+<span class="concept-num">2</span>
+<span class="concept-name">REDY 셰드</span>
+<span class="concept-chevron">⌄</span>
+</summary>
+<div class="concept-body" data-siriai-review-id="lusom-10-044">
+<div class="concept-intro" data-siriai-review-id="lusom-10-045" style="margin-top:14px;"><strong>'모닝 셰드'의 외출 전 버전.</strong> 특별한 날을 위해 외출 전 <span class="nb">1~3시간</span> 동안 팩을 붙이고 준비하다가, 팩을 떼고 완성된 모습으로 외출하는 콘텐츠</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-046">
+<div class="quote-chip" style="font-size:11.5px;">* 셰드(shed) — 취침 전 착용물을 기상 후 순서대로 제거하는 숏폼 포맷</div>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-047">
+<div class="concept-quotes-label">필수 촬영 요소</div>
+<ul class="sub-list" data-siriai-review-id="lusom-10-048">
+<li><span class="nb">약속·데이트·출근</span> 등 외출 전 상황 제시 (예: <span class="nb">"소개팅 n시간 전"</span>)</li>
+<li>빨간불팩 포함하여 <strong>착용했던 관리 도구들을 모두 해제</strong>하는 모습</li>
+<li><strong>투명해진 팩 제거</strong> → 탱글 물광 피부 → <strong>메이크업이 착 붙는 컷</strong></li>
+<li>외출하는 엔딩</li>
+</ul>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-049">
+<div class="concept-quotes-label">후킹·썸네일 문구 예시</div>
+<div class="quote-chip">"<span class="nb">소개팅 n시간 전</span> 무조건 하는 루틴"</div>
+</div>
+<div class="concept-refs">
+<div class="concept-quotes-label">▼ Ref.</div>
+<a class="concept-ref-link" href="https://www.instagram.com/p/DEyEUYJyYdy/" target="_blank">레퍼런스 1 · 셰드 구성</a>
+<a class="concept-ref-link" href="https://www.instagram.com/p/DcQ_X0Exxw5/" target="_blank">레퍼런스 2 · 외출 전 루틴</a>
+</div>
+</div>
+</details>
+</div>
+</div>
+</details>
+</div>
+<div class="key-msg-box" style="margin-top:18px;">
+<div class="key-msg-title" data-siriai-review-id="lusom-10-050">영상에 꼭 담아주세요 · 4</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-051" style="margin-top:-8px;margin-bottom:4px;">선택한 연출 컨셉과 관계없이 아래 4가지 장면은 <strong>반드시</strong> 영상에 포함해 주세요.</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-052">
+<div class="key-msg-badge">CUT 1 · 빈틈없는 밀착</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-053"><strong>화장기 없는 얼굴</strong>에 팩을 얼굴 굴곡에 맞춰 <strong>빈틈없이 밀착</strong>한 모습</div>
+</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-054">
+<div class="key-msg-badge">CUT 2 · 투명해진 팩 제거</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-055">팩이 <strong>충분히 투명해진 후</strong> 떼어내는 장면</div>
+</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-056">
+<div class="key-msg-badge">CUT 3 · 제거 직후 탱글 물광</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-057">제거 직후 <strong>유리알처럼 탱글하고 촉촉한 물광 피부</strong></div>
+</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-058">
+<div class="key-msg-badge">CUT 4 · 사용 전후 B&amp;A</div>
+<ul class="sub-list" data-siriai-review-id="lusom-10-059">
+<li>푸석하고 건조한 <strong>사용 전 피부</strong> vs 촉촉하고 탱글한 물광이 차오른 <strong>사용 후 피부</strong></li>
+<li>시간이 지나도 촉촉한 물광이 <span class="nb">하루 종일 유지되는 모습</span>도 담으면 good</li>
+</ul>
+</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-060">
+<div class="key-msg-badge">※ 주의</div>
+<ul class="sub-list" data-siriai-review-id="lusom-10-061">
+<li><strong>투명해지기 전에 팩을 떼어내지 않도록</strong> 주의해 주세요.</li>
+<li>B&amp;A는 사용 <span class="nb">전·후</span> 비교 장면을 <strong>한 화면에 담거나 연이어 배치</strong>해, 피부 광채 차이가 바로 보이도록 연출해 주세요.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="must-item" data-siriai-review-id="lusom-10-062">
+<div class="must-icon">✍️</div>
+<div>
+<strong>[캡션]</strong> 제품의 핵심 소구점과 실제 사용감을 본인의 말투로 자연스럽게 작성해 주세요. 아래 흐름을 참고해 주세요.
+        <div class="concept-quotes" data-siriai-review-id="lusom-10-063" style="margin-top:12px;">
+<div class="concept-quotes-label">도입</div>
+<div class="quote-chip">오후가 되면 수분이 방전되는 푸석한 피부, 또는 <span class="nb">야근·밤샘</span>으로 무너진 피부에 대한 <strong>공감 후킹</strong><br/>예) "아침에 기초를 꼼꼼히 발라도 오후 2시만 되면 피부가 푸석해지더라고요"</div>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-064">
+<div class="concept-quotes-label">제품 소개</div>
+<div class="quote-chip"><strong>신제품 출시 소식</strong> + 빨간불팩으로 탱글한 수분 볼륨을 채워 문제 해결<br/>예) "그래서 피부에 빨간불 켜진 날 붙이는 루솜 신제품, 빨간불팩으로 집중 케어 해봤어요"</div>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-065">
+<div class="concept-quotes-label">사용 경험</div>
+<div class="quote-chip"><span class="nb">밀착력·사용감(수분플럼핑)·24시간 광채</span> 등 실제 사용감 위주로 솔직하게</div>
+</div>
+<div class="concept-quotes" data-siriai-review-id="lusom-10-066">
+<div class="concept-quotes-label">마무리</div>
+<div class="quote-chip">공식몰 <strong>프로모션 안내</strong> (아래 참고)</div>
+</div>
+</div>
+</div>
+<div class="must-item" data-siriai-review-id="lusom-10-067">
+<div class="must-icon">🔗</div>
+<div><strong>[공동작업자]</strong> <span class="nb">@lusom_official</span> 태그 및 공동작업자 초대 필수</div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="key-msg-box">
+<div class="key-msg-title" data-siriai-review-id="lusom-10-068">루솜 공식몰 · <span class="nb">#빨간불팩</span> 신제품 출시 프로모션</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-069" style="margin-top:-8px;margin-bottom:4px;">캡션 마무리에 아래 프로모션을 간략히 언급해 주세요.</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-070">
+<div class="key-msg-badge">공식몰 단독 혜택</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-071">루솜 공식몰에서만, 신제품 <strong>레드 PDRN <span class="nb">100% 환불보장</span></strong> 진행 중!</div>
+</div>
+<div class="key-msg-item" data-siriai-review-id="lusom-10-072">
+<div class="key-msg-badge">구매 혜택</div>
+<div class="key-msg-text" data-siriai-review-id="lusom-10-073"><strong><span class="nb">4+4 구매</span></strong> 시 <strong><span class="nb">체험분 1매</span> 증정</strong></div>
+</div>
+</div>
+<div class="divider"></div>
+<div class="rec-list">
+<div class="rec-title" data-siriai-review-id="lusom-10-074">체크사항</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-075"><span class="nb">@lusom_official</span> 태그 및 공동작업자 초대</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-076">릴스 형식으로 <strong><span class="nb">30초 이상</span></strong> 제작</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-077">화장기 없는 얼굴과 깔끔한 배경에서 고화질로 촬영</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-078">본인 음성 또는 보이스오버 활용</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-079">저작권 이슈가 없는 BGM 사용</div>
+<div class="rec-item" data-siriai-review-id="lusom-10-080">상세페이지 캡처 위주 편집 및 편집 프로그램 워터마크 노출 지양</div>
+</div>
+<div class="divider"></div>
+<!-- 해시태그 -->
+<div class="hashtag-section">
+<div class="hashtag-label">해시태그 <span class="required">필수</span></div>
+<div class="hashtag-wrap">
+<div class="hashtag req" data-siriai-review-id="lusom-10-081">#루솜</div>
+<div class="hashtag req" data-siriai-review-id="lusom-10-082">#빨간불팩</div>
+<div class="hashtag req" data-siriai-review-id="lusom-10-083">#레드PDRN</div>
+<div class="hashtag req" data-siriai-review-id="lusom-10-084">#수분플럼핑</div>
+<div class="hashtag req" data-siriai-review-id="lusom-10-085">#탱글물광</div>
+</div>
+<div class="ref-note" data-siriai-review-id="lusom-10-086">• 그 외 해시태그는 선택한 연출 컨셉에 맞게 자유롭게 추가해 주세요.</div>
+</div>
+
+</div>
+<!-- 정산 -->
+
+<!-- FOOTER -->
+<div class="footer"><strong>Lusom (루솜)</strong><br/>브랜드 검토용 초안입니다. 수정할 문구나 사진을 선택해 제안해 주세요.</div>
+<div class="copy-toast" id="copyToast"></div>
+<script>
+  function showToast(text) {
+    const toast = document.getElementById('copyToast');
+    toast.textContent = '"' + text + '" 복사됨';
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => toast.classList.remove('show'), 1500);
+  }
+
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => showToast(text));
+  }
+
+  document.querySelectorAll('.hashtag').forEach(el => {
+    el.addEventListener('click', () => {
+      const tag = el.textContent.replace('⎘', '').trim();
+      copyText(tag);
+    });
+  });
+
+  document.querySelectorAll('.collab-handle').forEach(el => {
+    el.addEventListener('click', () => {
+      const handle = el.textContent.replace('⎘', '').trim();
+      copyText(handle);
+    });
+  });
+
+</script>
+<script defer="" src="https://siriai-workflow-plan.hwangyksiriai.chatgpt.site/review-widget.js"></script></body>
+</html>
