@@ -67,7 +67,7 @@ for element in soup.select(".section *"):
 
 assert index >= 40, f"Too few review targets: {index}"
 assert soup.select_one('.section-label:-soup-contains("Settlement")') is None
-script = soup.new_tag("script", defer="", src="https://siriai-workflow-plan.hwangyksiriai.chatgpt.site/review-widget.js")
+script = soup.new_tag("script", defer="", src="/review-widget.js")
 soup.body.append(script)
 html = str(soup)
 for forbidden in ("신분증", "통장 사본", "고료 지급", "업로드 기한", "hwangyksiriai@gmail.com"):
