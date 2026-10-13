@@ -32,6 +32,9 @@ for row in soup.select(".info-row"):
     key = row.select_one(".info-key")
     if key and key.get_text(" ", strip=True) in {"업로드", "업로드 유지"}:
         row.decompose()
+info_title = soup.select_one(".info-box-title")
+if info_title:
+    info_title.string = "Campaign Details"
 for warning in soup.select(".warning-box"):
     if "업로드 기한" in warning.get_text(" ", strip=True):
         warning.decompose()
