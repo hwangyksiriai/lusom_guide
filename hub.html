@@ -107,6 +107,57 @@
       font-weight: 700;
     }
     .asset-list { display: flex; flex-direction: column; gap: 10px; }
+
+    /* FOLDER */
+    .folder {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .folder-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      cursor: pointer;
+      list-style: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .folder-head::-webkit-details-marker { display: none; }
+    .folder-head:hover { background: var(--warm-white); }
+    .folder-icon { font-size: 15px; flex-shrink: 0; }
+    .folder-name {
+      flex: 1;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .folder-count {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-light);
+      background: var(--tag-bg);
+      border-radius: 10px;
+      padding: 2px 9px;
+      flex-shrink: 0;
+    }
+    .folder-chevron {
+      font-size: 14px;
+      color: var(--green-light);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .folder[open] > .folder-head .folder-chevron { transform: rotate(180deg); }
+    .folder-body {
+      padding: 0 12px 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .folder-body .asset-link { border-radius: 10px; padding: 15px 16px; }
     .hub-divider { height: 1px; background: var(--border); margin: 20px 0; }
     .asset-link {
       display: flex;
@@ -164,7 +215,14 @@
       <div class="hub-eyebrow">Lusom Internal</div>
       <div class="hub-title">캠페인 에셋 허브</div>
     </div>
-    <div class="asset-list">
+    <details class="folder" open>
+      <summary class="folder-head">
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">9월</span>
+        <span class="folder-count">6</span>
+        <span class="folder-chevron">⌄</span>
+      </summary>
+      <div class="asset-list folder-body">
       <a href="/" class="asset-link">
         <div class="asset-left">
           <div class="asset-type">A</div>
@@ -207,7 +265,25 @@
         </div>
         <div class="asset-arrow">→</div>
       </a>
-    </div>
+      </div>
+    </details>
+
+    <details class="folder" open>
+      <summary class="folder-head">
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">10월</span>
+        <span class="folder-count">1</span>
+        <span class="folder-chevron">⌄</span>
+      </summary>
+      <div class="asset-list folder-body">
+      <a href="/guide-10" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-price">통합전달용</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      </div>
+    </details>
 
     <div class="hub-divider"></div>
 
