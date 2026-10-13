@@ -1,126 +1,152 @@
-/* Add this script to a guide and give editable elements a data-siriai-review-id. */
+/* SIRIAI guide review. Runs only in an issued review link; normal guides stay normal. */
 (()=>{
   'use strict';
-  const script=document.currentScript;
-  const match=location.hash.match(/^#siriai-review=([0-9a-f]{64})(?:&target=([^&]+))?$/);
-  if(!script||!match)return;
-  const token=match[1];
+  const script=document.currentScript,params=new URLSearchParams(location.hash.slice(1)),token=params.get('siriai-review');
+  if(!script||!/^[0-9a-f]{64}$/.test(token||''))return;
   const endpoint=new URL(script.dataset.siriaiApi||'/api/external-reviews',script.src);
-  endpoint.searchParams.set('token',token);
-  endpoint.searchParams.set('page',location.href.split('#')[0]);
-  let ready=false,selected=null,general=false,submitting=false,proposals=[];
-  const targetStyle=document.createElement('style');targetStyle.textContent='[data-siriai-review-id].review-target{cursor:pointer!important;outline:1px dashed rgba(196,59,101,.5);outline-offset:2px}[data-siriai-review-id].review-target:hover{outline:3px solid #c43b65!important}[data-siriai-review-id].focus-target{outline:4px solid #c43b65!important;outline-offset:4px}';document.head.append(targetStyle);
-  const host=document.createElement('div');host.id='siriai-review-widget';
-  document.body.append(host);
+  endpoint.searchParams.set('token',token);endpoint.searchParams.set('page',location.href.split('#')[0]);
+  const readonly=params.get('readonly')==='1',requestedIds=(params.get('ids')||'').split(',').filter(Boolean);
+  const statusLabels={pending:'검토 대기',approved:'반영 승인 · 사이트 수정 전',applied:'반영 완료',rejected:'반려',draft:'미제출 초안'};
+  let records=[],drafts=[],selectedKey='',targetId='',scope='all',listView='drafts',busy=false,driver=null,loaded=false,renderTimer;
+  const fileUrls=new WeakMap(),imageUrls=new Map(),frames=[],targetMap=new Map();
+  function textOf(el){return (el.innerText||el.textContent||'').trim();}
+  function sectionOf(el){const root=el.closest('section,article,.section,.guide-section');return (root?.querySelector('.section-title,h2,h3,.section-label')?.textContent||'가이드 본문').trim().replace(/\s+/g,' ').slice(0,160);}
+  let next=0;
+  for(const el of document.querySelectorAll('body *')){
+    if(el.closest('nav,footer,form,button,a,[role="button"]')||el.hasAttribute('data-siriai-review-id')||el.closest('[data-siriai-review-id]'))continue;
+    if(el.tagName==='IMG'||/^(P|H1|H2|H3|H4|LI|BLOCKQUOTE|FIGCAPTION)$/.test(el.tagName))el.setAttribute('data-siriai-review-id',`auto-${String(++next).padStart(4,'0')}`);
+  }
+  // Split rich introductions and list rows into meaningful editable lines, retaining legacy IDs.
+  for(const el of [...document.querySelectorAll('[data-siriai-review-id]')]){
+    const parentId=el.getAttribute('data-siriai-review-id');let part=0;
+    for(const li of el.querySelectorAll('li'))if(!li.hasAttribute('data-siriai-review-id')&&!li.querySelector('[data-siriai-review-id],li'))li.setAttribute('data-siriai-review-id',`${parentId}-line-${++part}`);
+    if(el.tagName==='P'&&[...el.children].some(child=>getComputedStyle(child).display==='block')){
+      for(const node of [...el.childNodes]){if(node.nodeType===3&&node.textContent.trim().length>8){const span=document.createElement('span');span.setAttribute('data-siriai-review-id',`${parentId}-part-${++part}`);node.replaceWith(span);span.append(node);}else if(node.nodeType===1&&node.tagName!=='BR'&&node.textContent.trim()&&!node.hasAttribute('data-siriai-review-id'))node.setAttribute('data-siriai-review-id',`${parentId}-part-${++part}`);}
+    }
+  }
+  for(const el of document.querySelectorAll('summary .concept-name'))if(!el.hasAttribute('data-siriai-review-id'))el.setAttribute('data-siriai-review-id',`auto-heading-${++next}`);
+  for(const el of document.querySelectorAll('[data-siriai-review-id]')){
+    targetMap.set(el.getAttribute('data-siriai-review-id'),{element:el,section:sectionOf(el),kind:el.tagName==='IMG'?'image':'text',text:textOf(el),src:el.getAttribute('src')||''});
+  }
+  const snapshot=document.documentElement.cloneNode(true);
+  snapshot.querySelectorAll('script,iframe,object,embed,base,meta[http-equiv],#siriai-review-widget').forEach(el=>el.remove());
+  snapshot.querySelectorAll('*').forEach(el=>{for(const attr of [...el.attributes])if(/^on/i.test(attr.name)||/^(?:javascript|vbscript):/i.test(attr.value.trim()))el.removeAttribute(attr.name);});
+  snapshot.querySelectorAll('details').forEach(el=>el.setAttribute('open',''));
+  snapshot.querySelectorAll('input,textarea,select,button').forEach(el=>el.setAttribute('disabled',''));
+  const base=document.createElement('base');base.href=location.href.split('#')[0];snapshot.querySelector('head').prepend(base);
+  const css=document.createElement('style');css.textContent=`html{scroll-behavior:auto!important}body{overflow:auto!important;margin-bottom:70px!important}[data-siriai-review-id]{scroll-margin-top:35px}[data-siriai-review-id]:hover{outline:2px dashed #6084ab;outline-offset:4px;cursor:pointer}[data-sr-change]{outline:3px solid #20966b!important;outline-offset:4px;position:relative}[data-sr-change]:not(img)::after{content:attr(data-sr-change);position:absolute;right:0;top:-18px;background:#147957;color:white;font:700 11px system-ui;padding:2px 6px;border-radius:4px;z-index:5}[data-sr-focus]{outline:4px solid #bf4771!important;outline-offset:5px}[data-sr-deleted]{min-height:24px;background:#fff1f3!important}[data-sr-deleted]::before{content:'삭제 요청';font:700 12px system-ui;color:#9d3455}a{cursor:default!important}details>summary{cursor:default!important}`;
+  snapshot.querySelector('head').append(css);
+  const sourceHtml='<!DOCTYPE html>'+snapshot.outerHTML;
+  const host=document.createElement('div');host.id='siriai-review-widget';document.body.append(host);document.documentElement.style.overflow='hidden';
   const shadow=host.attachShadow({mode:'open'});
   shadow.innerHTML=`<style>
-    :host{all:initial;font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;color:#26334a}
-    *,*:before,*:after{box-sizing:border-box}
-    button,input,textarea{font:inherit}
-    .bar{position:fixed;z-index:2147483646;right:18px;bottom:18px;max-width:calc(100vw - 36px);background:#fff;border:1px solid #dce3ea;box-shadow:0 12px 35px #18304d33;border-radius:18px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:13px}
-    .bar strong{font-size:14px}.bar small{display:block;color:#65748a}.bar button,.panel button{border:0;border-radius:10px;padding:9px 12px;cursor:pointer;background:#243c5a;color:#fff;font-weight:700}
-    .bar button[disabled],.panel button[disabled]{opacity:.5;cursor:wait}
-    .panel{position:fixed;z-index:2147483647;right:18px;bottom:82px;width:min(430px,calc(100vw - 36px));max-height:calc(100vh - 100px);overflow:auto;background:#fff;border:1px solid #dce3ea;box-shadow:0 18px 50px #18304d44;border-radius:18px;padding:19px;display:none;font-size:14px}
-    .panel.open{display:block}.head{display:flex;align-items:center;justify-content:space-between;gap:8px}.head h2{margin:0;font-size:18px}.close{background:#eef2f5!important;color:#283b52!important;padding:5px 9px!important}
-    p{line-height:1.55;color:#617087;margin:8px 0 15px}.label{font-weight:700;margin:14px 0 5px;display:block}.original{background:#f3f5f8;border:1px solid #e1e6ed;border-radius:10px;padding:10px;white-space:pre-wrap;max-height:130px;overflow:auto;word-break:break-word}
-    textarea,input[type=text],input[type=file]{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px;background:#fff;color:#26334a}textarea{min-height:115px;resize:vertical}.note{min-height:65px}.submit{width:100%;margin-top:15px}.message{color:#a3263e;font-weight:600;margin-top:10px;min-height:20px}.hint{font-size:12px;color:#627389;margin-top:8px}
-    img.preview{display:block;max-width:100%;max-height:160px;object-fit:contain;margin:8px 0;border-radius:9px}
-    .bar button.secondary,.panel button.secondary{background:#eef2f5;color:#26334a}.history{position:fixed;z-index:2147483647;right:18px;bottom:82px;width:min(460px,calc(100vw - 36px));max-height:calc(100vh - 100px);overflow:auto;background:#fff;border:1px solid #dce3ea;box-shadow:0 18px 50px #18304d44;border-radius:18px;padding:19px;display:none;font-size:14px}.history.open{display:block}.history-list{display:grid;gap:10px;margin-top:15px}.history-item{border:1px solid #e1e6ed;border-radius:11px;padding:12px}.history-item b{display:block;font-size:13px}.history-item small{color:#66758a}.history-item p{white-space:pre-wrap;word-break:break-word;margin:7px 0}.history-item button{margin-top:5px}.history-item .after{background:#fff3f6;padding:8px;border-radius:7px;color:#25374d}.review-target{cursor:pointer!important;outline:1px dashed #cb6381;outline-offset:3px;transition:outline-color .15s}.review-target:hover,.review-target:focus{outline:3px solid #c43b65}.focus-target{outline:4px solid #c43b65!important;outline-offset:4px}
-    @media(max-width:640px){.bar{left:10px;right:10px;bottom:10px}.panel,.history{left:10px;right:10px;bottom:78px;width:auto}}
-  </style><div class="bar"><div><strong>브랜드 수정 제안</strong><small id="status">검토 링크 확인 중…</small></div><button id="generalButton" class="secondary" disabled type="button">기타 요청</button><button id="historyButton" class="secondary" disabled type="button">제안 내역</button></div><div class="panel" id="panel"><div class="head"><h2 id="title">수정안 작성</h2><button class="close" id="close" type="button" aria-label="닫기">✕</button></div><p id="intro">선택한 문구나 사진의 수정안을 보내주세요. 원본 가이드는 바로 바뀌지 않습니다.</p><span class="label" id="currentLabel">현재 내용</span><div class="original" id="original"></div><label class="label" id="editLabel" for="proposal">제안 내용</label><textarea id="proposal" maxlength="5000" placeholder="바꿀 문구를 입력해 주세요."></textarea><input id="replacement" type="file" accept="image/jpeg,image/png,image/webp" hidden><img id="preview" class="preview" hidden alt="교체 사진 미리보기"><label class="label" for="reviewer">작성자 이름</label><input id="reviewer" type="text" maxlength="80" placeholder="브랜드 담당자 이름"><label class="label" for="note">추가 설명 (선택)</label><textarea id="note" class="note" maxlength="1000" placeholder="수정 이유나 요청사항"></textarea><button class="submit" id="submit" type="button">수정안 제출</button><div class="hint">제출 후 담당자가 변경 전후를 확인합니다.</div><div class="message" id="message" role="status"></div></div><div class="history" id="history"><div class="head"><h2>제출한 수정 제안</h2><button class="close" id="historyClose" type="button" aria-label="닫기">✕</button></div><p>이 검토 링크로 접수된 제안과 처리 상태입니다.</p><div class="history-list" id="historyList"></div></div>`;
+    :host{all:initial;font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;color:#223249}*{box-sizing:border-box}button,input,textarea,select{font:inherit}button{cursor:pointer;border:1px solid #d4dce5;background:white;color:#2d4056;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:700}button:disabled{opacity:.45;cursor:default}button.primary{background:#203c57;border-color:#203c57;color:white}button[aria-pressed=true]{background:#e7eff7;border-color:#879eb9;color:#153b62}button.danger{color:#a33152}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #d1859c;outline-offset:2px}[hidden]{display:none!important}
+    .app{position:fixed;inset:0;z-index:2147483600;background:#edf1f5;display:flex;flex-direction:column;font-size:13px}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 20px;background:#fff;border-bottom:1px solid #d5dde6}.brand{font-size:11px;letter-spacing:.15em;font-weight:800;color:#a74869}.title{font-size:18px;margin:4px 0 0;font-weight:800}.top small{color:#6a7989;font-size:12px}.actions,.mode{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.info{padding:8px 20px;background:#f9fbfd;border-bottom:1px solid #d8e1eb;display:flex;justify-content:space-between;gap:12px;color:#52677d;min-height:40px;align-items:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 310px;min-height:0;flex:1}.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ccd6e0;min-width:0;min-height:0}.pane{display:flex;flex-direction:column;background:#fff;min-width:0;min-height:0}.pane-head{height:48px;display:flex;align-items:center;gap:10px;padding:10px 16px;flex-shrink:0;background:#f8fafc;border-bottom:1px solid #dce3eb}.pane-head strong{font-size:14px}.pane-head small{color:#758497}.after .pane-head{background:#edf8f2}.pill{font-size:10px;font-weight:800;background:#e6ebf1;border-radius:30px;padding:5px 7px;color:#607086}.after .pill{background:#d4ede1;color:#287253}iframe{border:0;display:block;width:100%;flex:1;min-height:0;background:#fff}.side{overflow:auto;background:#fff;border-left:1px solid #d8e1eb;padding:16px}.side h2{font-size:16px;margin:0 0 8px}.side p{font-size:12px;color:#6b7b8b;line-height:1.6}.side label{display:block;font-size:12px;font-weight:700;margin:12px 0 6px}.side input[type=text],.side textarea{width:100%;border:1px solid #cbd6e2;border-radius:8px;padding:9px;background:#fff;color:#27374a;font-size:13px}.side textarea{min-height:150px;line-height:1.65;resize:vertical}.side textarea.note{min-height:55px}.side input[type=file]{width:100%;font-size:12px}.section-label{display:block;font-size:11px;font-weight:700;color:#a64b6a;margin:4px 0 10px}.editor{border-bottom:1px solid #dce4eb;padding-bottom:17px;margin-bottom:17px}.editor .controls{display:flex;gap:6px;margin-top:12px}.helper{font-size:11px!important;color:#708094!important}.empty{padding:20px 10px;text-align:center;background:#f7f9fc;border:1px dashed #cfd9e4;border-radius:12px}.list{display:grid;gap:7px;margin-top:12px}.item{width:100%;text-align:left;padding:11px;line-height:1.5;font-weight:400}.item.active{border:2px solid #b45575;background:#fff7fa;padding:10px}.item b{font-size:12px;display:block}.item small{display:block;font-size:11px;color:#718196}.item span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#40576f;font-size:12px}.state{font-weight:800;color:#237754!important}.draft .state{color:#b16a15!important}.toast{font-size:12px;line-height:1.5;color:#234c65}.warnings{background:#fff5db;color:#835e15;white-space:pre-line;padding:8px 15px;font-size:12px;max-height:90px;overflow:auto}.mobile-tabs{display:none}.sync{display:flex;align-items:center;gap:5px;font-size:12px}.saved{color:#45705a;font-size:11px}.delete-label{display:flex!important;align-items:center;gap:7px}.counts{font-size:12px;color:#687e92}.original-value{white-space:pre-wrap;max-height:120px;overflow:auto;background:#f4f6f9;padding:9px;border-radius:8px;font-size:12px;line-height:1.6}.image-preview{max-width:100%;max-height:130px;object-fit:contain;display:block;margin:8px 0}.nav{display:flex;gap:6px;margin:12px 0}.readonly .workspace{grid-template-columns:minmax(0,1fr) 270px}
+    @media(max-width:1100px){.workspace{grid-template-columns:minmax(0,1fr) 265px}.side{padding:12px}.top{padding:10px 13px}.top small{display:none}.info{padding:8px 12px}}@media(max-width:760px){.top{align-items:flex-start}.title{font-size:15px}.brand{font-size:9px}.top .actions{justify-content:flex-end;max-width:175px}.workspace,.readonly .workspace{display:flex;flex-direction:column}.compare{flex:1;min-height:42vh;grid-template-columns:1fr}.pane{min-height:42vh}.pane[data-mobile=hide]{display:none}.side{max-height:39vh;border-left:0;border-top:1px solid #cfd9e4}.mobile-tabs{display:flex;gap:5px}.pane-head{height:37px;padding:6px 12px}.pane-head small{font-size:10px}.info{flex-wrap:wrap;gap:5px}.side textarea{min-height:85px}.side .list{grid-template-columns:1fr 1fr}.warnings{max-height:65px}.editor{padding-bottom:12px;margin-bottom:12px}}
+  </style><div class="app ${readonly?'readonly':''}">
+  <header class="top"><div><div class="brand">SIRIAI · GUIDE REVIEW</div><div class="title" id="title">가이드 수정 전후 비교</div><small>왼쪽은 원본 · 오른쪽은 수정안이 반영된 미리보기</small></div><div class="actions"><button id="general" ${readonly?'hidden':''}>기타 요청</button><button id="refresh">새로고침</button><button id="sendAll" class="primary" ${readonly?'hidden':''} disabled>수정안 전체 제출 (0)</button></div></header>
+  <div class="info"><div class="mode"><button id="all" aria-pressed="true">전체 수정 함께 보기</button><button id="one" aria-pressed="false" disabled>선택한 수정만 보기</button><label class="sync"><input id="sync" type="checkbox" checked>스크롤 함께</label></div><span class="toast" id="message" role="status">검토 링크 확인 중…</span><div class="mobile-tabs"><button id="mobileBefore">수정 전</button><button id="mobileAfter" aria-pressed="true">수정 후</button></div></div>
+  <div id="warnings" class="warnings" hidden></div><div class="workspace"><div class="compare"><section class="pane" id="beforePane" data-mobile="hide"><div class="pane-head"><span class="pill">BEFORE</span><strong>수정 전</strong><small>현재 가이드 원본</small></div><iframe id="before" title="수정 전 가이드" sandbox="allow-same-origin"></iframe></section><section class="pane after" id="afterPane"><div class="pane-head"><span class="pill">AFTER</span><strong>수정 후 미리보기</strong><small id="previewCount">0곳 변경</small></div><iframe id="after" title="수정 요청 반영 미리보기" sandbox="allow-same-origin"></iframe></section></div>
+  <aside class="side"><div ${readonly?'hidden':''}><label for="reviewer">브랜드 담당자 이름</label><input id="reviewer" type="text" maxlength="80" placeholder="작성자 이름"><p class="helper">문구·사진을 누르면 여기서 수정할 수 있습니다. 오른쪽에서 반영된 모습을 확인하세요.</p></div>
+  <div class="editor" id="editor" hidden><h2 id="editorTitle">문구 수정</h2><span class="section-label" id="section"></span><div id="original" class="original-value"></div><label id="textLabel" for="proposal">바꿀 문구</label><textarea id="proposal" maxlength="5000"></textarea><label class="delete-label" id="deleteLabel"><input type="checkbox" id="deleteText">이 문구 삭제 요청</label><label id="fileLabel" for="file" hidden>교체할 사진</label><input id="file" type="file" accept="image/jpeg,image/png,image/webp" hidden><img id="filePreview" class="image-preview" alt="교체 사진" hidden><label for="note">수정 이유 · 추가 설명 (선택)</label><textarea id="note" class="note" maxlength="1000"></textarea><p class="saved" id="saved"></p><div class="controls"><button id="sendOne" class="primary">이 수정안 제출</button><button id="discard" class="danger">초안 취소</button></div></div>
+  <h2 id="listTitle">수정사항</h2><div class="mode" id="listTabs"><button id="draftTab" aria-pressed="true">초안 (0)</button><button id="historyTab" aria-pressed="false">접수 내역 (0)</button></div><div class="nav"><button id="prev">← 이전 수정</button><button id="next">다음 수정 →</button></div><div id="list" class="list"></div><p class="helper">초안과 미리보기는 실제 가이드를 바꾸지 않습니다. 제출 후 담당자가 확인하여 반영합니다.</p></aside></div></div>`;
   const $=id=>shadow.getElementById(id);
-  const status=$('status'),panel=$('panel'),history=$('history'),historyList=$('historyList'),original=$('original'),proposal=$('proposal'),replacement=$('replacement'),preview=$('preview'),reviewer=$('reviewer'),note=$('note'),message=$('message');
-  try{reviewer.value=sessionStorage.getItem('siriai-reviewer-name')||'';}catch{}
-  // A new Claude-made guide only needs this script tag. Explicit IDs on a
-  // reviewed page take precedence; otherwise stable DOM-order IDs are used.
-  function connectTargets(){
-    let index=0;
-    const candidates=document.querySelectorAll('main *,article *,section *,body *');
-    for(const element of candidates){
-      if(element.closest('#siriai-review-widget,nav,footer,form,button,a,[role="button"]'))continue;
-      if(element.hasAttribute('data-siriai-review-id'))continue;
-      if(element.closest('[data-siriai-review-id]'))continue;
-      const tag=element.tagName;
-      const text=(element.innerText||'').trim();
-      const isImage=tag==='IMG';
-      const isText=/^(P|H1|H2|H3|H4|H5|H6|LI|BLOCKQUOTE|FIGCAPTION)$/.test(tag)
-        ||(tag==='DIV'&&text.length>=8&&![...element.children].some(child=>/^(DIV|P|UL|OL|SECTION|ARTICLE)$/.test(child.tagName)));
-      if((isImage||isText)&&getComputedStyle(element).display!=='none'){
-        index++;
-        element.setAttribute('data-siriai-review-id',`auto-${String(index).padStart(4,'0')}`);
-      }
+  const say=(value,error=false)=>{$('message').textContent=value;$('message').style.color=error?'#a13353':'#234c65';};
+  try{$('reviewer').value=sessionStorage.getItem('siriai-reviewer-name')||'';}catch{}
+  const draftDb=new Promise((resolve,reject)=>{const req=indexedDB.open('siriai-guide-review',1);req.onupgradeneeded=()=>req.result.createObjectStore('drafts');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+  async function savedDrafts(write){try{const db=await draftDb;return await new Promise((resolve,reject)=>{const tx=db.transaction('drafts',write?'readwrite':'readonly'),store=tx.objectStore('drafts'),req=write?store.put(drafts,token):store.get(token);tx.oncomplete=()=>resolve(req.result);tx.onerror=()=>reject(tx.error);});}catch{if(!readonly)$('saved').textContent='이 브라우저에서는 초안이 저장되지 않습니다. 창을 닫기 전에 제출해 주세요.';return null;}}
+  const frameReady=Promise.all(['before','after'].map((id,index)=>new Promise(resolve=>{
+    const frame=$(id);frame.addEventListener('load',()=>{const doc=frame.contentDocument;frames[index]=frame;
+      doc.addEventListener('click',event=>{event.preventDefault();const target=event.target?.nodeType===1?event.target.closest('[data-siriai-review-id]'):null;if(target&&!target.querySelector('[data-siriai-review-id]'))selectTarget(target.getAttribute('data-siriai-review-id'));},true);
+      for(const event of ['wheel','touchstart','pointerdown','keydown'])doc.addEventListener(event,()=>{driver=index;},{passive:true});
+      doc.addEventListener('scroll',()=>syncScroll(index),{passive:true});resolve();
+    },{once:true});frame.srcdoc=sourceHtml;
+  })));
+  function find(doc,id){return [...doc.querySelectorAll('[data-siriai-review-id]')].find(el=>el.getAttribute('data-siriai-review-id')===id);}
+  function syncScroll(index){if(driver!==index||!$('sync').checked||frames.length<2)return;const from=frames[index],to=frames[1-index],doc=from.contentDocument;let anchor=null,top=-Infinity;
+    for(const el of doc.querySelectorAll('[data-siriai-review-id]')){const y=el.getBoundingClientRect().top;if(y<=100&&y>top&&el.getBoundingClientRect().height){anchor=el;top=y;}}
+    const other=anchor&&find(to.contentDocument,anchor.getAttribute('data-siriai-review-id'));
+    const y=other?to.contentWindow.scrollY+other.getBoundingClientRect().top-top:from.contentWindow.scrollY;
+    to.contentWindow.scrollTo(0,y);
+  }
+  function focus(id){driver=null;for(const frame of frames){const el=find(frame.contentDocument,id);frame.contentDocument.querySelectorAll('[data-sr-focus]').forEach(n=>n.removeAttribute('data-sr-focus'));if(el){el.setAttribute('data-sr-focus','');el.scrollIntoView({block:'center'});}}}
+  function key(item){return item.clientId||item.id;}
+  function selected(){return [...drafts,...records].find(item=>key(item)===selectedKey);}
+  function candidates(){if(readonly&&requestedIds.length)return records.filter(p=>requestedIds.includes(p.id));return [...records.filter(p=>p.status==='pending'||p.status==='approved').sort((a,b)=>a.created_at.localeCompare(b.created_at)),...drafts];}
+  function effective(){const all=candidates();if(scope==='one'){const item=selected();return item?[item]:[];}const latest=new Map(),general=[];for(const item of all){if(item.target_id==='general')general.push(item);else latest.set(item.target_id,item);}return [...latest.values(),...general];}
+  // Preserve the original rich markup around the edited text whenever its text nodes map exactly.
+  function replaceText(el,value){
+    const tokens=[];function walk(node){if(node.nodeType===3)tokens.push({node,text:node.textContent});else if(node.nodeName==='BR')tokens.push({node,text:'\n'});else for(const child of node.childNodes)walk(child);}walk(el);
+    const raw=tokens.map(t=>t.text).join(''),old=raw.trim(),start=raw.indexOf(old);let prefix=0,suffix=0;
+    while(prefix<old.length&&prefix<value.length&&old[prefix]===value[prefix])prefix++;
+    while(suffix<old.length-prefix&&suffix<value.length-prefix&&old[old.length-1-suffix]===value[value.length-1-suffix])suffix++;
+    const boundary=(offset,end)=>{let at=0;for(const part of tokens){if(offset<=at+part.text.length){if(part.node.nodeType===3)return [part.node,Math.max(0,offset-at)];const p=part.node.parentNode,i=[...p.childNodes].indexOf(part.node);return [p,i+(end||offset>at?1:0)];}at+=part.text.length;}return [el,el.childNodes.length];};
+    if(tokens.length&&value){try{const range=el.ownerDocument.createRange();range.setStart(...boundary(start+prefix,false));range.setEnd(...boundary(start+old.length-suffix,true));range.deleteContents();const fragment=el.ownerDocument.createDocumentFragment();value.slice(prefix,value.length-suffix).split('\n').forEach((line,i)=>{if(i)fragment.append(el.ownerDocument.createElement('br'));fragment.append(el.ownerDocument.createTextNode(line));});range.insertNode(fragment);return;}catch{}}
+    el.replaceChildren();value.split('\n').forEach((line,i)=>{if(i)el.append(el.ownerDocument.createElement('br'));el.append(el.ownerDocument.createTextNode(line));});
+  }
+  const pristine=new Map();
+  async function imageUrl(item){if(item.file){if(!fileUrls.has(item.file))fileUrls.set(item.file,URL.createObjectURL(item.file));return fileUrls.get(item.file);}const id=key(item);if(imageUrls.has(id))return imageUrls.get(id);let blob=item.file;if(!blob){const url=new URL(endpoint);url.searchParams.set('image',item.id);const res=await fetch(url,{credentials:'omit',referrerPolicy:'no-referrer'});if(!res.ok)throw Error('사진을 불러오지 못했습니다.');blob=await res.blob();}const url=URL.createObjectURL(blob);imageUrls.set(id,url);return url;}
+  let renderVersion=0;
+  async function renderPreview(){if(!loaded)return;const version=++renderVersion,doc=frames[1].contentDocument,warnings=[];
+    for(const [id,node] of pristine){const el=find(doc,id);if(el)el.replaceWith(node.cloneNode(true));}pristine.clear();
+    for(const frame of frames)frame.contentDocument.querySelectorAll('[data-sr-change],[data-sr-deleted]').forEach(el=>{el.removeAttribute('data-sr-change');el.removeAttribute('data-sr-deleted');});
+    const changes=effective();let applied=0;const appliedTargets=[];
+    for(let i=0;i<changes.length;i++){
+      const item=changes[i];if(item.target_id==='general'){warnings.push(`#${i+1} 기타 요청은 글로 확인해 주세요. 가이드 화면에 자동 표현되지 않습니다.`);continue;}
+      const el=find(doc,item.target_id),baseTarget=targetMap.get(item.target_id);if(!el||!baseTarget){warnings.push(`#${i+1} 원본 위치를 찾지 못했습니다. 원문과 요청 내용을 확인해 주세요.`);continue;}
+      if(appliedTargets.some(node=>node.contains(el)||el.contains(node))){warnings.push(`#${i+1} 다른 수정과 영역이 겹칩니다. ‘선택한 수정만 보기’로 확인해 주세요.`);continue;}
+      const normalize=s=>s.replace(/\s+/g,' ').trim();
+      if(item.kind==='text'&&normalize(baseTarget.text)!==normalize(item.original_value))warnings.push(`#${i+1} 요청 당시 원문과 현재 가이드가 다릅니다. 반영 전에 확인해 주세요.`);
+      pristine.set(item.target_id,el.cloneNode(true));appliedTargets.push(el);
+      if(item.kind==='image'){try{const url=await imageUrl(item);if(version!==renderVersion)return;el.removeAttribute('srcset');el.src=url;}catch{warnings.push(`#${i+1} 교체 사진을 불러오지 못했습니다.`);continue;}}
+      else{replaceText(el,item.proposed_value);if(!item.proposed_value)el.setAttribute('data-sr-deleted','');}
+      el.setAttribute('data-sr-change',String(i+1));const before=find(frames[0].contentDocument,item.target_id);if(before)before.setAttribute('data-sr-change',String(i+1));applied++;
     }
+    $('previewCount').textContent=`${applied}곳 변경${scope==='one'?' · 선택한 수정':''}`;
+    if(scope==='all'&&candidates().filter(p=>p.target_id!=='general').length>changes.filter(p=>p.target_id!=='general').length)warnings.push('같은 위치의 여러 요청은 가장 최근의 미처리 요청을 보여줍니다. 접수 내역에서 각각 비교할 수 있습니다.');
+    $('warnings').textContent=warnings.join('\n');$('warnings').hidden=!warnings.length;
+    $('all').setAttribute('aria-pressed',String(scope==='all'));$('one').setAttribute('aria-pressed',String(scope==='one'));$('one').disabled=!selected();
   }
-  connectTargets();
-  function targetFor(node){return node instanceof Element?node.closest('[data-siriai-review-id]'):null;}
-  function sectionFor(target){
-    const container=target.closest('section,article,.section,.guide-section,.page-section');
-    const heading=container?.querySelector('h1,h2,h3,.section-title,.section-label')||target.closest('main')?.querySelector('h1,h2');
-    return (heading?.textContent||document.title||'가이드 본문').trim().replace(/\s+/g,' ').slice(0,160);
+  function schedulePreview(){clearTimeout(renderTimer);renderTimer=setTimeout(()=>{renderList();renderPreview();},130);}
+  function renderList(){const items=readonly?(requestedIds.length?records.filter(p=>requestedIds.includes(p.id)):records.filter(p=>p.status==='pending'||p.status==='approved')):listView==='drafts'?drafts:records;
+    $('draftTab').textContent=`초안 (${drafts.length})`;$('historyTab').textContent=`접수 내역 (${records.length})`;$('sendAll').textContent=`수정안 전체 제출 (${drafts.length})`;$('sendAll').disabled=busy||!drafts.length;
+    $('draftTab').setAttribute('aria-pressed',String(listView==='drafts'));$('historyTab').setAttribute('aria-pressed',String(listView==='history'));$('listTabs').hidden=readonly;
+    const list=$('list');list.replaceChildren();if(!items.length){const empty=document.createElement('p');empty.className='empty';empty.textContent=listView==='drafts'&&!readonly?'고칠 문구나 사진을 누르면 초안이 여기에 모입니다.':'아직 접수된 수정안이 없습니다.';list.append(empty);}
+    items.forEach((item,index)=>{const button=document.createElement('button');button.className=`item ${item.status==='draft'?'draft':''} ${key(item)===selectedKey?'active':''}`;const title=document.createElement('b');title.textContent=`${index+1}. ${item.section||'가이드 본문'} · ${item.kind==='image'?'사진':'문구'}`;const state=document.createElement('small');state.className='state';state.textContent=statusLabels[item.status]||item.status;const brief=document.createElement('span');brief.textContent=item.proposed_value||'문구 삭제 요청';const by=document.createElement('small');by.textContent=item.status==='draft'?'이 브라우저에 임시 저장':`${item.name} · ${new Date(item.created_at).toLocaleString('ko-KR')}`;button.append(title,state,brief,by);button.onclick=()=>chooseItem(item);list.append(button);});
+    $('prev').disabled=$('next').disabled=!items.length;
   }
-  function focusTarget(id){
-    const target=[...document.querySelectorAll('[data-siriai-review-id]')].find(el=>el.getAttribute('data-siriai-review-id')===id);
-    if(!target)return false;
-    history.classList.remove('open');panel.classList.remove('open');target.scrollIntoView({behavior:'smooth',block:'center'});
-    target.classList.add('focus-target');setTimeout(()=>target.classList.remove('focus-target'),3000);return true;
+  function setMobile(after){$('beforePane').dataset.mobile=after?'hide':'show';$('afterPane').dataset.mobile=after?'show':'hide';$('mobileBefore').setAttribute('aria-pressed',String(!after));$('mobileAfter').setAttribute('aria-pressed',String(after));}
+  function selectTarget(id){if(!loaded||busy)return;const item=(readonly?candidates():[...drafts,...records]).find(p=>p.target_id===id);if(readonly){if(item)chooseItem(item);else say('이 위치에는 선택한 수정 요청이 없습니다.');return;}editTarget(id);}
+  function editTarget(id){const target=targetMap.get(id);if(id!=='general'&&!target)return;targetId=id;const draft=drafts.find(p=>p.target_id===id),recent=records.find(p=>p.target_id===id&&(p.status==='pending'||p.status==='approved'));
+    selectedKey=draft?key(draft):'';$('editor').hidden=false;$('editorTitle').textContent=id==='general'?'기타 요청':target.kind==='image'?'사진 교체':'문구 수정';$('section').textContent=target?.section||'가이드 전체';$('original').textContent=id==='general'?'링크 변경·구성 조정 등 원하는 수정을 적어주세요.':target.kind==='image'?'원본 사진은 왼쪽에서 확인하세요.':target.text;
+    const image=target?.kind==='image';$('proposal').hidden=$('textLabel').hidden=$('deleteLabel').hidden=!!image;$('deleteLabel').hidden=image||id==='general';$('file').hidden=$('fileLabel').hidden=!image;$('filePreview').hidden=true;$('file').value='';
+    $('proposal').value=draft?.proposed_value??(id==='general'?'':recent?.kind==='text'?recent.proposed_value:target.text);$('deleteText').checked=!!draft&&draft.kind==='text'&&draft.proposed_value==='';$('proposal').disabled=$('deleteText').checked;$('note').value=draft?.note||'';$('saved').textContent=draft?'초안으로 저장되어 있습니다.':'내용을 바꾸면 오른쪽에 바로 보입니다.';
+    if(draft?.kind==='image')imageUrl(draft).then(url=>{$('filePreview').src=url;$('filePreview').hidden=false;});
+    if(id!=='general')focus(id);renderList();renderPreview();
   }
-  function renderHistory(){
-    $('historyButton').textContent=`제안 내역 (${proposals.length})`;historyList.replaceChildren();
-    if(!proposals.length){const empty=document.createElement('p');empty.textContent='아직 제출한 수정 제안이 없습니다.';historyList.append(empty);return;}
-    const labels={pending:'검토 대기',approved:'반영 승인 · 사이트 수정 전',applied:'사이트 반영 완료',rejected:'반려'};
-    for(const item of proposals){
-      const row=document.createElement('div');row.className='history-item';
-      const title=document.createElement('b');title.textContent=`${item.section||'가이드 본문'} · ${labels[item.status]||item.status}`;
-      const by=document.createElement('small');by.textContent=`${item.name} · ${new Date(item.created_at).toLocaleString('ko-KR')}`;
-      const before=document.createElement('p');before.textContent=`기존: ${item.kind==='image'?'사진':item.original_value}`;
-      const after=document.createElement('p');after.className='after';after.textContent=`제안: ${item.kind==='image'?`사진 교체 (${item.proposed_value})`:item.proposed_value}`;
-      const button=document.createElement('button');button.className='secondary';button.type='button';button.textContent=item.target_id==='general'?'가이드 보기':'가이드에서 위치 보기';button.addEventListener('click',()=>item.target_id==='general'?(history.classList.remove('open'),window.scrollTo({top:0,behavior:'smooth'})):focusTarget(item.target_id));
-      row.append(title,by,before,after,button);historyList.append(row);
-    }
+  function chooseItem(item){selectedKey=key(item);scope='one';targetId=item.target_id;if(item.status==='draft'&&!readonly)editTarget(item.target_id);else{$('editor').hidden=true;renderList();renderPreview().then(()=>focus(item.target_id));say(item.note?`추가 설명: ${item.note}`:'선택한 수정안의 반영 모습을 비교하고 있습니다.');}}
+  function changeDraft(){if(readonly||busy||!targetId)return;const target=targetMap.get(targetId),kind=target?.kind||'text',existing=drafts.find(p=>p.target_id===targetId),file=$('file').files?.[0]||existing?.file;
+    if(kind==='image'&&!file)return;
+    if(file&&(file.size>6000000||!/^image\/(jpeg|png|webp)$/.test(file.type))){say('JPG·PNG·WebP 사진을 6MB 이하로 선택해 주세요.',true);$('file').value='';return;}
+    const value=kind==='image'?file.name:$('deleteText').checked?'':$('proposal').value;
+    if(kind==='text'&&(!$('deleteText').checked&&!value.trim()||targetId!=='general'&&value.trim()===target.text.trim())){drafts=drafts.filter(p=>p.target_id!==targetId);selectedKey='';savedDrafts(true);schedulePreview();return;}
+    const item={clientId:crypto.randomUUID(),target_id:targetId,section:target?.section||'기타 요청',kind,original_value:targetId==='general'?'가이드 전체':kind==='image'?target.src:target.text,proposed_value:value,note:$('note').value,file:kind==='image'?file:undefined,status:'draft',created_at:new Date().toISOString()};
+    drafts=drafts.filter(p=>p.target_id!==targetId);drafts.push(item);selectedKey=item.clientId;listView='drafts';savedDrafts(true).then(result=>{if(result!==null)$('saved').textContent='이 브라우저에 초안 저장됨 · 아직 제출 전';});schedulePreview();
+    if(kind==='image')imageUrl(item).then(url=>{$('filePreview').src=url;$('filePreview').hidden=false;});
   }
-  async function loadHistory(){const result=await fetch(endpoint.href,{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-store'}),data=await result.json();if(!result.ok)throw Error(data.error||'검토 링크를 확인해 주세요.');proposals=Array.isArray(data.proposals)?data.proposals:[];renderHistory();}
-  function open(target){
-    if(selected)selected.style.outline='';
-    selected=target;general=false;history.classList.remove('open');
-    selected.style.outline='3px solid #c43b65';
-    selected.scrollIntoView({block:'nearest'});
-    const image=target.tagName==='IMG';
-    original.textContent=image?(target.getAttribute('alt')||target.getAttribute('src')||'사진'):(target.innerText||target.textContent||'').trim().slice(0,5000);
-    $('title').textContent=image?'사진 교체 요청':'문구 수정 제안';
-    $('intro').textContent='선택한 문구나 사진의 수정안을 보내주세요. 원본 가이드는 바로 바뀌지 않습니다.';$('currentLabel').textContent='현재 내용';
-    $('editLabel').textContent=image?'새 사진 선택':'바꿀 문구';
-    proposal.hidden=image;replacement.hidden=!image;preview.hidden=true;replacement.value='';proposal.value=image?'':original.textContent;
-    note.value='';message.textContent='';panel.classList.add('open');proposal.hidden?replacement.focus():proposal.focus();
-  }
-  function close(){panel.classList.remove('open');if(selected)selected.style.outline='';selected=null;general=false;}
-  function openGeneral(){close();general=true;history.classList.remove('open');$('title').textContent='기타 수정 요청';$('intro').textContent='링크 변경이나 전체 구성 등 원하는 수정을 적어주세요. 원본 가이드는 바로 바뀌지 않습니다.';$('currentLabel').textContent='요청 범위';$('editLabel').textContent='요청 내용';original.textContent='가이드 전체';proposal.hidden=false;proposal.value='';replacement.hidden=true;note.value='';message.textContent='';panel.classList.add('open');proposal.focus();}
-  $('close').addEventListener('click',close);
-  $('generalButton').addEventListener('click',openGeneral);
-  $('historyButton').addEventListener('click',()=>{close();history.classList.toggle('open');});
-  $('historyClose').addEventListener('click',()=>history.classList.remove('open'));
-  document.addEventListener('click',event=>{if(!ready||!(event.target instanceof Element)||event.target.closest('a,button,form,[role="button"]'))return;const target=targetFor(event.target);if(!target||target.closest('#siriai-review-widget'))return;event.preventDefault();event.stopPropagation();open(target);},true);
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'){close();history.classList.remove('open');}},true);
-  replacement.addEventListener('change',()=>{const file=replacement.files?.[0];if(!file){preview.hidden=true;return;}if(file.size>6000000){message.textContent='6MB 이하의 사진을 선택해 주세요.';replacement.value='';return;}preview.src=URL.createObjectURL(file);preview.hidden=false;message.textContent='';});
-  $('submit').addEventListener('click',async()=>{
-    if((!selected&&!general)||submitting)return;
-    const name=reviewer.value.trim(),kind=selected?.tagName==='IMG'?'image':'text';
-    if(!name){message.textContent='작성자 이름을 입력해 주세요.';reviewer.focus();return;}
-    if(kind==='image'&&!replacement.files?.[0]){message.textContent='교체할 사진을 선택해 주세요.';return;}
-    if(kind==='text'&&(!proposal.value.trim()||!general&&proposal.value.trim()===original.textContent.trim())){message.textContent='요청할 내용을 입력해 주세요.';return;}
-    submitting=true;$('submit').disabled=true;message.textContent='제출 중…';
-    try{
-      let options;
-      const common={targetId:general?'general':selected.getAttribute('data-siriai-review-id'),section:general?'기타 수정 요청':sectionFor(selected),originalValue:general?'가이드 전체':kind==='image'?(selected.getAttribute('src')||''):original.textContent,name,note:note.value};
-      if(kind==='image'){
-        const form=new FormData();for(const [key,value] of Object.entries(common))form.append(key,value||'');form.append('file',replacement.files[0]);options={method:'POST',body:form,credentials:'omit',referrerPolicy:'no-referrer'};
-      }else options={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...common,proposedValue:proposal.value}),credentials:'omit',referrerPolicy:'no-referrer'};
-      const result=await fetch(endpoint.href,options),data=await result.json();
-      if(!result.ok)throw Error(data.error||'제출하지 못했습니다.');
-      try{sessionStorage.setItem('siriai-reviewer-name',name);}catch{}
-      close();status.textContent='수정안이 접수되었습니다. 다른 문구·사진도 누를 수 있습니다.';
-      try{await loadHistory();history.classList.add('open');}catch{status.textContent='접수되었습니다. 제안 내역은 새로고침 후 확인해 주세요.';}
-    }catch(error){message.textContent=error instanceof Error?error.message:'제출하지 못했습니다.';}
-    finally{submitting=false;$('submit').disabled=false;}
-  });
-  loadHistory().then(()=>{const targets=[...document.querySelectorAll('[data-siriai-review-id]')];if(!targets.length)throw Error('이 가이드에는 수정 가능한 영역이 연결되지 않았습니다.');ready=true;$('historyButton').disabled=false;$('generalButton').disabled=false;status.textContent='고칠 문구·사진을 바로 눌러주세요.';for(const target of targets)target.classList.add('review-target');if(match[2]){try{focusTarget(decodeURIComponent(match[2]));}catch{}}}).catch(error=>{status.textContent=error instanceof Error?error.message:'검토 기능을 열지 못했습니다.';});
+  async function refresh(){const res=await fetch(endpoint,{credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer'}),data=await res.json();if(!res.ok)throw Error(data.error||'검토 링크를 불러오지 못했습니다.');records=Array.isArray(data.proposals)?data.proposals:[];$('title').textContent=data.title||'가이드 수정 전후 비교';renderList();await renderPreview();}
+  async function submit(items){if(busy||!items.length)return;const name=$('reviewer').value.trim();if(!name){say('작성자 이름을 입력해 주세요.',true);$('reviewer').focus();return;}busy=true;for(const id of ['proposal','note','file','deleteText','discard','general'])$(id).disabled=true;renderList();$('sendOne').disabled=true;let count=0;
+    try{for(const item of items){say(`${count+1}/${items.length}건 제출 중…`);const common={clientId:item.clientId,targetId:item.target_id,section:item.section,originalValue:item.original_value,name,note:item.note};let options;
+      if(item.kind==='image'){const form=new FormData();Object.entries(common).forEach(([k,v])=>form.append(k,v));form.append('file',item.file);options={method:'POST',body:form};}else options={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...common,proposedValue:item.proposed_value})};
+      const res=await fetch(endpoint,{...options,credentials:'omit',referrerPolicy:'no-referrer'}),data=await res.json();if(!res.ok)throw Error(data.error||'제출에 실패했습니다.');drafts=drafts.filter(d=>d.clientId!==item.clientId);await savedDrafts(true);count++;
+    }try{sessionStorage.setItem('siriai-reviewer-name',name);}catch{}$('editor').hidden=true;selectedKey='';scope='all';listView='history';await refresh();say(`${count}건 접수되었습니다. 오른쪽 미리보기와 접수 내역에서 다시 확인할 수 있습니다.`);
+    }catch(error){say(`${count}건 접수 · 남은 초안을 다시 제출해 주세요. ${error.message}`,true);await refresh().catch(()=>{});}finally{busy=false;for(const id of ['proposal','note','file','deleteText','discard','general'])$(id).disabled=false;$('proposal').disabled=$('deleteText').checked;$('sendOne').disabled=false;renderList();}}
+  $('proposal').addEventListener('input',changeDraft);$('note').addEventListener('input',changeDraft);$('file').addEventListener('change',changeDraft);$('deleteText').addEventListener('change',()=>{$('proposal').disabled=$('deleteText').checked;changeDraft();});
+  $('general').onclick=()=>editTarget('general');$('sendAll').onclick=()=>submit([...drafts]);$('sendOne').onclick=()=>submit(drafts.filter(p=>p.target_id===targetId));$('discard').onclick=()=>{drafts=drafts.filter(p=>p.target_id!==targetId);selectedKey='';$('editor').hidden=true;savedDrafts(true);renderList();renderPreview();};
+  $('all').onclick=()=>{scope='all';renderPreview();};$('one').onclick=()=>{scope='one';renderPreview().then(()=>focus(selected()?.target_id));};$('draftTab').onclick=()=>{listView='drafts';renderList();};$('historyTab').onclick=()=>{listView='history';renderList();};$('refresh').onclick=()=>refresh().then(()=>say('최신 접수 내역을 불러왔습니다.')).catch(e=>say(e.message,true));
+  $('mobileBefore').onclick=()=>setMobile(false);$('mobileAfter').onclick=()=>setMobile(true);
+  function move(direction){const items=readonly?(requestedIds.length?records.filter(p=>requestedIds.includes(p.id)):candidates()):listView==='drafts'?drafts:records;if(!items.length)return;let index=items.findIndex(p=>key(p)===selectedKey);index=(index+direction+items.length)%items.length;chooseItem(items[index]);}
+  $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);
+  Promise.all([frameReady,readonly?Promise.resolve([]):savedDrafts(false)]).then(async([,saved])=>{drafts=Array.isArray(saved)?saved:[];loaded=true;await refresh();if(window.parent!==window)window.parent.postMessage({type:'siriai-review-ready'},endpoint.origin);if(readonly)listView='history';renderList();say(readonly?'전체 또는 개별 수정안을 선택해 비교하세요.':'가이드의 고칠 문구·사진을 누르세요. 오른쪽에 즉시 반영됩니다.');const id=params.get('target');if(id){const item=records.find(p=>p.target_id===id);if(item)chooseItem(item);else focus(id);}}).catch(e=>say(e.message||'검토 화면을 열지 못했습니다.',true));
+  window.addEventListener('beforeunload',event=>{if(drafts.length){event.preventDefault();event.returnValue='';}});
 })();
