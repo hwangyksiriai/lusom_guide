@@ -348,7 +348,7 @@
     .concept[open] .concept-num { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
     .concept-name { flex: 1; font-size: 13.5px; font-weight: 700; color: var(--text-dark); }
     .concept-chevron { font-size: 11px; color: var(--text-light); transition: transform 0.2s; flex-shrink: 0; }
-    .concept[open] .concept-chevron { transform: rotate(180deg); color: var(--green-text); }
+    .concept[open] > .concept-summary .concept-chevron { transform: rotate(180deg); color: var(--green-text); }
     .concept-body { padding: 2px 16px 18px; border-top: 1px solid var(--border); }
     .concept-steps {
       margin: 14px 0 0;
@@ -968,108 +968,129 @@
               <div class="concept-intro" style="margin-top:14px;">신제품이라 상세페이지가 아직 준비 중입니다. 아래 <strong>POINT 3가지</strong>를 바탕으로 소구해 주세요.</div>
               <a href="https://lusom.kr/product/detail.html?product_no=60&cate_no=61&display_group=1" target="_blank" class="concept-ref-link" style="margin-top:10px;">상세페이지 바로가기 ↗</a>
 
-              <div class="concept-quotes" style="margin-top:18px;">
-                <div class="concept-quotes-label">❤️ POINT 1&nbsp;·&nbsp;RED 플럼핑 케어</div>
-              </div>
-              <ol class="concept-steps" style="margin-top:10px;">
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">RED PDRN COMPLEX</strong>
-                    <ul class="sub-list">
-                      <li><strong>4가지 붉은 식물</strong>에서 유래한 <span class="nb">저분자·고순도</span> 식물성 PDRN</li>
-                      <li>푸석하고 생기 잃은 피부에 <strong>탱글한 볼륨감</strong>을 더하는 RED 플럼핑 케어</li>
-                    </ul>
+              <div class="concept-list" style="margin-top:14px;">
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">1</span>
+                    <span class="concept-name">❤️ RED 플럼핑 케어</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <ol class="concept-steps" style="margin-top:14px;">
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">RED PDRN COMPLEX</strong>
+                          <ul class="sub-list">
+                            <li><strong>4가지 붉은 식물</strong>에서 유래한 <span class="nb">저분자·고순도</span> 식물성 PDRN</li>
+                            <li>푸석하고 생기 잃은 피부에 <strong>탱글한 볼륨감</strong>을 더하는 RED 플럼핑 케어</li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">히비스커스 콜라겐</strong>
+                          <ul class="sub-list">
+                            <li><span class="nb">300Da</span> 초저분자 <strong>비건 콜라겐</strong>으로 플럼핑 시너지 케어</li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ol>
+                    <div class="warning-box" style="margin-top:12px;">
+                      ! 영상에서는 <strong>'탄력'이 아닌 <span class="nb">'수분으로 차오르는 탱글 볼륨'</span></strong>으로 표현해 주세요.
+                    </div>
                   </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">히비스커스 콜라겐</strong>
-                    <ul class="sub-list">
-                      <li><span class="nb">300Da</span> 초저분자 <strong>비건 콜라겐</strong>으로 플럼핑 시너지 케어</li>
-                    </ul>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">2</span>
+                    <span class="concept-name">💧 <span class="nb">3 STEP</span> 수분플럼핑</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <ol class="concept-steps" style="margin-top:14px;">
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 1. 플럼핑</strong>
+                          <ul class="sub-list">
+                            <li><span class="nb">RED PDRN COMPLEX</span> X <span class="nb">300Da 비건 콜라겐</span>으로 방전된 피부에 <strong>탱글 UP! 생기 UP!</strong></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 2. 수분 레이어링</strong>
+                          <ul class="sub-list">
+                            <li><span class="nb">저~고분자 10중</span> 히알루론산이 수분을 <strong>겹겹이 충전</strong></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 3. 보습 잠금</strong>
+                          <ul class="sub-list">
+                            <li><span class="nb">5중 세라마이드</span> + 콜레스테롤 + <span class="nb">피토스핑고신(세콜지)</span> 조합으로 보습장벽을 탄탄하게</li>
+                            <li>채운 수분이 빠져나가지 않게 <strong>잠금</strong></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ol>
+                    <div class="concept-quotes">
+                      <div class="quote-chip">→ 야근, 밤샘 등으로 오후만 되면 푸석하고 방전되는 피부. <strong>하루 종일 촉촉하고 탱글하게!</strong> 수분으로 차오르는 물광 피부 완성!</div>
+                    </div>
                   </div>
-                </li>
-              </ol>
-              <div class="warning-box" style="margin-top:12px;">
-                ! 영상에서는 <strong>'탄력'이 아닌 <span class="nb">'수분으로 차오르는 탱글 볼륨'</span></strong>으로 표현해 주세요.
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">3</span>
+                    <span class="concept-name">✨ 저자극 착붙레드겔</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <ol class="concept-steps" style="margin-top:14px;">
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">38g 에센스</span>를 그대로 굳힌 착붙 레드겔</strong>
+                          <ul class="sub-list">
+                            <li>피부에 올리면 <strong>연한 레드빛 → 투명</strong>으로 변하며, 피부 속 <span class="nb">20중</span> 겹겹이 채우는 수분 레이어링 효과</li>
+                            <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 피부 20중 보습 개선 인체적용시험 완료</span></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">3시간 이상 집중 케어부터 오버나잇 케어까지</strong>
+                          <ul class="sub-list">
+                            <li>오래 붙여도 편안한 <strong>저자극 포뮬러</strong></li>
+                            <li><span style="font-size:11px;color:var(--text-light);">피부 저자극 테스트 완료 / <span class="nb">무향료·무색소</span> / 화해 20가지 주의성분 및 알레르기 유발성분 배제</span></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">수분으로 차오르는 탱글 볼륨</strong>
+                          <ul class="sub-list">
+                            <li>푸석하게 방전된 피부를 <strong>수분으로 탱글하게 재충전</strong></li>
+                            <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 수분 볼륨(플럼핑) 개선 인체적용시험 완료</span></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <div>
+                          <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">24시간</span> 촉촉한 물광 피부</strong>
+                          <ul class="sub-list">
+                            <li>1회 사용으로 <strong>다음 날까지 촉촉한 물광(수분광) 피부</strong></li>
+                            <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 24시간 광채(수분광) 지속 인체적용시험 완료</span></li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ol>
+                  </div>
+                </details>
               </div>
 
-              <div class="concept-quotes" style="margin-top:22px;">
-                <div class="concept-quotes-label">💧 POINT 2&nbsp;·&nbsp;<span class="nb">3 STEP</span> 수분플럼핑</div>
-              </div>
-              <ol class="concept-steps" style="margin-top:10px;">
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 1. 플럼핑</strong>
-                    <ul class="sub-list">
-                      <li><span class="nb">RED PDRN COMPLEX</span> X <span class="nb">300Da 비건 콜라겐</span>으로 방전된 피부에 <strong>탱글 UP! 생기 UP!</strong></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 2. 수분 레이어링</strong>
-                    <ul class="sub-list">
-                      <li><span class="nb">저~고분자 10중</span> 히알루론산이 수분을 <strong>겹겹이 충전</strong></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">STEP 3. 보습 잠금</strong>
-                    <ul class="sub-list">
-                      <li><span class="nb">5중 세라마이드</span> + 콜레스테롤 + <span class="nb">피토스핑고신(세콜지)</span> 조합으로 보습장벽을 탄탄하게</li>
-                      <li>채운 수분이 빠져나가지 않게 <strong>잠금</strong></li>
-                    </ul>
-                  </div>
-                </li>
-              </ol>
-              <div class="concept-quotes">
-                <div class="quote-chip">→ 야근, 밤샘 등으로 오후만 되면 푸석하고 방전되는 피부. <strong>하루 종일 촉촉하고 탱글하게!</strong> 수분으로 차오르는 물광 피부 완성!</div>
-              </div>
-
-              <div class="concept-quotes" style="margin-top:22px;">
-                <div class="concept-quotes-label">✨ POINT 3&nbsp;·&nbsp;저자극 착붙레드겔</div>
-              </div>
-              <ol class="concept-steps" style="margin-top:10px;">
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">38g 에센스</span>를 그대로 굳힌 착붙 레드겔</strong>
-                    <ul class="sub-list">
-                      <li>피부에 올리면 <strong>연한 레드빛 → 투명</strong>으로 변하며, 피부 속 <span class="nb">20중</span> 겹겹이 채우는 수분 레이어링 효과</li>
-                      <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 피부 20중 보습 개선 인체적용시험 완료</span></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">3시간 이상 집중 케어부터 오버나잇 케어까지</strong>
-                    <ul class="sub-list">
-                      <li>오래 붙여도 편안한 <strong>저자극 포뮬러</strong></li>
-                      <li><span style="font-size:11px;color:var(--text-light);">피부 저자극 테스트 완료 / <span class="nb">무향료·무색소</span> / 화해 20가지 주의성분 및 알레르기 유발성분 배제</span></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">수분으로 차오르는 탱글 볼륨</strong>
-                    <ul class="sub-list">
-                      <li>푸석하게 방전된 피부를 <strong>수분으로 탱글하게 재충전</strong></li>
-                      <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 수분 볼륨(플럼핑) 개선 인체적용시험 완료</span></li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;"><span class="nb">24시간</span> 촉촉한 물광 피부</strong>
-                    <ul class="sub-list">
-                      <li>1회 사용으로 <strong>다음 날까지 촉촉한 물광(수분광) 피부</strong></li>
-                      <li><span style="font-size:11px;color:var(--text-light);">*1회 사용 후 24시간 광채(수분광) 지속 인체적용시험 완료</span></li>
-                    </ul>
-                  </div>
-                </li>
-              </ol>
-              <div class="warning-box" style="margin-top:12px;">
+              <div class="warning-box" style="margin-top:14px;">
                 ! 소개 문구를 그대로 사용하기보다 <strong>솔직한 후기와 피부 전후 변화</strong>(탱글한 물광 피부 등)를 본인만의 톤앤매너로 진정성 있게 담아주세요.
               </div>
             </div>
