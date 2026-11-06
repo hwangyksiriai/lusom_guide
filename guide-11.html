@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Lusom — 인플루언서 가이드라인 (11월 통합)</title>
 
   <!-- Open Graph (카카오톡/인스타그램/SNS 공유 미리보기) -->
@@ -10,11 +10,11 @@
   <meta property="og:url" content="https://lusom-guide.vercel.app/guide-11">
   <meta property="og:title" content="루솜 인플루언서 가이드라인 — 찹쌀떡마스크">
   <meta property="og:description" content="루솜 발효미 에센스 글로우 마스크 — 제작 가이드, 해시태그, 정산 안내">
-  <meta property="og:image" content="https://lusom-guide.vercel.app/image/banner.png">
-  <meta property="og:image:secure_url" content="https://lusom-guide.vercel.app/image/banner.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1456">
-  <meta property="og:image:height" content="1000">
+  <meta property="og:image" content="https://lusom-guide.vercel.app/image/banner-glow.jpg">
+  <meta property="og:image:secure_url" content="https://lusom-guide.vercel.app/image/banner-glow.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="724">
+  <meta property="og:image:height" content="496">
   <meta name="description" content="루솜 발효미 에센스 글로우 마스크 — 제작 가이드, 해시태그, 정산 안내">
   <meta property="og:locale" content="ko_KR">
 
@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="루솜 인플루언서 가이드라인 — 찹쌀떡마스크">
   <meta name="twitter:description" content="루솜 발효미 에센스 글로우 마스크 — 제작 가이드, 해시태그, 정산 안내">
-  <meta name="twitter:image" content="https://lusom-guide.vercel.app/image/banner.png">
+  <meta name="twitter:image" content="https://lusom-guide.vercel.app/image/banner-glow.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -63,6 +63,7 @@
     }
     .banner-wrap img {
       width: 100%;
+      height: auto;
       display: block;
     }
     .banner-overlay {
@@ -108,7 +109,7 @@
 
     /* SECTION */
     .section {
-      padding: 48px 28px;
+      padding: 48px max(28px, env(safe-area-inset-right, 0px)) 48px max(28px, env(safe-area-inset-left, 0px));
       border-bottom: 1px solid var(--border);
       max-width: 640px;
       margin: 0 auto;
@@ -160,6 +161,7 @@
     }
     .brand-img-wrap img {
       width: 100%;
+      height: auto;
       display: block;
       object-fit: cover;
     }
@@ -246,6 +248,7 @@
     }
     .product-photo {
       width: 100%;
+      height: auto;
       border-radius: 10px;
       display: block;
     }
@@ -830,10 +833,12 @@
     }
 
     /* ===== 상단 고정 내비 + 읽기 진행률 ===== */
+    html { scroll-padding-top: 64px; }
     .topbar {
       position: sticky;
       top: 0;
       z-index: 50;
+      padding-top: env(safe-area-inset-top, 0px);
       background: rgba(251,247,240,0.94);
       backdrop-filter: saturate(140%) blur(8px);
       -webkit-backdrop-filter: saturate(140%) blur(8px);
@@ -849,7 +854,8 @@
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding: 6px 14px;
+      overscroll-behavior-x: contain;
+      padding: 6px max(14px, env(safe-area-inset-right, 0px)) 6px max(14px, env(safe-area-inset-left, 0px));
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
     }
@@ -945,7 +951,7 @@
     /* ===== 맨 위로 ===== */
     .to-top {
       position: fixed;
-      right: 16px;
+      right: calc(16px + env(safe-area-inset-right, 0px));
       bottom: calc(16px + env(safe-area-inset-bottom, 0px));
       z-index: 60;
       width: 46px;
@@ -977,7 +983,7 @@
 
 <!-- BANNER -->
 <div class="banner-wrap">
-  <img src="image/banner.png" alt="루솜 발효미 에센스 글로우 마스크 배너">
+  <img src="image/banner-glow.jpg" alt="루솜 발효미 에센스 글로우 마스크 배너" width="724" height="496" fetchpriority="high" decoding="async">
   <div class="banner-overlay">
     <div class="header-eyebrow">Influencer Guideline</div>
     <div class="header-title">루솜 가이드라인</div>
@@ -1031,7 +1037,7 @@
     <span style="font-size:11px;color:var(--text-light);">※ 상기 내용은 브랜드 이해를 위한 참고 정보입니다. 실제 게시물에는 제조사명(셀바이오휴먼텍)을 직접 노출하지 말아주세요.</span>
   </p>
   <div class="brand-img-wrap">
-    <img src="image/model-glow.webp" alt="루솜 발효미 에센스 글로우 마스크 착용 컷">
+    <img src="image/model-glow.webp" alt="루솜 발효미 에센스 글로우 마스크 착용 컷" width="859" height="1004" loading="lazy" decoding="async">
   </div>
   <div class="about-grid">
     <div class="about-item">
@@ -1081,7 +1087,7 @@
   <!-- 제공 제품 -->
   <div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:10px;letter-spacing:0.05em;">제공 제품</div>
   <div class="product-box">
-    <img src="image/product-glow.jpg" alt="루솜 발효미 에센스 글로우 마스크" class="product-photo">
+    <img src="image/product-glow.jpg" alt="루솜 발효미 에센스 글로우 마스크" class="product-photo" width="800" height="787" loading="lazy" decoding="async">
     <div class="product-name">루솜 발효미 에센스 글로우 마스크</div>
     <div class="info-row"><div class="info-key">애칭</div><div class="info-val"><span class="nb">#찹쌀떡마스크</span></div></div>
     <div class="info-row"><div class="info-key">용량</div><div class="info-val"><span class="nb">23ml</span> (장당)</div></div>
