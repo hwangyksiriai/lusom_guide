@@ -715,11 +715,14 @@
     .settle-copy-box span { word-break: break-all; }
     .settle-copy-btn {
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
       background: var(--text-dark);
       color: white;
       font-size: 12px;
       font-weight: 700;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
@@ -825,6 +828,149 @@
       .about-item { padding: 14px 16px; }
       .info-box { padding: 16px; }
     }
+
+    /* ===== 상단 고정 내비 + 읽기 진행률 ===== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251,247,240,0.94);
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-progress {
+      height: 3px;
+      width: 0%;
+      background: var(--green-text);
+      transition: width 0.1s linear;
+    }
+    .topnav {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 6px 14px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .topnav::-webkit-scrollbar { display: none; }
+    .topnav a {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-mid);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .topnav a.on { background: var(--green-pale); color: var(--green-text); border-color: var(--green-light); }
+
+    /* ===== 한눈에 보기 ===== */
+    .tldr {
+      margin: 0 20px 4px;
+      background: #fff;
+      border: 1.5px solid var(--green-light);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(58,47,34,0.05);
+    }
+    .tldr-head {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--green-text);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .tldr-row {
+      display: flex;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+    .tldr-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .tldr-k {
+      flex: 0 0 54px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-mid);
+      padding-top: 2px;
+    }
+    .tldr-v strong { color: var(--green-text); }
+
+    /* ===== 업로드 전 체크리스트 ===== */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid #E8DCC6;
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: var(--text-mid);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .check-row:last-child { border-bottom: none; }
+    .check-row input {
+      flex: 0 0 auto;
+      width: 19px;
+      height: 19px;
+      margin: 1px 0 0;
+      accent-color: var(--green-text);
+      cursor: pointer;
+    }
+    .check-row.done > span { color: var(--text-light); text-decoration: line-through; text-decoration-thickness: 1px; }
+    .check-count {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--green-text);
+      background: var(--green-pale);
+      border: 1px solid var(--green-light);
+      border-radius: 999px;
+      padding: 2px 9px;
+      margin-left: 8px;
+    }
+
+    /* ===== 맨 위로 ===== */
+    .to-top {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      z-index: 60;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--green-light);
+      background: rgba(255,255,255,0.95);
+      color: var(--green-text);
+      font-size: 17px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(58,47,34,0.14);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .to-top.show { opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 480px) {
+      .tldr { margin: 0 16px 4px; padding: 16px 18px; }
+      .tldr-row { font-size: 12.5px; }
+      .topnav { padding: 6px 12px; }
+      .topnav a { font-size: 11.5px; padding: 7px 11px; min-height: 40px; }
+    }
   </style>
 </head>
 <body>
@@ -836,6 +982,41 @@
     <div class="header-eyebrow">Influencer Guideline</div>
     <div class="header-title">루솜 가이드라인</div>
     <div class="header-sub">Lusom × Creator Campaign</div>
+  </div>
+</div>
+
+<!-- 상단 내비 + 진행률 -->
+<div class="topbar">
+  <div class="topbar-progress" id="readProgress"></div>
+  <nav class="topnav" id="topnav" aria-label="섹션 바로가기"></nav>
+</div>
+
+<!-- 한눈에 보기 -->
+<div class="tldr">
+  <div class="tldr-head">한눈에 보기</div>
+  <div class="tldr-row">
+    <div class="tldr-k">제품</div>
+    <div class="tldr-v">루솜 발효미 에센스 글로우 마스크 <strong><span class="nb">#찹쌀떡마스크</span></strong></div>
+  </div>
+  <div class="tldr-row">
+    <div class="tldr-k">형식</div>
+    <div class="tldr-v">릴스(Reels) <strong><span class="nb">30초 이상</span></strong></div>
+  </div>
+  <div class="tldr-row">
+    <div class="tldr-k">컨셉</div>
+    <div class="tldr-v"><strong>4가지 중 택1</strong> <span style="font-size:11.5px;color:var(--text-mid);">(조합 OK)</span> — 추천형 / <span class="nb">7일 사용형</span> / 루틴형 / 찹쌀떡형</div>
+  </div>
+  <div class="tldr-row">
+    <div class="tldr-k">필수 컷</div>
+    <div class="tldr-v"><strong>2컷</strong> — 뚝뚝 떨어지는 에센스, 사용 전후 <span class="nb">B&amp;A</span></div>
+  </div>
+  <div class="tldr-row">
+    <div class="tldr-k">캡션</div>
+    <div class="tldr-v">공식몰 <strong><span class="nb">2+1</span> 프로모션</strong> 언급 + 필수 해시태그 4개</div>
+  </div>
+  <div class="tldr-row">
+    <div class="tldr-k">태그</div>
+    <div class="tldr-v"><strong><span class="nb">@lusom_official</span></strong> 본문 태그 &amp; 공동작업자 초대</div>
   </div>
 </div>
 
@@ -912,7 +1093,7 @@
     </div>
 
     <div class="warning-box" style="margin-top:14px;">
-      ! 제품의 <strong>임상데이터 및 특징</strong>은 상세페이지를 꼭 한 번 읽어봐 주시고, 아래 <strong>POINT 4가지</strong> 위주로 소구해 주세요.
+      ! 제품의 <strong>임상데이터 및 특징</strong>은 상세페이지 꼭 한번 읽어봐주시고, 아래 <strong>POINT 4가지</strong> 위주로 소구해주세요
     </div>
   </div>
 </div>
@@ -939,7 +1120,7 @@
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <div class="concept-intro" style="margin-top:14px;">제품의 임상데이터 및 특징은 상세페이지를 꼭 한 번 읽어봐 주시고, 아래 <strong>POINT 4가지</strong> 위주로 소구해 주세요.</div>
+              <div class="concept-intro" style="margin-top:14px;">제품의 임상데이터 및 특징은 상세페이지 꼭 한번 읽어봐주시고, 아래 <strong>POINT 4가지</strong> 위주로 소구해주세요</div>
               <a href="https://www.lusom.kr/product/detail.html?product_no=35&amp;cate_no=61&amp;display_group=1" target="_blank" class="concept-ref-link" style="margin-top:10px;">상세페이지 바로가기 ↗</a>
 
               <ol class="concept-steps" style="margin-top:16px;">
@@ -984,7 +1165,7 @@
 
               <div class="warning-box" style="margin-top:14px;">
                 🚨 본인이 <strong>실제 써본 솔직한 경험</strong>을 본인만의 톤앤매너로 담아주세요!<br>
-                <span style="font-size:11.5px;">실제 사용감, <span class="nb">속건조·속당김</span> 전후 변화, 촉촉하게 올라온 수분광, 화잘먹 등 피부변화 진정성 있게</span>
+                <span style="font-size:11.5px;">실제 사용감, <span class="nb">속건조 · 속당김</span> 전후 변화, 촉촉하게 올라온 수분광, 화잘먹 등 피부변화 진정성 있게</span>
               </div>
             </div>
           </details>
@@ -996,7 +1177,7 @@
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <div class="concept-intro" style="margin-top:14px;">아래 <strong>4가지 포맷</strong> 중 본인에게 잘 맞는 방향을 자유롭게 선택해서 풀어주세요. <span class="concept-pick">여러 컨셉 조합 OK</span></div>
+              <div class="concept-intro" style="margin-top:14px;">아래 <strong>4가지 포맷</strong> 중 본인에게 잘 맞는 방향을 자유롭게 선택해서 풀어주세요! <span class="concept-pick">여러 컨셉을 조합해도 좋습니다</span></div>
 
               <div class="concept-list" style="margin-top:14px;">
                 <details class="concept">
@@ -1006,13 +1187,13 @@
                     <span class="concept-chevron">⌄</span>
                   </summary>
                   <div class="concept-body">
-                    <div class="concept-intro" style="margin-top:14px;">마스크팩 <span class="nb">N개</span>를 써보면서 좋은 팩을 추천하는 콘텐츠</div>
+                    <div class="concept-intro" style="margin-top:14px;">팩 <span class="nb">N 개</span> 써보면서 좋은 팩 추천하는 콘텐츠</div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">필수 촬영 요소</div>
                       <ul class="sub-list">
-                        <li><span class="nb">팩 N개 / ㅇㅇ만원</span> 써보고 추천하는 팩을 언급하며, 팩 수십 개를 무겁게 들고와 보여주며 후킹</li>
-                        <li>외출 전 피부가 <strong>푸석하고 속당길 때</strong> 문제점 언급 → 팩 사용으로 <strong>급속 수분 충전</strong> → <strong>촉촉한 수분광이 도는 모습</strong></li>
-                        <li>사용 전/후 <strong><span class="nb">B&amp;A</span></strong> <span style="font-size:11.5px;color:var(--text-mid);">(Before &amp; After)</span> 비교</li>
+                        <li><span class="nb">팩 N개/ㅇㅇ만원</span> 써보고 추천하는 팩 언급하며 + 팩 수십 개를 무겁게 들고와서 보여주며 후킹</li>
+                        <li>외출 전, 피부가 <strong>푸석하고 속당길 때</strong> 문제점 언급 → 팩 사용으로 <strong>급속 수분 충전</strong> → <strong>촉촉한 수분광이 도는 모습</strong></li>
+                        <li>사용 전/후<span class="nb">(Before &amp; After)</span> 비교</li>
                       </ul>
                     </div>
                     <div class="concept-quotes">
@@ -1021,9 +1202,9 @@
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">🎨 썸네일 카피 예시</div>
-                      <div class="quote-chip">"팩에만 <span class="nb">300만원</span> 넘게 쓴 사람이 인정한 팩 추천"</div>
-                      <div class="quote-chip">"팩친자의 인생마스크 추천"</div>
-                      <div class="quote-chip">"<span class="nb">1일 1팩</span> 중독자 인생 마스크팩 추천"</div>
+                      <div class="quote-chip">팩에만 <span class="nb">300만원</span> 넘게 쓴 사람이 인정한 팩 추천</div>
+                      <div class="quote-chip">팩친자의 인생마스크 추천</div>
+                      <div class="quote-chip"><span class="nb">1일 1팩</span> 중독자 인생 마스크팩 추천</div>
                     </div>
                     <div class="concept-refs">
                       <div class="concept-quotes-label">▼ Ref.</div>
@@ -1045,7 +1226,7 @@
                       <div class="concept-quotes-label">필수 촬영 요소</div>
                       <ul class="sub-list">
                         <li><span class="nb">1·3·5·7일차</span> 팩 사용 모습을 짧게 이어 붙이고, 화면에 <strong><span class="nb">DAY 1</span> / <span class="nb">DAY 3</span> / <span class="nb">DAY 5</span> / <span class="nb">DAY 7</span></strong> 일차 자막 표기</li>
-                        <li>사용 전 / <span class="nb">7일 후</span> <strong><span class="nb">B&amp;A</span></strong> 비교 — <strong>같은 장소·조명·각도</strong>에서 촬영</li>
+                        <li>사용 전 / <span class="nb">7일 후</span><span class="nb">(Before &amp; After)</span> 비교 — <strong>같은 장소·조명·각도</strong>에서 촬영</li>
                       </ul>
                     </div>
                     <div class="concept-quotes">
@@ -1055,8 +1236,8 @@
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">🎨 썸네일 카피 예시</div>
-                      <div class="quote-chip">"<span class="nb">7일 만에</span> 피부 좋아진 방법"</div>
-                      <div class="quote-chip">"<span class="nb">7일 동안</span> 속건조 잡은 수분 충전 루틴"</div>
+                      <div class="quote-chip"><span class="nb">7일 만에</span> 피부 좋아진 방법</div>
+                      <div class="quote-chip"><span class="nb">7일 동안</span> 속건조 잡은 수분 충전 루틴</div>
                     </div>
                     <div class="concept-refs">
                       <div class="concept-quotes-label">▼ Ref.</div>
@@ -1080,12 +1261,12 @@
                         <li><strong>보정 없는 피부 클로즈업</strong> + 고민 자막 <span style="font-size:11.5px;color:var(--text-light);">(예: "환절기에 수분 관리 안 했더니 속당김이 올라왔습니다")</span></li>
                         <li>준비물 소개 <span style="font-size:11.5px;color:var(--text-light);">(찹쌀떡마스크 중심)</span></li>
                         <li>단계별 루틴: 세안 → 피부결 정돈 → 찹쌀떡마스크 <span class="nb">10~20분</span> → 남은 에센스 두드려 흡수</li>
-                        <li>사용 전/후 <strong><span class="nb">B&amp;A</span></strong> 비교</li>
+                        <li>사용 전/후<span class="nb">(Before &amp; After)</span> 비교</li>
                       </ul>
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">Hook</div>
-                      <div class="quote-chip">보정 없는 피부 클로즈업 + 속당김 고민 자막으로 시작 → 찹쌀떡마스크 사용 루틴으로 연결</div>
+                      <div class="quote-chip">보정 없는 피부 클로즈업 + 속당김 고민 자막("환절기에 수분 관리 안 했더니 속당김이 올라왔습니다")으로 시작 → 찹쌀떡마스크 사용 루틴으로 연결</div>
                     </div>
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">🎨 썸네일 카피 예시</div>
@@ -1135,10 +1316,10 @@
         </div>
 
         <div class="key-msg-box" style="margin-top:18px;">
-          <div class="key-msg-title">촬영 필수 안내&nbsp;·&nbsp;중요</div>
+          <div class="key-msg-title">촬영 필수 안내 (중요)</div>
           <div class="key-msg-text" style="margin-top:-8px;margin-bottom:4px;">선택한 컨셉과 관계없이 아래 2가지 장면은 <strong>반드시</strong> 영상에 포함해 주세요.</div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 1&nbsp;·&nbsp;뚝뚝 떨어지는 에센스</div>
+            <div class="key-msg-badge">뚝뚝 떨어지는 에센스</div>
             <ul class="sub-list">
               <li>파우치를 뒤집어 <strong>가득 찬 에센스</strong>를 보여주거나 시트를 손으로 짜는 등, 사용 후에도 에센스가 넉넉한 <strong>촉촉한 팩</strong>임을 직관적으로 보여주세요.</li>
             </ul>
@@ -1147,10 +1328,9 @@
             </div>
           </div>
           <div class="key-msg-item">
-            <div class="key-msg-badge">CUT 2&nbsp;·&nbsp;사용 전후 B&amp;A</div>
+            <div class="key-msg-badge">사용 전후 <span class="nb">B&amp;A</span> 비교 장면</div>
             <ul class="sub-list">
-              <li>사용 전 <strong>푸석하고 속당기는 피부</strong> → 사용 후 <strong>속까지 촉촉하게 차오른 수분광 피부</strong> 비교 장면</li>
-              <li><strong>조명을 적극 활용</strong>해 피부 차이가 바로 보이도록 연출해 주세요.</li>
+              <li>사용 전 <strong>푸석하고 속당기는 피부</strong> → 사용 후 <strong>속까지 촉촉하게 차오른 수분광 피부</strong> <span class="nb">B&amp;A</span> 비교 장면 <strong>(*조명 적극 활용)</strong></li>
             </ul>
             <div class="concept-refs" style="margin-top:10px;">
               <a href="https://www.instagram.com/reel/DcfRbwxxBMg/" target="_blank" class="concept-ref-link">레퍼런스 1&nbsp;·&nbsp;B&amp;A 연출</a>
@@ -1197,17 +1377,16 @@
     <div class="key-msg-title">루솜 공식몰&nbsp;·&nbsp;<span class="nb">#찹쌀떡마스크</span> 프로모션</div>
     <div class="key-msg-text" style="margin-top:-8px;margin-bottom:4px;">캡션 마무리에 아래 프로모션을 간략히 언급해 주세요.</div>
     <div class="key-msg-item">
-      <div class="key-msg-badge">공식몰 <span class="nb">2+1</span></div>
+      <div class="key-msg-badge">공식몰 <span class="nb">찹쌀떡마스크 2+1</span></div>
       <ul class="sub-list">
         <li>최대 혜택가 <strong><span class="nb">장당 1,500원</span></strong> <span style="font-size:11.5px;color:var(--text-mid);">(최대 <span class="nb">50% 할인</span>)</span></li>
-        <li>소비자가 <span class="nb">90,000원</span> → 최대 혜택가 <strong><span class="nb">45,000원</span></strong></li>
         <li><span style="font-size:11.5px;color:var(--text-mid);">캡션에는 <span class="nb">'첫구매쿠폰 적용 시'</span> 조건을 함께 적어주세요.</span></li>
       </ul>
     </div>
     <div class="key-msg-item">
       <div class="key-msg-badge">가격 Hook</div>
       <ul class="sub-list">
-        <li>겔팩과 시트팩의 장점을 모은 제형에 <strong><span class="nb">장당 1,500원</span></strong> 가격 메리트를 연결해, <strong>영상 초반</strong>에 함께 언급해 주세요.</li>
+        <li>겔팩과 시트팩의 장점을 모은 제형에 <strong><span class="nb">장당 1,500원</span></strong> 가격 메리트를 연결해, <strong>영상 초반</strong>에 함께 언급해주세요</li>
       </ul>
       <div class="concept-refs" style="margin-top:10px;">
         <a href="https://www.instagram.com/p/DckKtKKT_62/" target="_blank" class="concept-ref-link">레퍼런스 1&nbsp;·&nbsp;가격 후킹</a>
@@ -1224,7 +1403,7 @@
 
   <div class="rec-list">
     <div class="rec-title">체크사항</div>
-    <div class="rec-item">캡션에 <strong>프로모션 내용</strong> 언급 <span style="font-size:11.5px;color:var(--text-light);">(공식몰 <span class="nb">2+1</span>, 최대 혜택가 <span class="nb">장당 1,500원</span> — 첫구매쿠폰 적용 시)</span></div>
+    <div class="rec-item">캡션에 <strong>프로모션 내용</strong> 언급 <span style="font-size:11.5px;color:var(--text-mid);">— 공식몰 <span class="nb">찹쌀떡마스크 2+1</span>, 최대 혜택가 <span class="nb">장당 1,500원</span> (첫구매쿠폰 적용 시)</span></div>
     <div class="rec-item"><span class="nb">@lusom_official</span> 본문 태그 및 공동작업자 초대</div>
     <div class="rec-item">릴스 형식으로 <strong><span class="nb">30초 이상</span></strong> 제작</div>
     <div class="rec-item">화장기 없는 얼굴과 깔끔한 배경에서 고화질로 촬영</div>
@@ -1237,7 +1416,7 @@
   <!-- 해시태그 -->
   <div class="hashtag-section">
     <div class="hashtag-label">해시태그 <span class="required">필수</span></div>
-    <div class="ref-note" style="margin-bottom:10px;">• <strong>댓글이 아닌 본문</strong>에 포함해 주세요.</div>
+    <div class="ref-note" style="margin-bottom:10px;">• 필수 해시태그 (<strong>댓글이 아닌 본문</strong>에 포함)</div>
     <div class="hashtag-wrap">
       <div class="hashtag req">#루솜</div>
       <div class="hashtag req">#찹쌀떡마스크</div>
@@ -1253,7 +1432,7 @@
       <div class="hashtag opt">#수분폭탄</div>
       <div class="hashtag opt">#수분광채</div>
     </div>
-    <div class="ref-note">• 그 외 해시태그는 선택한 연출 컨셉에 맞게 자유롭게 추가해 주세요.</div>
+    <div class="ref-note">• 연출 컨셉에 맞는 해시태그 자유롭게 사용</div>
   </div>
 
   <div class="warning-box">
@@ -1318,6 +1497,133 @@
       copyText(tag);
     });
   });
+
+
+  /* ===== 섹션 내비 + 읽기 진행률 ===== */
+  (function () {
+    var nav = document.getElementById('topnav');
+    var bar = document.getElementById('readProgress');
+    if (!nav) return;
+
+    var LABEL = { 'About Brand': '브랜드', 'Campaign Info': '캠페인 개요', 'Content Guide': '제작 가이드', 'Settlement': '정산' };
+    var targets = [];
+
+    document.querySelectorAll('.section').forEach(function (sec, i) {
+      var t = sec.querySelector('.section-title');
+      var l = sec.querySelector('.section-label');
+      var name = (t && t.textContent.trim()) || (l && LABEL[l.textContent.trim()]) || null;
+      if (!name) return;
+      if (!sec.id) sec.id = 'sec-' + i;
+      targets.push({ el: sec, name: name });
+    });
+
+    // 체크사항 블록도 바로가기에 추가
+    document.querySelectorAll('.rec-title').forEach(function (rt) {
+      if (rt.textContent.trim().indexOf('체크사항') !== 0) return;
+      var box = rt.closest('.rec-list');
+      if (!box) return;
+      box.id = 'checklist';
+      var guide = targets.filter(function (x) { return x.name === '제작 가이드'; })[0];
+      var idx = guide ? targets.indexOf(guide) + 1 : targets.length;
+      targets.splice(idx, 0, { el: box, name: '체크리스트' });
+    });
+
+    targets.forEach(function (t) {
+      var a = document.createElement('a');
+      a.href = '#' + t.el.id;
+      a.textContent = t.name;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var top = t.el.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+      nav.appendChild(a);
+      t.link = a;
+    });
+
+    function onScroll() {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - window.innerHeight;
+      if (bar) bar.style.width = (max > 0 ? Math.min(100, (window.pageYOffset / max) * 100) : 0) + '%';
+
+      var cur = null;
+      targets.forEach(function (t) {
+        if (t.el.getBoundingClientRect().top - 70 <= 0) cur = t;
+      });
+      targets.forEach(function (t) { t.link.classList.toggle('on', t === cur); });
+      if (cur && nav.scrollWidth > nav.clientWidth) {
+        var l = cur.link;
+        if (l.offsetLeft < nav.scrollLeft || l.offsetLeft + l.offsetWidth > nav.scrollLeft + nav.clientWidth) {
+          nav.scrollTo({ left: Math.max(0, l.offsetLeft - 12), behavior: 'smooth' });
+        }
+      }
+
+      var tt = document.getElementById('toTop');
+      if (tt) tt.classList.toggle('show', window.pageYOffset > window.innerHeight);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  })();
+
+  /* ===== 업로드 전 체크리스트 (브라우저에 저장) ===== */
+  (function () {
+    var box = document.getElementById('checklist');
+    if (!box) return;
+    var title = box.querySelector('.rec-title');
+    var items = [].slice.call(box.querySelectorAll('.rec-item'));
+    if (!items.length) return;
+
+    var KEY = 'lusom11-check';
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+
+    var counter = document.createElement('span');
+    counter.className = 'check-count';
+    if (title) title.appendChild(counter);
+
+    var rows = items.map(function (item, i) {
+      var row = document.createElement('label');
+      row.className = 'check-row';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!saved[i];
+      var txt = document.createElement('span');
+      txt.innerHTML = item.innerHTML;
+      row.appendChild(cb);
+      row.appendChild(txt);
+      item.replaceWith(row);
+      cb.addEventListener('change', function () { sync(); save(); });
+      return { row: row, cb: cb };
+    });
+
+    function sync() {
+      var n = 0;
+      rows.forEach(function (r) {
+        r.row.classList.toggle('done', r.cb.checked);
+        if (r.cb.checked) n++;
+      });
+      counter.textContent = n + ' / ' + rows.length;
+    }
+    function save() {
+      var o = {};
+      rows.forEach(function (r, i) { o[i] = r.cb.checked; });
+      try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+    }
+    sync();
+  })();
+
+  /* ===== 맨 위로 ===== */
+  (function () {
+    var b = document.createElement('button');
+    b.id = 'toTop';
+    b.className = 'to-top';
+    b.type = 'button';
+    b.setAttribute('aria-label', '맨 위로');
+    b.textContent = '↑';
+    b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    document.body.appendChild(b);
+  })();
 
   document.querySelectorAll('.collab-handle').forEach(el => {
     el.addEventListener('click', () => {
