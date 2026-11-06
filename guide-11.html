@@ -30,12 +30,12 @@
       --green: #D2B48C;
       --green-light: #E3CBA5;
       --green-pale: #F1E4CC;
-      --green-text: #8F6B3E;
+      --green-text: #7A5A2E;
       --cream: #FBF7F0;
       --warm-white: #F5EDE0;
       --text-dark: #3A2F22;
-      --text-mid: #7C6A52;
-      --text-light: #B09A7C;
+      --text-mid: #726046;
+      --text-light: #7F6943;
       --border: #E8DCC6;
       --tag-bg: #F2E8D8;
     }
@@ -389,7 +389,7 @@
       border-top: 1px dashed var(--border);
     }
     .concept-quotes-label {
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.05em;
       color: var(--green-text);
@@ -399,11 +399,11 @@
     .quote-chip {
       background: var(--tag-bg);
       border-radius: 8px;
-      padding: 8px 12px;
+      padding: 10px 13px;
       font-size: 12.5px;
       color: var(--text-dark);
-      margin-bottom: 6px;
-      line-height: 1.5;
+      margin-bottom: 7px;
+      line-height: 1.65;
     }
     .quote-chip:last-child { margin-bottom: 0; }
     .concept-ref-link {
@@ -431,42 +431,42 @@
       color: var(--green-text);
     }
 
-    .sub-list { margin: 6px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.6; }
-    .sub-list li { margin-bottom: 4px; }
+    .sub-list { margin: 7px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--text-mid); line-height: 1.75; }
+    .sub-list li { margin-bottom: 7px; }
     .sub-list li:last-child { margin-bottom: 0; }
 
     .key-msg-box {
-      background: var(--green);
-      border: 1px solid var(--green-light);
+      background: var(--green-pale);
+      border: 1.5px solid var(--green-light);
       border-radius: 14px;
       padding: 22px 24px;
       margin-bottom: 20px;
     }
     .key-msg-title {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: rgba(58,47,34,0.55);
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      color: var(--green-text);
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
     .key-msg-item {
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(58,47,34,0.12);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(58,47,34,0.18);
     }
     .key-msg-item:last-child { border-bottom: none; padding-bottom: 0; }
     .key-msg-badge {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      color: rgba(58,47,34,0.55);
-      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+      color: var(--green-text);
+      margin-bottom: 7px;
       text-transform: uppercase;
     }
     .key-msg-text {
       font-size: 13px;
       color: var(--text-dark);
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .key-msg-text strong { color: var(--green-text); }
     .key-msg-item .sub-list { color: var(--text-dark); font-size: 12.5px; margin-top: 6px; padding-left: 16px; }
@@ -573,7 +573,7 @@
       display: grid;
       gap: 10px;
     }
-    .ref-note { font-size: 11px; color: var(--text-light); margin-bottom: 4px; }
+    .ref-note { font-size: 11.5px; color: var(--text-light); margin-bottom: 4px; }
     .ref-link {
       display: flex;
       align-items: center;
@@ -796,7 +796,7 @@
 
       /* 자간 — 좁은 화면에서 한 줄에 더 담기도록 미세 조정 */
       body { letter-spacing: -0.01em; }
-      .key-msg-badge { font-size: 10.5px; letter-spacing: 0.04em; }
+      .key-msg-badge { font-size: 11px; letter-spacing: 0.03em; }
       .concept-quotes-label { letter-spacing: 0.03em; }
       .section-label { letter-spacing: 0.18em; }
       .header-eyebrow { letter-spacing: 0.24em; }
@@ -1199,9 +1199,9 @@
     <div class="key-msg-item">
       <div class="key-msg-badge">공식몰 <span class="nb">2+1</span></div>
       <ul class="sub-list">
-        <li>최대 혜택가 <strong><span class="nb">장당 1,500원</span></strong> <span style="font-size:11.5px;color:var(--text-light);">(최대 <span class="nb">50% 할인</span>)</span></li>
+        <li>최대 혜택가 <strong><span class="nb">장당 1,500원</span></strong> <span style="font-size:11.5px;color:var(--text-mid);">(최대 <span class="nb">50% 할인</span>)</span></li>
         <li>소비자가 <span class="nb">90,000원</span> → 최대 혜택가 <strong><span class="nb">45,000원</span></strong></li>
-        <li><span style="font-size:11.5px;color:var(--text-light);">캡션에는 <span class="nb">'첫구매쿠폰 적용 시'</span> 조건을 함께 적어주세요.</span></li>
+        <li><span style="font-size:11.5px;color:var(--text-mid);">캡션에는 <span class="nb">'첫구매쿠폰 적용 시'</span> 조건을 함께 적어주세요.</span></li>
       </ul>
     </div>
     <div class="key-msg-item">
