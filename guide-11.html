@@ -514,6 +514,8 @@
     }
     .hashtag:active { opacity: 0.6; }
     .hashtag.req { background: var(--green); color: var(--text-dark); border: 1px solid var(--green-light); }
+    .hashtag.opt { background: var(--warm-white); color: var(--text-mid); border: 1px solid var(--border); }
+    .hashtag.opt::after { content: '⎘'; font-size: 11px; color: var(--text-light); }
     .hashtag.req::after { content: '⎘'; font-size: 11px; color: rgba(58,47,34,0.45); }
 
     /* COLLAB */
@@ -886,10 +888,6 @@
       <div class="info-val">필수</div>
     </div>
     <div class="info-row">
-      <div class="info-key"><span class="nb">본문 #광고</span></div>
-      <div class="info-val">첫 줄 표기 필수</div>
-    </div>
-    <div class="info-row">
       <div class="info-key">2차 활용</div>
       <div class="info-val">동의</div>
     </div>
@@ -950,7 +948,7 @@
                     <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">💧 Point 1. 마르지 않는 진짜 속보습</strong>
                     <ul class="sub-list">
                       <li>푸석하고 속당김이 심한 날, <strong>피부 속 깊이 집중 수분 케어</strong></li>
-                      <li>겉은 번들거리는데 속은 당기는 <strong>환절기 <span class="nb">수부지(수분 부족 지성)</span></strong> 피부를 위한 수분폭탄</li>
+                      <li>겉은 번들거리는데 속은 당기는 <strong>환절기 <span class="nb">수부지(수분 부족 지성)</span></strong> 피부를 위한 <span class="nb">수분폭탄팩</span></li>
                       <li>발효미 에센스를 듬뿍 담아 오랫동안 촉촉하게</li>
                     </ul>
                   </div>
@@ -959,7 +957,7 @@
                   <div>
                     <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">🍡 Point 2. 이마부터 턱까지 들뜸 없는 밀착력</strong>
                     <ul class="sub-list">
-                      <li>얼굴 굴곡까지 <strong>빈틈없이 감싸는 고밀착 시트</strong></li>
+                      <li>얼굴 굴곡까지 <strong>빈틈없이 감싸는 <span class="nb">풀사이즈</span> 고밀착 시트</strong></li>
                       <li>겔팩과 시트팩 사이의 <strong><span class="nb">세미겔 제형</span></strong> — 겔팩의 쫀쫀한 밀착력과 시트팩의 넉넉한 에센스, 두 가지 장점을 모은 마스크</li>
                     </ul>
                   </div>
@@ -968,7 +966,7 @@
                   <div>
                     <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">🌾 Point 3. 찹쌀떡처럼 쫀득한 고농축 에센스</strong>
                     <ul class="sub-list">
-                      <li>진한 농도의 발효미 에센스가 피부 위에 촉촉히 머물러 <strong>수분&nbsp;·&nbsp;진정&nbsp;·&nbsp;광채</strong>를 한 번에</li>
+                      <li>진한 농도의 발효미 에센스가 피부 위에 촉촉히 머물러 <strong>수분&nbsp;·&nbsp;진정 케어</strong>는 물론, <strong>촉촉하게 빛나는 수분광</strong>까지</li>
                       <li>여주 쌀&nbsp;·&nbsp;누룩&nbsp;·&nbsp;효모를 최적 비율로 조합한 <strong><span class="nb">쌀지게미 COMPLEX</span></strong> <span style="font-size:11px;color:var(--text-light);">(특허성분)</span></li>
                       <li><strong>저분자 발효 공법</strong>으로 유효성분을 피부 깊숙이 빠르게 흡수</li>
                     </ul>
@@ -976,9 +974,9 @@
                 </li>
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">✨ Point 4. 속부터 차오르는 광으로 화잘먹 피부</strong>
+                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">✨ Point 4. 속부터 차오르는 수분광</strong>
                     <ul class="sub-list">
-                      <li>피부 속부터 차오르는 광채 표현 → <strong>화장 잘 먹는 메이크업 베이스</strong></li>
+                      <li><strong>속까지 채워주는 진한 보습감</strong> — <span class="nb">외출 전 10분</span>, 속건조 걱정 없이 촉촉한 수분광이 올라와 <strong>화잘먹 피부 베이스</strong> 완성!</li>
                     </ul>
                   </div>
                 </li>
@@ -986,7 +984,7 @@
 
               <div class="warning-box" style="margin-top:14px;">
                 🚨 본인이 <strong>실제 써본 솔직한 경험</strong>을 본인만의 톤앤매너로 담아주세요!<br>
-                <span style="font-size:11.5px;">실제 사용감, 피부 광채 전후, 화장이 어떻게 달라졌는지 등 진정성 있게</span>
+                <span style="font-size:11.5px;">실제 사용감, <span class="nb">속건조·속당김</span> 전후 변화, 촉촉하게 올라온 수분광, 화잘먹 등 피부변화 진정성 있게</span>
               </div>
             </div>
           </details>
@@ -998,7 +996,7 @@
               <span class="concept-chevron">⌄</span>
             </summary>
             <div class="concept-body">
-              <div class="concept-intro" style="margin-top:14px;">아래 <strong>3가지 포맷</strong> 중 본인에게 잘 맞는 방향을 자유롭게 선택해서 풀어주세요. <span class="concept-pick">여러 컨셉 조합 OK</span></div>
+              <div class="concept-intro" style="margin-top:14px;">아래 <strong>4가지 포맷</strong> 중 본인에게 잘 맞는 방향을 자유롭게 선택해서 풀어주세요. <span class="concept-pick">여러 컨셉 조합 OK</span></div>
 
               <div class="concept-list" style="margin-top:14px;">
                 <details class="concept">
@@ -1013,7 +1011,7 @@
                       <div class="concept-quotes-label">필수 촬영 요소</div>
                       <ul class="sub-list">
                         <li><span class="nb">팩 N개 / ㅇㅇ만원</span> 써보고 추천하는 팩을 언급하며, 팩 수십 개를 무겁게 들고와 보여주며 후킹</li>
-                        <li>외출 전 피부가 푸석할 때 <strong>문제점 언급</strong> → 팩 사용으로 <strong>급속 광채 충전</strong>한 모습</li>
+                        <li>외출 전 피부가 <strong>푸석하고 속당길 때</strong> 문제점 언급 → 팩 사용으로 <strong>급속 수분 충전</strong> → <strong>촉촉한 수분광이 도는 모습</strong></li>
                         <li>사용 전/후 <strong><span class="nb">B&amp;A</span></strong> 비교</li>
                       </ul>
                     </div>
@@ -1024,6 +1022,8 @@
                     <div class="concept-quotes">
                       <div class="concept-quotes-label">🎨 썸네일 카피 예시</div>
                       <div class="quote-chip">"팩에만 <span class="nb">300만원</span> 넘게 쓴 사람이 인정한 팩 추천"</div>
+                      <div class="quote-chip">"팩친자의 인생마스크 추천"</div>
+                      <div class="quote-chip">"<span class="nb">1일 1팩</span> 중독자 인생 마스크팩 추천"</div>
                     </div>
                     <div class="concept-refs">
                       <div class="concept-quotes-label">▼ Ref.</div>
@@ -1036,6 +1036,39 @@
                 <details class="concept">
                   <summary class="concept-summary">
                     <span class="concept-num">B</span>
+                    <span class="concept-name"><span class="nb">7일 사용형</span> — 달라진 피부 인증</span>
+                    <span class="concept-chevron">⌄</span>
+                  </summary>
+                  <div class="concept-body">
+                    <div class="concept-intro" style="margin-top:14px;">팩을 <strong><span class="nb">7일간</span> 사용</strong>한 뒤 달라진 피부를 <span class="nb">B&amp;A</span>로 보여주며, 제품력을 직관적으로 전달하는 콘텐츠</div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">필수 촬영 요소</div>
+                      <ul class="sub-list">
+                        <li><span class="nb">1·3·5·7일차</span> 팩 사용 모습을 짧게 이어 붙이고, 화면에 <strong><span class="nb">DAY 1</span> / <span class="nb">DAY 3</span> / <span class="nb">DAY 5</span> / <span class="nb">DAY 7</span></strong> 일차 자막 표기</li>
+                        <li>사용 전 / <span class="nb">7일 후</span> <strong><span class="nb">B&amp;A</span></strong> 비교 — <strong>같은 장소·조명·각도</strong>에서 촬영</li>
+                      </ul>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">Hook</div>
+                      <div class="quote-chip">들뜨고 흘러내리던 기존 마스크팩에 실망 → 찹쌀떡마스크로 인생템 찾음 <strong>(타 브랜드 로고 노출 X)</strong></div>
+                      <div class="quote-chip">첫 화면에 사용 전 / <span class="nb">7일 후</span> <span class="nb">B&amp;A</span>를 위아래로 나란히 배치 + <span class="nb">"7일 만에"</span> 자막으로 시작</div>
+                    </div>
+                    <div class="concept-quotes">
+                      <div class="concept-quotes-label">🎨 썸네일 카피 예시</div>
+                      <div class="quote-chip">"<span class="nb">7일 만에</span> 피부 좋아진 방법"</div>
+                      <div class="quote-chip">"<span class="nb">7일 동안</span> 속건조 잡은 수분 충전 루틴"</div>
+                    </div>
+                    <div class="concept-refs">
+                      <div class="concept-quotes-label">▼ Ref.</div>
+                      <a href="https://www.instagram.com/reels/DLuaWmvpRmg/" target="_blank" class="concept-ref-link">레퍼런스 1</a>
+                      <a href="https://www.instagram.com/reels/DGRgO_vTNts/" target="_blank" class="concept-ref-link">레퍼런스 2</a>
+                    </div>
+                  </div>
+                </details>
+
+                <details class="concept">
+                  <summary class="concept-summary">
+                    <span class="concept-num">C</span>
                     <span class="concept-name">루틴형 — 수부지 수분폭탄</span>
                     <span class="concept-chevron">⌄</span>
                   </summary>
@@ -1067,7 +1100,7 @@
 
                 <details class="concept">
                   <summary class="concept-summary">
-                    <span class="concept-num">C</span>
+                    <span class="concept-num">D</span>
                     <span class="concept-name">찹쌀떡형</span>
                     <span class="concept-chevron">⌄</span>
                   </summary>
@@ -1116,11 +1149,12 @@
           <div class="key-msg-item">
             <div class="key-msg-badge">CUT 2&nbsp;·&nbsp;사용 전후 B&amp;A</div>
             <ul class="sub-list">
-              <li>사용 전 <strong>푸석한 피부</strong> → 사용 후 <strong>촉촉한 수분 광채 피부</strong> 비교 장면</li>
+              <li>사용 전 <strong>푸석하고 속당기는 피부</strong> → 사용 후 <strong>속까지 촉촉하게 차오른 수분광 피부</strong> 비교 장면</li>
               <li><strong>조명을 적극 활용</strong>해 피부 차이가 바로 보이도록 연출해 주세요.</li>
             </ul>
             <div class="concept-refs" style="margin-top:10px;">
-              <a href="https://www.instagram.com/reel/DcfRbwxxBMg/" target="_blank" class="concept-ref-link">레퍼런스&nbsp;·&nbsp;B&amp;A 연출</a>
+              <a href="https://www.instagram.com/reel/DcfRbwxxBMg/" target="_blank" class="concept-ref-link">레퍼런스 1&nbsp;·&nbsp;B&amp;A 연출</a>
+              <a href="https://www.instagram.com/reels/DdguRTahJtM/" target="_blank" class="concept-ref-link">레퍼런스 2&nbsp;·&nbsp;B&amp;A 연출</a>
             </div>
           </div>
         </div>
@@ -1169,9 +1203,6 @@
         <li>소비자가 <span class="nb">90,000원</span> → 최대 혜택가 <strong><span class="nb">45,000원</span></strong></li>
         <li><span style="font-size:11.5px;color:var(--text-light);">캡션에는 <span class="nb">'첫구매쿠폰 적용 시'</span> 조건을 함께 적어주세요.</span></li>
       </ul>
-      <div class="concept-refs" style="margin-top:10px;">
-        <a href="https://lusom.kr/product/detail.html?product_no=43&amp;cate_no=66&amp;display_group=1" target="_blank" class="concept-ref-link">프로모션 상품 링크 ↗</a>
-      </div>
     </div>
     <div class="key-msg-item">
       <div class="key-msg-badge">가격 Hook</div>
@@ -1179,7 +1210,8 @@
         <li>겔팩과 시트팩의 장점을 모은 제형에 <strong><span class="nb">장당 1,500원</span></strong> 가격 메리트를 연결해, <strong>영상 초반</strong>에 함께 언급해 주세요.</li>
       </ul>
       <div class="concept-refs" style="margin-top:10px;">
-        <a href="https://www.instagram.com/p/DckKtKKT_62/" target="_blank" class="concept-ref-link">레퍼런스&nbsp;·&nbsp;가격 후킹</a>
+        <a href="https://www.instagram.com/p/DckKtKKT_62/" target="_blank" class="concept-ref-link">레퍼런스 1&nbsp;·&nbsp;가격 후킹</a>
+        <a href="https://www.instagram.com/p/DadGqpgM0QA/" target="_blank" class="concept-ref-link">레퍼런스 2&nbsp;·&nbsp;가격 후킹</a>
       </div>
     </div>
     <div class="key-msg-item">
@@ -1205,13 +1237,21 @@
   <!-- 해시태그 -->
   <div class="hashtag-section">
     <div class="hashtag-label">해시태그 <span class="required">필수</span></div>
-    <div class="ref-note" style="margin-bottom:10px;">• 댓글이 아닌 <strong>본문</strong>에 포함해 주세요. <strong>본문 첫 줄에 <span class="nb">#광고</span> 표기 필수</strong>입니다.</div>
+    <div class="ref-note" style="margin-bottom:10px;">• <strong>댓글이 아닌 본문</strong>에 포함해 주세요.</div>
     <div class="hashtag-wrap">
-      <div class="hashtag req">#광고</div>
       <div class="hashtag req">#루솜</div>
       <div class="hashtag req">#찹쌀떡마스크</div>
       <div class="hashtag req">#수부지케어</div>
       <div class="hashtag req">#수분팩추천</div>
+    </div>
+    <div class="hashtag-label" style="margin-top:4px;">선택 해시태그 <span style="font-size:11px;color:var(--text-light);font-weight:500;">추천</span></div>
+    <div class="hashtag-wrap">
+      <div class="hashtag opt">#속보습</div>
+      <div class="hashtag opt">#수분충전</div>
+      <div class="hashtag opt">#속건조</div>
+      <div class="hashtag opt">#속당김</div>
+      <div class="hashtag opt">#수분폭탄</div>
+      <div class="hashtag opt">#수분광채</div>
     </div>
     <div class="ref-note">• 그 외 해시태그는 선택한 연출 컨셉에 맞게 자유롭게 추가해 주세요.</div>
   </div>
