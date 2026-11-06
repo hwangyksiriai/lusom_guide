@@ -136,6 +136,20 @@
       font-weight: 700;
       color: var(--text-dark);
     }
+    .folder-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-light);
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2px 8px;
+      flex-shrink: 0;
+    }
+    .folder.closed .folder-name { color: var(--text-light); }
+    .folder.closed .folder-icon { opacity: 0.5; }
+    .folder.closed:not([open]) .folder-body { display: none; }
     .folder-count {
       font-size: 11px;
       font-weight: 600;
@@ -215,10 +229,11 @@
       <div class="hub-eyebrow">Lusom Internal</div>
       <div class="hub-title">캠페인 에셋 허브</div>
     </div>
-    <details class="folder" open>
+    <details class="folder closed">
       <summary class="folder-head">
         <span class="folder-icon">📁</span>
         <span class="folder-name">9월</span>
+        <span class="folder-badge">마감</span>
         <span class="folder-count">6</span>
         <span class="folder-chevron">⌄</span>
       </summary>
@@ -268,10 +283,11 @@
       </div>
     </details>
 
-    <details class="folder" open>
+    <details class="folder closed">
       <summary class="folder-head">
         <span class="folder-icon">📁</span>
         <span class="folder-name">10월</span>
+        <span class="folder-badge">마감</span>
         <span class="folder-count">2</span>
         <span class="folder-chevron">⌄</span>
       </summary>
@@ -285,6 +301,30 @@
       <a href="/guide-10-product" class="asset-link">
         <div class="asset-left">
           <div class="asset-price">브랜드 전달용 (10월) 제품강조형</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      </div>
+    </details>
+
+    <details class="folder" open>
+      <summary class="folder-head">
+        <span class="folder-icon">📁</span>
+        <span class="folder-name">11월</span>
+        <span class="folder-badge" style="color:var(--green-text);background:var(--green-pale);border-color:var(--green-light);">진행중</span>
+        <span class="folder-count">2</span>
+        <span class="folder-chevron">⌄</span>
+      </summary>
+      <div class="asset-list folder-body">
+      <a href="/guide-11" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-price">통합전달용</div>
+        </div>
+        <div class="asset-arrow">→</div>
+      </a>
+      <a href="/guide-11-brand" class="asset-link">
+        <div class="asset-left">
+          <div class="asset-price">브랜드 전달용</div>
         </div>
         <div class="asset-arrow">→</div>
       </a>
