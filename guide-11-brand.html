@@ -880,46 +880,6 @@
     }
     .topnav a.on { background: var(--green-pale); color: var(--green-text); border-color: var(--green-light); }
 
-    /* ===== 한눈에 보기 ===== */
-    .tldr {
-      max-width: 584px;
-      margin: 0 auto 4px;
-      background: #fff;
-      border: 1.5px solid var(--green-light);
-      border-radius: 16px;
-      padding: 18px 20px;
-      box-shadow: 0 2px 10px rgba(58,47,34,0.05);
-    }
-    @media (max-width: 624px) {
-      .tldr { margin: 0 20px 4px; }
-    }
-    .tldr-head {
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--green-text);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .tldr-row {
-      display: flex;
-      gap: 12px;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-dark);
-    }
-    .tldr-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .tldr-k {
-      flex: 0 0 54px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-mid);
-      padding-top: 2px;
-    }
-    .tldr-v strong { color: var(--green-text); }
-
     /* ===== 업로드 전 체크리스트 ===== */
     .check-row {
       display: flex;
@@ -978,8 +938,6 @@
     .to-top.show { opacity: 1; pointer-events: auto; }
 
     @media (max-width: 480px) {
-      .tldr { margin: 0 16px 4px; padding: 16px 18px; }
-      .tldr-row { font-size: 12.5px; }
       .topnav { padding: 6px 12px; }
       .topnav a { font-size: 11.5px; padding: 7px 11px; min-height: 40px; }
     }
@@ -1001,35 +959,6 @@
 <div class="topbar">
   <div class="topbar-progress" id="readProgress"></div>
   <nav class="topnav" id="topnav" aria-label="섹션 바로가기"></nav>
-</div>
-
-<!-- 한눈에 보기 -->
-<div class="tldr">
-  <div class="tldr-head">한눈에 보기</div>
-  <div class="tldr-row">
-    <div class="tldr-k">제품</div>
-    <div class="tldr-v">루솜 발효미 에센스 글로우 마스크 <strong><span class="nb">#찹쌀떡마스크</span></strong></div>
-  </div>
-  <div class="tldr-row">
-    <div class="tldr-k">형식</div>
-    <div class="tldr-v">릴스(Reels) <strong><span class="nb">30초 이상</span></strong></div>
-  </div>
-  <div class="tldr-row">
-    <div class="tldr-k">컨셉</div>
-    <div class="tldr-v"><strong>4가지 중 택1</strong> <span style="font-size:11.5px;color:var(--text-mid);">(조합 OK)</span> — 추천형 / <span class="nb">7일 사용형</span> / 루틴형 / 찹쌀떡형</div>
-  </div>
-  <div class="tldr-row">
-    <div class="tldr-k">필수 컷</div>
-    <div class="tldr-v"><strong>2컷</strong> — 뚝뚝 떨어지는 에센스, 사용 전후 <span class="nb">B&amp;A</span></div>
-  </div>
-  <div class="tldr-row">
-    <div class="tldr-k">캡션</div>
-    <div class="tldr-v">공식몰 <strong><span class="nb">2+1</span> 프로모션</strong> 언급 + 필수 해시태그 4개</div>
-  </div>
-  <div class="tldr-row">
-    <div class="tldr-k">태그</div>
-    <div class="tldr-v"><strong><span class="nb">@lusom_official</span></strong> 본문 태그 &amp; 공동작업자 초대</div>
-  </div>
 </div>
 
 <!-- ABOUT -->
