@@ -941,6 +941,49 @@
       .topnav { padding: 6px 12px; }
       .topnav a { font-size: 11.5px; padding: 7px 11px; min-height: 40px; }
     }
+
+    /* ===== 제품 특장점 POINT 소제목 ===== */
+    .point-steps { gap: 16px; }
+    .point-steps > li { gap: 0; display: block; }
+    .point-steps > li::before { display: none; }
+    .point-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      background: var(--green-pale);
+      border-left: 3px solid var(--green-text);
+      border-radius: 0 10px 10px 0;
+      padding: 10px 13px;
+      margin-bottom: 10px;
+    }
+    .point-no {
+      flex: 0 0 auto;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #FFF9EF;
+      background: var(--green-text);
+      border-radius: 999px;
+      padding: 3px 8px;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+    .point-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      text-wrap: pretty;
+    }
+    .point-steps .sub-list { padding-left: 17px; }
+    @media (max-width: 480px) {
+      .point-head { padding: 9px 11px; gap: 7px; }
+      .point-title { font-size: 13px; }
+      .point-no { font-size: 9.5px; padding: 3px 7px; }
+    }
   </style>
 </head>
 <body>
@@ -1068,10 +1111,10 @@
               <div class="concept-intro" style="margin-top:14px;">제품의 임상데이터 및 특징은 상세페이지 꼭 한번 읽어봐주시고, 아래 <strong>POINT 4가지</strong> 위주로 소구해주세요</div>
               <a href="https://www.lusom.kr/product/detail.html?product_no=35&amp;cate_no=61&amp;display_group=1" target="_blank" class="concept-ref-link" style="margin-top:10px;">상세페이지 바로가기 ↗</a>
 
-              <ol class="concept-steps" style="margin-top:16px;">
+              <ol class="concept-steps point-steps" style="margin-top:16px;">
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">💧 Point 1. 피부 속까지 꽉 채워 마르지 않는 진짜 보습, 찹쌀떡마스크</strong>
+                    <div class="point-head"><span class="point-no">POINT 1</span><span class="point-title">💧 피부 속까지 꽉 채워 마르지 않는 진짜 보습, <span class="nb">찹쌀떡마스크</span></span></div>
                     <ul class="sub-list">
                       <li>푸석하고 속당김이 심한 날, <strong>피부 속 깊이 집중 수분 케어</strong></li>
                       <li>겉은 번들거리는데 속은 당기는 <strong>환절기 <span class="nb">수부지(수분 부족 지성)</span></strong> 피부를 위한 <span class="nb">수분폭탄팩</span></li>
@@ -1081,7 +1124,7 @@
                 </li>
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">🍡 Point 2. 이마부터 턱까지 들뜸 없는 밀착력</strong>
+                    <div class="point-head"><span class="point-no">POINT 2</span><span class="point-title">🍡 이마부터 턱까지 들뜸 없는 밀착력</span></div>
                     <ul class="sub-list">
                       <li>얼굴 굴곡까지 <strong>빈틈없이 감싸는 <span class="nb">풀사이즈</span> 고밀착 시트</strong></li>
                       <li>겔팩과 시트팩 사이의 <strong><span class="nb">세미겔 제형</span></strong> — 겔팩의 쫀쫀한 밀착력과 시트팩의 넉넉한 에센스, 두 가지 장점을 모은 마스크</li>
@@ -1090,7 +1133,7 @@
                 </li>
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">🌾 Point 3. 찹쌀떡처럼 쫀득한 고농축 에센스</strong>
+                    <div class="point-head"><span class="point-no">POINT 3</span><span class="point-title">🌾 찹쌀떡처럼 쫀득한 고농축 에센스</span></div>
                     <ul class="sub-list">
                       <li>진한 농도의 발효미 에센스가 피부 위에 촉촉히 머물러 <strong>수분&nbsp;·&nbsp;진정 케어</strong>는 물론, <strong>촉촉하게 빛나는 수분광</strong>까지</li>
                       <li>여주 쌀&nbsp;·&nbsp;누룩&nbsp;·&nbsp;효모를 최적 비율로 조합한 <strong><span class="nb">쌀지게미 COMPLEX</span></strong> <span style="font-size:11px;color:var(--text-light);">(특허성분)</span></li>
@@ -1100,7 +1143,7 @@
                 </li>
                 <li>
                   <div>
-                    <strong style="display:block;color:var(--text-dark);font-size:13px;margin-bottom:4px;">✨ Point 4. 속부터 차오르는 수분광</strong>
+                    <div class="point-head"><span class="point-no">POINT 4</span><span class="point-title">✨ 속부터 차오르는 수분광</span></div>
                     <ul class="sub-list">
                       <li><strong>속까지 채워주는 진한 보습감</strong> — <span class="nb">외출 전 10분</span>, 속건조 걱정 없이 촉촉한 수분광이 올라와 <strong>화잘먹 피부 베이스</strong> 완성!</li>
                     </ul>
