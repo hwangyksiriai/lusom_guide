@@ -984,6 +984,48 @@
       .point-title { font-size: 13px; }
       .point-no { font-size: 9.5px; padding: 3px 7px; }
     }
+
+    /* ===== 콘텐츠 컨셉 A~D 소제목 ===== */
+    .concept.sub { border-left: 3px solid var(--green-light); }
+    .concept.sub[open] { border-left-color: var(--green-text); }
+    .concept.sub > .concept-summary {
+      background: var(--green-pale);
+      align-items: flex-start;
+      gap: 9px;
+      padding: 12px 14px;
+    }
+    .concept.sub > .concept-summary .concept-num {
+      width: 24px;
+      height: 24px;
+      margin-top: 1px;
+      background: var(--green-text);
+      border: 1px solid var(--green-text);
+      color: #FFF9EF;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .concept.sub[open] > .concept-summary .concept-num {
+      background: var(--green-text);
+      border-color: var(--green-text);
+      color: #FFF9EF;
+    }
+    .concept.sub > .concept-summary .concept-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      text-wrap: pretty;
+      padding-top: 2px;
+    }
+    .concept.sub > .concept-summary .concept-chevron { align-self: center; color: var(--green-text); }
+    @media (max-width: 480px) {
+      .concept.sub > .concept-summary { padding: 11px 12px; gap: 8px; }
+      .concept.sub > .concept-summary .concept-name { font-size: 13px; }
+      .concept.sub > .concept-summary .concept-num { width: 22px; height: 22px; font-size: 11.5px; }
+    }
   </style>
 </head>
 <body>
@@ -1168,7 +1210,7 @@
               <div class="concept-intro" style="margin-top:14px;">아래 <strong>4가지 포맷</strong> 중 본인에게 잘 맞는 방향을 자유롭게 선택해서 풀어주세요! <span class="concept-pick">여러 컨셉을 조합해도 좋습니다</span></div>
 
               <div class="concept-list" style="margin-top:14px;">
-                <details class="concept">
+                <details class="concept sub">
                   <summary class="concept-summary">
                     <span class="concept-num">A</span>
                     <span class="concept-name">추천형 — 마스크팩 N개 써보고 인생팩 찾음</span>
@@ -1202,7 +1244,7 @@
                   </div>
                 </details>
 
-                <details class="concept">
+                <details class="concept sub">
                   <summary class="concept-summary">
                     <span class="concept-num">B</span>
                     <span class="concept-name"><span class="nb">7일 사용형</span> — 7일 꾸준히 써보고 달라진 피부 인증</span>
@@ -1235,7 +1277,7 @@
                   </div>
                 </details>
 
-                <details class="concept">
+                <details class="concept sub">
                   <summary class="concept-summary">
                     <span class="concept-num">C</span>
                     <span class="concept-name">루틴형 — 환절기 수부지 수분폭탄 루틴</span>
@@ -1267,7 +1309,7 @@
                   </div>
                 </details>
 
-                <details class="concept">
+                <details class="concept sub">
                   <summary class="concept-summary">
                     <span class="concept-num">D</span>
                     <span class="concept-name">찹쌀떡형</span>
